@@ -1,0 +1,248 @@
+[
+  {
+    "name": "phueb/BabyBERTa-1",
+    "type": "mlm",
+    "description": "BabyBERTa (Huebner et al. 2021) run 1: RoBERTa-like masked LM trained on ≈5M child-directed tokens (AO-CHILDES)"  
+  },
+  {
+    "name": "phueb/BabyBERTa-2",
+    "type": "mlm",
+    "description": "BabyBERTa (Huebner et al. 2021) run 2: RoBERTa-like masked LM trained on ≈5M child-directed tokens (AO-CHILDES)"
+  },
+  {
+    "name": "phueb/BabyBERTa-3",
+    "type": "mlm",
+    "description": "BabyBERTa (Huebner et al. 2021) run 3: RoBERTa-like masked LM trained on ≈5M child-directed tokens (AO-CHILDES)"
+  },
+  { 
+    "name": "ltg/gpt-bert-babylm-small",
+    "type": "mlm",
+    "description": "2024 BabyLM strict-small winning submission (Charpentier & Samuel, 2024): ~30M-parameter GPT-BERT hybrid trained on Baby-cosmo-fine-10M (≈10M tokens; strict-small), 3 epochs"
+  },
+  {
+    "name": "BabyLM-community/babylm-baseline-10m-gpt-bert-masked-focus",
+    "type": "mlm",
+    "description": "2025 BabyLM strict-small baseline: GPT-BERT hybrid (Charpentier & Samuel, 2024), masked-focus MLM, trained on BabyLM 10M (Strict-small)"  
+  },
+  {
+    "name": "BabyLM-community/babylm-baseline-10m-gpt-bert-mixed",
+    "type": "mlm",
+    "description": "2025 BabyLM strict-small baseline: GPT-BERT hybrid (Charpentier & Samuel, 2024), mixed dual-use (MLM + AR), trained on BabyLM 10M (Strict-small)"  
+  },
+  {
+    "name": "BabyLM-community/babylm-baseline-10m-gpt-bert-causal-focus",
+    "type": "ar",
+    "description": "2025 BabyLM strict-small baseline: GPT-BERT hybrid (Charpentier & Samuel, 2024), autoregressive focus, trained on BabyLM 10M (Strict-small)" 
+   },
+  {
+    "name": "BabyLM-community/babylm-baseline-10m-gpt-bert-mixed",
+    "type": "ar",
+    "description": "2025 BabyLM strict-small baseline: GPT-BERT hybrid (Charpentier & Samuel, 2024), mixed dual-use (MLM + AR), trained on BabyLM 10M (Strict-small)"
+  },
+  {
+    "name": "ltg/gpt-bert-babylm-base",
+    "type": "mlm",
+    "description": "2024 BabyLM strict winning submission (Charpentier & Samuel, 2024): ~119M-parameter GPT-BERT hybrid trained on Baby-cosmo-fine-100M (≈100M tokens; strict), 3 epochs"
+  },
+  {
+    "name": "BabyLM-community/babylm-baseline-100m-gpt-bert-masked-focus",
+    "type": "mlm",
+    "description": "2025 BabyLM strict baseline: GPT-BERT hybrid (Charpentier & Samuel, 2024), masked-focus MLM, trained on BabyLM 100M (Strict)"  
+  },
+  {
+    "name": "BabyLM-community/babylm-baseline-100m-gpt-bert-mixed",
+    "type": "mlm",
+    "description": "2025 BabyLM strict baseline: GPT-BERT hybrid (Charpentier & Samuel, 2024), mixed dual-use (MLM + AR), trained on BabyLM 100M (Strict)"  
+  },
+  {
+    "name": "BabyLM-community/babylm-baseline-100m-gpt-bert-causal-focus",
+    "type": "ar",
+    "description": "2025 BabyLM strict baseline: GPT-BERT hybrid (Charpentier & Samuel, 2024), autoregressive focus, trained on BabyLM 100M (Strict)" 
+   },
+  {
+    "name": "BabyLM-community/babylm-baseline-100m-gpt-bert-mixed",
+    "type": "ar",
+    "description": "2025 BabyLM strict baseline: GPT-BERT hybrid (Charpentier & Samuel, 2024), mixed dual-use (MLM + AR), trained on BabyLM 100M (Strict)"
+  },
+  {
+    "name": "lgcharpe/ELC_BERT_small_baby_10M",
+    "type": "mlm",
+    "description": "2023 BabyLM strict-small winning submission (Charpentier & Samuel, 2023): 24M-parameter small ELC-BERT trained on BabyLM 10M (Strict-small)"
+  },
+  {
+    "name": "lgcharpe/ELC_BERT_baby_100M",
+    "type": "mlm",
+    "description": "2023 BabyLM strict winning submission (Charpentier & Samuel, 2023): 98M-parameter base ELC-BERT trained on BabyLM 100M (Strict)"
+  },
+  {
+    "name": "ltg/ltg-bert-bnc",
+    "type": "mlm",
+    "description": "Optimized BERT architecture (LTG-BERT) with 98M parameters trained on BNC (100M tokens).  The basis for ELC-BERT (Charpentier & Samuel, 2023) and the 2024 BabyLM baselines."
+  },
+  {
+    "name": "ltg/ltg-bert-babylm",
+    "type": "mlm",
+    "description": "2024 BabyLM strict baseline: LTG-BERT with 98M-parameter trained on BabyLM 100M (Strict)"
+  },
+  {
+    "name": "babylm/ltgbert-10m-2024",
+    "type": "mlm",
+    "description": "2024 BabyLM strict-small baseline: LTG-BERT strict-small ~30M-parameter trained on BabyLM 10M (Strict-small)"
+  },
+  {
+    "name": "babylm/ltgbert-100m-2024",
+    "type": "mlm",
+    "description": "2024 BabyLM strict baseline: ~119M-parameter LTG-BERT trained on BabyLM 100M (Strict)"
+  },
+  {
+    "name": "timinar/baby-llama-58m",
+    "type": "ar",
+    "description": "2023 BabyLM strict-small winning submission (Timiryasov and Tastet, 2023a): 58M parameters LLaMA-style AR model distilled from GPT-2 and LLaMA on BabyLM 10M (Strict-small)."
+  },
+  {
+    "name": "babylm/babyllama-10m-2024",
+    "type": "ar",
+    "description": "2024 BabyLM strict-small baseline: 58M parameters LLaMA-style AR model (Timiryasov and Tastet, 2023a) distilled from GPT-2 and LLaMA on BabyLM 10M (Strict-small)."
+  },
+  {
+    "name": "babylm/babyllama-100m-2024",
+    "type": "ar",
+    "description": "2024 BabyLM strict baseline: 58M parameters LLaMA-style AR model (Timiryasov and Tastet, 2023a) distilled from GPT-2 and LLaMA on BabyLM 100M (Strict)."
+
+  },
+  {
+    "name": "google-t5/t5-base",
+    "type": "seq2seq",
+    "description": "T5-base (Raffel et al. 2019): 220M-parameter encoder-decoder text-to-text model trained on C4 (≈156B tokens) with span-corruption objective"
+  },
+  {
+    "name": "babylm/t5-base-strict-small-2023",
+    "type": "seq2seq",
+    "description": "2023 BabyLM strict-small baseline: T5-base pretrained on BabyLM 10M (Strict-small) with span-corruption objective"
+  },
+  {
+    "name": "babylm/t5-base-strict-2023",
+    "type": "seq2seq",
+    "description": "2023 BabyLM strict baseline: T5-base pretrained on BabyLM 100M (Strict) with span-corruption objective"
+  },
+  {
+    "name": "facebook/opt-125m",
+    "type": "ar",
+    "description": "OPT-125M (Zhang et al., 2022): OPT-125M autoregressive LM trained on 180B tokens of text."
+  },
+  {
+    "name": "babylm/opt-125m-strict-2023",
+    "type": "ar",
+    "description": "2023 BabyLM strict baseline: OPT-125M autoregressive LM trained on BabyLM 100M (Strict)"
+  },
+  {
+    "name": "babylm/opt-125m-strict-small-2023",
+    "type": "ar",
+    "description": "2023 BabyLM strict-small baseline: OPT-125M autoregressive LM trained on BabyLM 10M (Strict-small)"
+  },
+  {
+    "name": "openai-community/gpt2",
+    "type": "ar",
+    "description": "OpenAI GPT-2 124M: autoregressive model trained on ~8-10B tokens of web text (Radford et al., 2019)"
+  },
+  {
+    "name": "BabyLM-community/babylm-baseline-10m-gpt2",
+    "type": "ar",
+    "description": "2024 BabyLM baseline: GPT-2 124M trained on BabyLM 10M (Strict-small)"  
+  },
+  {
+    "name": "BabyLM-community/babylm-baseline-100m-gpt2",
+    "type": "ar",
+    "description": "2024 BabyLM baseline: GPT-2 124M trained on BabyLM 100M (Strict)"  
+  },
+  {
+    "name": "BabyLM-community/BabyLM-2026-Baseline-GPT2-Strict-Small",
+    "type": "ar",
+    "description": "2026 BabyLM baseline: GPT-2 trained on BabyLM 10M (Strict-small)"  
+  },
+  {
+    "name": "BabyLM-community/BabyLM-2026-Baseline-GPT2-Strict",
+    "type": "ar",
+    "description": "2026 BabyLM baseline: GPT-2 trained on BabyLM 100M (Strict)"  
+  },
+{
+    "name": "roberta-base",
+    "type": "mlm",
+    "description": "RoBERTa-base: 125M-parameter masked LM trained on ~30B tokens (BookCorpus, CC-News, OpenWebText, Stories, Wikipedia)"
+  },
+  {
+    "name": "roberta-large",
+    "type": "mlm",
+    "description": "RoBERTa-large: 355M-parameter masked LM trained on ~30B-tokens (BookCorpus, CC-News, OpenWebText, Stories, Wikipedia)"
+  },
+  {
+    "name": "nyu-mll/roberta-med-small-1M-1",
+    "type": "mlm",
+    "description": "Warstadt et al. (2020)'s 45M parameter RoBERTa (medium-small) trained on a 1M token corpus (run 1)"
+  },
+  {
+    "name": "nyu-mll/roberta-med-small-1M-2",
+    "type": "mlm",
+    "description": "Warstadt et al. (2020)'s 45M parameter RoBERTa (medium-small) trained on a 1M token corpus (run 2)"
+  },
+  {
+    "name": "nyu-mll/roberta-med-small-1M-3",
+    "type": "mlm",
+    "description": "Warstadt et al. (2020)'s 45M parameter RoBERTa (medium-small) trained on a 1M token corpus (run 3)"
+  },
+  {
+    "name": "nyu-mll/roberta-base-10M-1",
+    "type": "mlm",
+    "description": "Warstadt et al. (2020)'s 125M parameter RoBERTa base trained on a 10M token corpus (run 1)"
+  },
+  {
+    "name": "nyu-mll/roberta-base-10M-2",
+    "type": "mlm",
+    "description": "Warstadt et al. (2020)'s 125M parameter RoBERTa base trained on a 10M token corpus (run 2)"
+  },
+  {
+    "name": "nyu-mll/roberta-base-10M-3",
+    "type": "mlm",
+    "description": "Warstadt et al. (2020)'s 125M parameter RoBERTa base trained on a 10M token corpus (run 3)"
+  },
+  {
+    "name": "nyu-mll/roberta-base-100M-1",
+    "type": "mlm",
+    "description": "Warstadt et al. (2020)'s 125M parameter RoBERTa base trained on a 100M token corpus (run 1)"
+  },
+  {
+    "name": "nyu-mll/roberta-base-100M-2",
+    "type": "mlm",
+    "description": "Warstadt et al. (2020)'s 125M parameter RoBERTa base trained on a 100M token corpus (run 2)"
+  },
+  {
+    "name": "nyu-mll/roberta-base-100M-3",
+    "type": "mlm",
+    "description": "Warstadt et al. (2020)'s 125M parameter RoBERTa base trained on a 100M token corpus (run 3)"
+  },
+  {
+    "name": "nyu-mll/roberta-base-1B-1",
+    "type": "mlm",
+    "description": "Warstadt et al. (2020)'s 125M parameter RoBERTa base trained on a 1B token corpus (run 1)"
+  },
+  {
+    "name": "nyu-mll/roberta-base-1B-2",
+    "type": "mlm",
+    "description": "Warstadt et al. (2020)'s 125M parameter RoBERTa base trained on a 1B token corpus (run 2)"
+  },
+  {
+    "name": "nyu-mll/roberta-base-1B-3",
+    "type": "mlm",
+    "description": "Warstadt et al. (2020)'s 125M parameter RoBERTa base trained on a 1B token corpus (run 3)"
+  },
+  {
+    "name": "babylm/roberta-base-strict-2023",
+    "type": "mlm",
+    "description": "2023 BabyLM baseline: RoBERTa-base (125M) MLM pretrained on BabyLM 100M (Strict)"
+  },
+  {
+    "name": "babylm/roberta-base-strict-small-2023",
+    "type": "mlm",
+    "description": "2023 BabyLM baseline: RoBERTa-base (125M) MLM pretrained on BabyLM 10M (Strict-small)"
+  } 
+]

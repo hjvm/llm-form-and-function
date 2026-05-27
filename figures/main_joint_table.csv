@@ -1,0 +1,11 @@
+Model,Arch.,Bias,Empirical (SD),Predicted (SD),TPR (SD),DxN test,TPR test,Accuracy
+Children,Human,0.834,0.251 (0.068),0.242 (0.105),0.226 (0.050),$\\checkmark$ (0.527),$\\checkmark$ (0.484),--
+Caretakers,Human,0.815,0.301 (0.045),0.320 (0.070),0.200 (0.046),$\\checkmark$ (0.191),$\\checkmark$ (0.256),--
+ltg-bert-bnc,MLM,0.783,0.314 (0.068),0.287 (0.107),0.225 (0.048),$\\checkmark$ (0.138),$\\checkmark$ (0.505),0.866
+roberta-base,MLM,0.776,0.323 (0.071),0.292 (0.112),0.239 (0.051),$\\checkmark$ (0.096),$\\checkmark$ (0.142),0.853
+t5-base,S2S,0.753,0.347 (0.062),0.304 (0.102),0.239 (0.042),$\\times$ (0.030),$\\checkmark$ (0.085),0.846
+babylm-baseline-100m-gpt-bert-causal-focus,AR,0.782,0.314 (0.068),0.288 (0.106),0.247 (0.047),$\\checkmark$ (0.122),$\\times$ (0.041),0.898
+gpt-bert-babylm-small,MLM,0.902,0.185 (0.054),0.185 (0.091),0.431 (0.087),$\\checkmark$ (0.997),$\\times$ (<0.001),0.626
+opt-125m,AR,0.756,0.346 (0.067),0.303 (0.104),0.251 (0.044),$\\times$ (0.027),$\\times$ (0.018),0.845
+gpt2,AR,0.752,0.349 (0.069),0.305 (0.104),0.252 (0.042),$\\times$ (0.031),$\\times$ (0.012),0.835
+roberta-base-strict-2023,MLM,0.834,0.301 (0.067),0.249 (0.086),0.475 (0.062),$\\times$ (0.001),$\\times$ (<0.001),0.585
