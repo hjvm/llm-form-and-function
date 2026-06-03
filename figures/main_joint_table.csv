@@ -1,6 +1,6 @@
 Model,Arch.,Bias,Empirical (SD),Predicted (SD),TPR (SD),DxN test,TPR test,Accuracy
-Children,Human,0.834,0.251 (0.068),0.242 (0.105),0.226 (0.050),$\\checkmark$ (0.527),$\\checkmark$ (0.484),--
-Caretakers,Human,0.815,0.301 (0.045),0.320 (0.070),0.200 (0.046),$\\checkmark$ (0.191),$\\checkmark$ (0.256),--
+Children,Human,0.834,0.260 (0.067),0.249 (0.112),0.226 (0.050),$\\checkmark$ (0.539),$\\checkmark$ (0.484),--
+Caretakers,Human,0.815,0.309 (0.041),0.329 (0.071),0.200 (0.046),$\\checkmark$ (0.222),$\\checkmark$ (0.256),--
 ltg-bert-bnc,MLM,0.783,0.314 (0.068),0.287 (0.107),0.225 (0.048),$\\checkmark$ (0.138),$\\checkmark$ (0.505),0.866
 roberta-base,MLM,0.776,0.323 (0.071),0.292 (0.112),0.239 (0.051),$\\checkmark$ (0.096),$\\checkmark$ (0.142),0.853
 t5-base,S2S,0.753,0.347 (0.062),0.304 (0.102),0.239 (0.042),$\\times$ (0.030),$\\checkmark$ (0.085),0.846
