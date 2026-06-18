@@ -11,8 +11,9 @@ Usage:
     # Run isolated experiment
     python run_experiments.py isolated --models model_configs.json
 
-    # Run discourse experiment (main experiment for the paper)
-    python run_experiments.py discourse --models model_configs.json --discourse-label-style childes
+    # Run discourse experiment (main experiment for the paper; CHILDES *CHI/*MOT labels by default)
+    python run_experiments.py discourse --models model_configs.json
+    # ...or override the speaker labels: --discourse-label-style spoken
 
     # Run contextual experiment (TPR-style context, all det-noun pairs)
     python run_experiments.py contextual --models model_configs.json
@@ -24,7 +25,7 @@ Usage:
     python run_experiments.py all --models model_configs.json
 
     # Force reprocessing (overwrite existing results)
-    python run_experiments.py discourse --models model_configs.json --discourse-label-style childes --force
+    python run_experiments.py discourse --models model_configs.json --force
 """
 
 import argparse
@@ -736,8 +737,9 @@ def main():
                        help='Overwrite existing results')
     parser.add_argument('--discourse-label-style',
                        choices=['spoken', 'childes'],
-                       default='spoken',
-                       help='Speaker label style for discourse inputs (default: spoken; paper uses childes)')
+                       default='childes',
+                       help="Speaker label style for discourse prompts (default: childes = *CHI/*MOT, "
+                            "as used in the paper; pass 'spoken' for MOTHER/CHILD labels)")
     
     args = parser.parse_args()
     

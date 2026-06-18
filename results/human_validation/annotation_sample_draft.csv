@@ -1,0 +1,793 @@
+child_name,speaker,sentence_id,conf_band,noun,transition,previous_det,original_det,true_dist,n_pred_the,mean_conf,min_conf,ltg-bert-bnc_pthe,ltg-bert-bnc_conf,roberta-base_pthe,roberta-base_conf,t5-base_pthe,t5-base_conf,prompt_10utt
+Warren,child,72739,high,day,a->a,a,a,1,0,0.9998374925430938,0.9996570625529702,0.00017146872351490002,0.9996570625529702,1.20763440684886e-05,0.9999758473118631,6.0216117775820076e-05,0.9998795677644483,"*CHI: yeah.
+*MOT: right.
+*MOT: just sign your name there please.
+*CHI: there.
+*MOT: thank_you.
+*MOT: there's your receipt and your card sir.
+*MOT: there's your shopping.
+*CHI: thank_you.
+*MOT: it's a pleasure.
+*MOT: have a nice day.
+*CHI: have ____ nice day."
+Joel,child,31678,high,day,a->a,a,a,1,0,0.99977794162435,0.9994815277754818,0.00025923611225910006,0.9994815277754818,1.896866459737258e-05,0.9999620626708052,5.488278661863523e-05,0.9998902344267627,"*MOT: and beep your bread.
+*MOT: wow.
+*MOT: that's fifty nine pounds sixty please.
+*MOT: oh.
+*MOT: no problem.
+*MOT: no.
+*MOT: don't forget your change.
+*MOT: come again next week.
+*CHI: yeah.
+*MOT: have a nice day.
+*CHI: have ____ nice day."
+Aran,child,40047,high,bit,a->a,a,a,1,0,0.9996763943702472,0.999550693847661,0.00022185219711550003,0.999556295605769,3.8903171344007874e-05,0.9999221936573119,0.00022465307616950002,0.999550693847661,"*MOT: come on.
+*MOT: put him in the tractor.
+*CHI: the man's getting cold.
+*MOT: getting cold „ is he?
+*MOT: is it nippy outside today?
+*CHI: yeah.
+*MOT: is the wind blowing?
+*CHI: yeah.
+*MOT: oh that's not so good „ is it?
+*MOT: we want a bit of sunshine „ don't we?
+*CHI: we want ____ bit of sunshine today."
+Becky,child,10708,high,look,a->a,a,a,8,0,0.9996467983473586,0.9994900333176014,0.00023375727006660004,0.9995324854598668,4.1061867696231474e-05,0.9999178762646075,0.0002549833411993,0.9994900333176014,"*CHI: I have a look?
+*MOT: yeah.
+*MOT: you can have a look.
+*MOT: yes.
+*MOT: go on.
+*CHI: oh.
+*CHI: oh.
+*CHI: .
+*MOT: pardon?
+*CHI: .
+*CHI: have ____ look."
+Liz,child,18178,high,panda,a->a,a,a,2,0,0.9996248048821625,0.9991292489229088,0.0004353755385456001,0.9991292489229088,4.2244228567821575e-05,0.9999155115428644,8.517290964277853e-05,0.9998296541807145,"*CHI: brumm.
+*MOT: oh he's crashed.
+*MOT: whoops.
+*CHI: where's where's the panda?
+*MOT: he's crashed in his car.
+*CHI: move a bit panda.
+*CHI: move a bit panda.
+*CHI: move a bit panda.
+*MOT: move a bit panda.
+*MOT: right.
+*CHI: move ____ bit panda."
+Warren,child,69486,high,look,a->a,a,a,1,0,0.9995945598455155,0.9993825928159632,0.00030870359201840003,0.9993825928159632,1.4911457217949174e-05,0.9999701770855641,0.00028454518249030003,0.9994309096350193,"*CHI: this go es there.
+*CHI: this there.
+*MOT: excellent.
+*MOT: I think we're missing some pieces of this.
+*MOT: oh no.
+*MOT: there's still that one there.
+*MOT: right.
+*MOT: where's the fish's tail?
+*CHI: don't know.
+*MOT: have a look.
+*CHI: have ____ look."
+Liz,child,15223,high,purple,the->the,the,the,1,3,0.9995718316252805,0.9990580605758592,0.9998774662665425,0.999754932533085,0.9999512508834486,0.9999025017668972,0.9995290302879296,0.9990580605758592,"*MOT: it's Christopher_Robin.
+*MOT: Christopher_Robin has a blue balloon.
+*MOT: he gives it to Winnie_the_Pooh.
+*CHI: Winnie_Pooh was playing with the blue balloon.
+*MOT: yes.
+*MOT: and what happened to him?
+*CHI: he fell over.
+*MOT: yeah.
+*MOT: and he's flown up in the sky, hasn't he?
+*MOT: red and blue make the color purple.
+*CHI: red and blue make ____ color purple."
+Joel,child,31256,high,look,a->a,a,a,4,0,0.9995522351554387,0.9992065320440082,0.0002235890716665,0.999552821856667,5.132421717963838e-05,0.9998973515656407,0.00039673397799590006,0.9992065320440082,"*MOT: .
+*MOT: oh.
+*MOT: you've got that much clutter.
+*CHI: look.
+*CHI: there.
+*CHI: you have a look.
+*MOT: I don't think you oughta have a look.
+*MOT: it might be you know where.
+*CHI: ooher.
+*MOT: ooher.
+*CHI: have ____ look."
+Liz,child,15214,high,green,the->the,the,the,1,3,0.9994884137840442,0.9990759808339942,0.9997637621409416,0.9995275242818833,0.9999308681181274,0.9998617362362547,0.9995379904169971,0.9990759808339942,"*MOT: yeah.
+*MOT: Pooh is a golden yellow bear.
+*MOT: and who's this one?
+*CHI: Tigger.
+*MOT: Tigger had yellow stripes.
+*MOT: and what color are his other stripes?
+*CHI: black.
+*MOT: that's right.
+*MOT: he has yellow and black stripes.
+*MOT: blue and yellow make the color green.
+*CHI: blue and yellow make ____ color green."
+Gail,child,1017,high,look,a->a,a,a,2,0,0.9994857042359149,0.9991591816991774,0.0003186179873605,0.999362764025279,3.2416508356039334e-05,0.9999351669832879,0.0004204091504113,0.9991591816991774,"*MOT: you don't needta have your socks off, do you?
+*MOT: .
+*CHI: oh.
+*CHI: what's that?
+*MOT: what?
+*CHI: my donkey.
+*MOT: oh right.
+*MOT: where did he come from?
+*MOT: can we have a look at him?
+*CHI: yeah.
+*CHI: have ____ look, Caroline."
+Gail,child,3035,high,look,a->a,a,a,9,0,0.9994143931425566,0.9992396800314034,0.0003801098625393,0.9992397802749214,0.00011814043932740001,0.9997637191213452,0.0003801599842983,0.9992396800314034,"*MOT: an orange.
+*MOT: go and have a look at the tape.
+*MOT: finished.
+*CHI: yeah.
+*MOT: do you think so?
+*MOT: don't touch it.
+*CHI: no.
+*MOT: say are you nearly finished tape?
+*MOT: can you say that?
+*CHI: .
+*CHI: Mummy have ____ look."
+Becky,child,9833,high,air,the->the,the,the,3,3,0.9993726922527824,0.9989730441251377,0.9996077888083588,0.9992155776167175,0.9994865220625688,0.9989730441251377,0.999964727508246,0.9999294550164921,"*MOT: well.
+*MOT: be careful.
+*MOT: they don't always go where wherever you intend them to, Becky.
+*MOT: go and fetch it then.
+*MOT: be careful, Becky.
+*MOT: not don't point it in anybody's face.
+*MOT: up in the air.
+*MOT: point it up in the air.
+*MOT: whoops.
+*CHI: oh.
+*CHI: catch it for in ____ air."
+Liz,child,17642,high,baby,the->a,the,a,4,0,0.9993726337945527,0.9988307325420246,0.00021464137809870003,0.9995707172438026,0.0001417742010845,0.999716451597831,0.0005846337289877003,0.9988307325420246,"*MOT: yeah.
+*CHI: wait a minute.
+*MOT: oh yeah I will love.
+*CHI: baby.
+*CHI: wait a minute baby.
+*CHI: wait a minute baby.
+*MOT: why is the baby waiting a minute?
+*CHI: Mummy.
+*CHI: baby do one.
+*MOT: oh.
+*CHI: wait ____ minute baby."
+Aran,child,39734,high,moment,the->the,the,the,7,3,0.999352701534313,0.9990118612939702,0.9996393892635698,0.9992787785271395,0.9998837323909148,0.9997674647818295,0.9995059306469851,0.9990118612939702,"*MOT: right.
+*MOT: well what are you doing?
+*CHI: nothing at the moment.
+*MOT: nothing at the moment.
+*MOT: you just said you were busy.
+*CHI: course I am.
+*MOT: you're always busy „ are you?
+*CHI: always busy.
+*MOT: come on.
+*MOT: where's this apple.
+*CHI: I am busy at ____ moment."
+Nicole,child,62551,high,back,the->the,the,the,1,3,0.9993294577243503,0.9985068250024227,0.9999096536665767,0.9998193073331534,0.9992534125012114,0.9985068250024227,0.9998311204187376,0.9996622408374751,"*MOT: where?
+*CHI: there.
+*CHI: in there.
+*MOT: oh.
+*MOT: you're quite right.
+*MOT: they've fallen in.
+*MOT: we'll hafta get Daddy to see to that, willn't we when he comes home.
+*CHI: .
+*CHI: eggs in there.
+*MOT: eggs have fallen at the back now.
+*CHI: eggs at ____ back."
+Becky,child,14614,high,morning,the->the,the,the,1,3,0.9993195304729969,0.9992171927578639,0.9996571793546969,0.9993143587093938,0.9997135199758664,0.9994270399517329,0.999608596378932,0.9992171927578639,"*MOT: where's the baby?
+*MOT: where's the baby?
+*MOT: sleeping?
+*CHI: yeah.
+*MOT: so does
+*CHI: shush.
+*MOT: night_night.
+*MOT: night_night.
+*MOT: sleep tight.
+*MOT: see you in the morning.
+*CHI: see you in ____ morning."
+Joel,child,28071,high,back,the->the,the,the,1,3,0.999313320462717,0.9988061925960914,0.999780774799309,0.9995615495986181,0.9994030962980457,0.9988061925960914,0.9997861095967209,0.9995722191934417,"*CHI: sit on the floor.
+*MOT: oh fine.
+*CHI: sit on the floor, Caroline.
+*MOT: don't like me sitting there, do you?
+*MOT: let Caroline finish writing.
+*CHI: .
+*MOT: here we go.
+*CHI: are you sitting in the back?
+*MOT: yeah.
+*MOT: we're sitting in the back.
+*CHI: are you sit in ____ back?"
+Joel,child,28906,high,question,a->a,a,a,1,0,0.9992927670285853,0.9991498375077846,0.00031376650840259996,0.9993724669831948,0.00032200170261170003,0.9993559965947766,0.0004250812461077001,0.9991498375077846,"*CHI: .
+*CHI: here's Mossop.
+*CHI: it's a Riddler.
+*MOT: .
+*CHI: .
+*CHI: if you know /.
+*CHI: yes.
+*CHI: you know.
+*CHI: do you know if it's a question.
+*MOT: do you know if it's a question?
+*CHI: if you know it's ____ question."
+Gail,child,748,high,look,a->a,a,a,7,0,0.9992875701693995,0.9989241333718428,0.0004589155070085001,0.999082168985983,7.179592481370348e-05,0.9998564081503726,0.0005379333140786001,0.9989241333718428,"*CHI: do you.
+*MOT: you've only got one Noddy story, haven't you?
+*MOT: that one that came with that set.
+*MOT: let Mummy have a look.
+*MOT: see how much it is.
+*MOT: save fifty pounds.
+*MOT: seems a bargain.
+*MOT: but how many other things do you hafta buy in the year?
+*MOT: nine pounds, ninety nine.
+*MOT: for all those storys.
+*CHI: want have ____ look."
+Joel,child,29703,high,velcro,the->the,the,the,1,3,0.9992278163910283,0.9990428641847144,0.9995265133655046,0.9990530267310092,0.9997937791286805,0.999587558257361,0.9995214320923572,0.9990428641847144,"*CHI: yeah.
+*MOT: oh.
+*MOT: that's a_lot_of money.
+*CHI: buy some shoes.
+*CHI: oh yeah.
+*MOT: .
+*MOT: thirteen ninety nine.
+*CHI: .
+*MOT: it's on velcro, look.
+*MOT: stuck on the velcro.
+*CHI: stuck on ____ velcro."
+Anne,child,50705,high,back,the->the,the,the,6,3,0.9992169944830707,0.9990135249613621,0.9997766589044011,0.9995533178088023,0.9995420703395238,0.9990841406790476,0.999506762480681,0.9990135249613621,"*CHI: here?
+*MOT: yeah.
+*CHI: don't sit at the back?
+*MOT: no.
+*MOT: don't sit at the back.
+*MOT: just.
+*CHI: .
+*CHI: can we sit there?
+*MOT: yeah.
+*CHI: oh.
+*CHI: can't sit at ____ back."
+Aran,child,39732,high,moment,the->the,the,the,3,3,0.9991944244764898,0.9982619564404671,0.9998223383645134,0.9996446767290268,0.9991309782202336,0.9982619564404671,0.9998383201299877,0.9996766402599755,"*MOT: you put the apple in there.
+*MOT: go on.
+*MOT: &~ah.
+*MOT: can't can't you manage?
+*CHI: no.
+*CHI: not at the moment.
+*CHI: busy at the moment.
+*MOT: you're busy at the moment „ are you?
+*MOT: right.
+*MOT: well what are you doing?
+*CHI: nothing at ____ moment."
+Aran,child,47057,high,carriage,the->the,the,the,1,3,0.9991683409194417,0.9981084223665977,0.9998449157318441,0.9996898314636882,0.9998533844640198,0.9997067689280397,0.9990542111832988,0.9981084223665977,"*MOT: okay.
+*MOT: you wanna press it „ do you?
+*MOT: I'm not allowed to press it.
+*CHI: lady.
+*MOT: you want the lady in the carriage „ do you?
+*MOT: well you should have stopped it at the station „ shouldn't you?
+*MOT: well lift up the lid.
+*MOT: is she going to sit down?
+*CHI: yeah.
+*MOT: had we better put her suitcase on her knee or shall we put it in the other carriage do you think?
+*CHI: put it in ____ other carriage."
+Carl,child,26454,high,top,the->the,the,the,1,3,0.9991606984564528,0.99891748154188,0.9997357752337352,0.9994715504674705,0.99945874077094,0.99891748154188,0.9995465316800038,0.9990930633600077,"*MOT: you hafta say wow.
+*CHI: put.
+*CHI: I got yellow.
+*MOT: you like the lights, don't you?
+*CHI: I got /.
+*CHI: oh.
+*CHI: it's got up on the top.
+*MOT: yeah.
+*MOT: a little angel.
+*MOT: right on the top.
+*CHI: it's right up on ____ top."
+Aran,child,40684,high,cat,the->the,the,the,1,3,0.9991585464392913,0.9979761748778972,0.9989880874389486,0.9979761748778972,0.9998770104388137,0.9997540208776274,0.9998727217811747,0.9997454435623494,"*MOT: and take them into in the van.
+*MOT: and take them to Missis_Goggins „ aren't I?
+*MOT: then I'll be Missis_Goggins „ shall I?
+*MOT: oh.
+*MOT: there's one for Aran.
+*MOT: one for Daddy.
+*CHI: I want
+*MOT: one for Mummy.
+*CHI: I wanna be Poppy.
+*MOT: one for Poppy the cat.
+*CHI: I wanna be Poppy ____ cat."
+Liz,child,18362,high,look,a->a,a,a,1,0,0.9991201252586416,0.9982458554628468,0.0004005138938532,0.9991989722122936,4.2225949607876866e-05,0.9999155481007842,0.0008770722685766,0.9982458554628468,"*MOT: what's that?
+*MOT: do you know what it looks like?
+*MOT: it's a panda, isn't it?
+*CHI: panda.
+*MOT: yeah.
+*CHI: more baby.
+*CHI: more baby?
+*MOT: more babys?
+*MOT: I don't know.
+*MOT: you'll hafta have a look.
+*CHI: have ____ look."
+Anne,child,49928,high,mud,the->the,the,the,2,3,0.9991078253021611,0.9980341123700829,0.9997123271112538,0.9994246542225076,0.9990170561850414,0.9980341123700829,0.9999323546569464,0.9998647093138928,"*MOT: there's some pants and some socks and a vest and a welly boot.
+*MOT: you don't put welly boots in the washing machine „ do you?
+*CHI: oh no.
+*MOT: what's happened?
+*CHI: .
+*MOT: he's done what?
+*CHI: fly in mud.
+*MOT: fly in mud.
+*MOT: he's fallen in the mud.
+*MOT: that's right.
+*CHI: fall in ____ mud."
+Carl,child,22405,high,chicken,the->the,the,the,1,3,0.998953926180425,0.9982911524857485,0.9997096938714084,0.9994193877428168,0.9995756191563547,0.9991512383127095,0.9991455762428743,0.9982911524857485,"*CHI: look out said the train.
+*CHI: look out.
+*CHI: look out.
+*CHI: look out.
+*CHI: look out.
+*CHI: oh.
+*CHI: crashed in the train.
+*CHI: I need past the train.
+*CHI: .
+*MOT: watch the chicken.
+*CHI: watch ____ chicken."
+Anne,child,50703,high,back,the->the,the,the,3,3,0.9989450128469395,0.9983521728166633,0.9997588629377072,0.9995177258754144,0.9991760864083317,0.9983521728166633,0.9994825699243702,0.9989651398487405,"*CHI: is that not wet there?
+*MOT: no.
+*MOT: that's not wet there.
+*CHI: oh.
+*CHI: is there?
+*MOT: it's it's just wet at the back I think.
+*CHI: where?
+*MOT: at the back.
+*CHI: here?
+*MOT: yeah.
+*CHI: don't sit at ____ back?"
+John,child,58035,high,half,a->a,a,a,1,0,0.9989365226553125,0.9974598718911444,0.0002700218157081,0.9994599563685838,5.5130146895141974e-05,0.9998897397062098,0.0012700640544278002,0.9974598718911444,"*MOT: perhaps there are just two fences.
+*MOT: build a wall around the field.
+*CHI: cows.
+*CHI: two me.
+*CHI: two and a half.
+*CHI: .
+*CHI: two half.
+*CHI: two half.
+*CHI: two and a half.
+*MOT: you're two and a half.
+*CHI: two and ____ half."
+Dominic,child,7020,high,look,a->a,a,a,1,0,0.9989031563753435,0.9980109950091796,0.0009945024954102,0.9980109950091796,5.234694752217712e-05,0.9998953061049557,0.0005984159940523001,0.9988031680118954,"*MOT: I suppose it's hidden somewhere in your room.
+*CHI: I go
+*MOT: no.
+*CHI: .
+*MOT: no.
+*MOT: because I couldn't find it this morning so I don't think you'll be able to find it.
+*CHI: no.
+*CHI: no.
+*CHI: I can't.
+*MOT: I'll have a look for it later.
+*CHI: have ____ look for it later."
+John,child,59751,high,top,the->the,the,the,4,3,0.9988821993272717,0.99813036956437,0.9997979907126862,0.9995959814253723,0.999065184782185,0.99813036956437,0.9994601234960364,0.9989202469920728,"*CHI: &~ah.
+*MOT: what a noise.
+*CHI: screwdriver.
+*MOT: let's move this.
+*CHI: screwdriver.
+*CHI: right to the top.
+*MOT: right to the top.
+*CHI: it's a man there.
+*MOT: mhm.
+*MOT: it's gonna be difficult to make a roof, isn't it with this one?
+*CHI: right to ____ top."
+Anne,child,51580,high,television,the->the,the,the,2,3,0.9988600645608705,0.9983203058698076,0.9995430677210416,0.9990861354420832,0.9991601529349038,0.9983203058698076,0.9995868761853604,0.9991737523707207,"*MOT: and what's this one doing?
+*CHI: go to sleep.
+*MOT: what's he got on his head?
+*CHI: butterfly.
+*MOT: yeah.
+*MOT: and what_about this one?
+*CHI: he's on the television.
+*MOT: watching the television.
+*MOT: he likes the television „ doesn't he?
+*CHI: oh.
+*CHI: ____ television's on."
+Anne,child,54110,high,beach,the->the,the,the,1,3,0.9988322209963924,0.9982600039682663,0.9994037518919744,0.9988075037839488,0.9997145776184809,0.9994291552369619,0.9991300019841332,0.9982600039682663,"*MOT: I can see the houses down there.
+*MOT: I think we're going to land soon.
+*MOT: here we are.
+*MOT: oh yes.
+*MOT: we can get off the aeroplane.
+*MOT: can you manage everything, Anne.
+*MOT: well.
+*MOT: I tell you what.
+*MOT: let's walk to the beach first.
+*MOT: let's walk to the beach.
+*CHI: let's walk to ____ beach."
+Liz,child,16322,high,way,the->the,the,the,6,3,0.9988224543956852,0.9975157315693042,0.9995756424037396,0.9991512848074793,0.9987578657846521,0.9975157315693042,0.9999001734051362,0.9998003468102723,"*CHI: I want here lid.
+*CHI: there.
+*CHI: lid on there.
+*MOT: yeah.
+*MOT: but I think it goes the other way up.
+*MOT: turn the lid over.
+*MOT: that's right.
+*MOT: that's it love.
+*CHI: that way?
+*MOT: no the other way.
+*CHI: ____ other way."
+Becky,child,13201,high,top,the->the,the,the,1,3,0.9987991236479533,0.9986624942327491,0.9993312471163746,0.9986624942327491,0.9995243387492846,0.9990486774985692,0.9993430996062709,0.9986861992125418,"*CHI: a b c.
+*MOT: no.
+*MOT: it doesn't say a b c.
+*MOT: it says Becky.
+*MOT: b e t h a n.
+*MOT: Becky.
+*CHI: Becky more.
+*MOT: can you write that underneath?
+*MOT: see if you can write the letters underneath.
+*MOT: or go over the top.
+*CHI: over ____ top."
+Anne,child,51081,low,mouse,a->a,a,a,4,1,0.22492606065855578,0.19398757920969323,0.3593640132616134,0.28127197347677324,0.5969937896048466,0.19398757920969323,0.4002406853553996,0.19951862928920083,"*MOT: up the big stairs.
+*MOT: right.
+*MOT: they're sitting down now on their seats at playdays.
+*MOT: okay.
+*MOT: what can you see?
+*CHI: mouse.
+*MOT: a mouse?
+*MOT: on playdays?
+*MOT: is it?
+*MOT: or is it Poppy_the_cat?
+*CHI: Poppy and ____ mouse."
+Warren,child,67039,low,horse,a->a,a,a,3,2,0.2207251757113082,0.19443397292125653,0.3977396807241515,0.204520638551697,0.6316104578304855,0.26322091566097106,0.5972169864606283,0.19443397292125653,"*CHI: no.
+*MOT: or the man.
+*CHI: man.
+*CHI: where is the other man?
+*MOT: well look for him.
+*MOT: he's got red hair.
+*MOT: and a blue top.
+*MOT: it's near a horse.
+*CHI: it's gone.
+*MOT: lying down.
+*CHI: ____ horse."
+Aran,child,38751,low,handbrake,a->the,a,the,1,0,0.21950532607388615,0.03361062628804434,0.3057714332110025,0.38845713357799505,0.3817758908221905,0.23644821835561902,0.48319468685597783,0.03361062628804434,"*MOT: go on.
+*MOT: you go and turn it then.
+*MOT: that's it.
+*MOT: right.
+*MOT: that's it.
+*MOT: that's it.
+*CHI: it's it's a handbrake.
+*MOT: well I think actually it's not quite.
+*MOT: it's not the handbrake.
+*MOT: Mummy'll put you a handbrake on „ won't she?
+*CHI: ____ handbrake."
+Anne,child,53552,low,noise,the->a,the,a,3,2,0.21704729205515708,0.003484875340766802,0.5017424376703834,0.003484875340766802,0.2050352840237095,0.589929431952581,0.5288637844360617,0.05772756887212349,"*MOT: I'm on the train just here „ aren't I?
+*CHI: no.
+*CHI: just here.
+*MOT: right.
+*CHI: me make choo_choo.
+*MOT: pardon?
+*CHI: me make a choo_choo.
+*MOT: you're gonna make the choo_choo noise?
+*MOT: shall I come round there then?
+*CHI: come on.
+*CHI: make ____ noise."
+Liz,child,18757,low,bus,the->a,the,a,1,1,0.21498380364079642,0.06525527890811889,0.4317041448046694,0.1365917103906612,0.2784477891881954,0.4431044216236092,0.5326276394540594,0.06525527890811889,"*MOT: it's a boat, is it?
+*CHI: Liz in the water.
+*MOT: oh.
+*MOT: I've made a bus.
+*MOT: look.
+*CHI: bus.
+*CHI: van.
+*CHI: making a van.
+*MOT: a van?
+*MOT: oh it was quite by accident that I made the bus.
+*CHI: ____ bus."
+Warren,child,69027,low,horse,the->the,the,the,7,3,0.21454112051648813,0.004182739988245698,0.5020913699941228,0.004182739988245698,0.6683295782945323,0.33665915658906465,0.651390732486077,0.3027814649721541,"*MOT: look.
+*MOT: the horse is lying down.
+*CHI: it sleep.
+*MOT: it's not a very good place for the horse to sleep, is it?
+*MOT: it's the middle of the road.
+*CHI: wake up.
+*MOT: that's better, isn't it?
+*CHI: I bash with the car.
+*MOT: no.
+*MOT: poor horse.
+*CHI: sleeping ____ horse."
+Carl,child,20183,low,cat,a->a,a,a,1,1,0.21369537240638156,0.07106930435337677,0.3414934569099165,0.317013086180167,0.4644653478233116,0.07106930435337677,0.6265018633428004,0.2530037266856009,"*MOT: that's Daddy.
+*MOT: Daddy's got a big kite look.
+*CHI: that is Thomas.
+*MOT: Daddy's got a big kite.
+*MOT: oh look there's
+*MOT: Carl.
+*MOT: there's Zita.
+*CHI: cat.
+*CHI: that cat.
+*MOT: yeah you've got a cat with you.
+*CHI: ____ cat."
+Anne,child,48320,low,mouse,a->a,a,a,2,1,0.21190049290154747,0.09681964610649307,0.32736607069602647,0.34526785860794706,0.5968069869951012,0.1936139739902023,0.45159017694675346,0.09681964610649307,"*MOT: that's right.
+*CHI: and shall we
+*MOT: oh.
+*MOT: got a hole in his hat.
+*CHI: who did it?
+*MOT: the rat.
+*CHI: who's the rat?
+*MOT: this is the rat.
+*MOT: he looks a bit like a mouse.
+*CHI: yeah.
+*CHI: he's ____ rat mouse."
+Carl,child,24007,low,car,a->the,a,the,4,1,0.20957272955964137,0.15588054743839375,0.5779402737191969,0.15588054743839375,0.4207287955376582,0.15854240892468363,0.3428523838420766,0.3142952323158468,"*MOT: you wanna have a look.
+*MOT: it's in here.
+*MOT: oh look there's Thomas.
+*CHI: there's Thomas.
+*CHI: Tank.
+*CHI: car.
+*MOT: a car?
+*MOT: what else?
+*CHI: and truck.
+*MOT: and the truck.
+*CHI: ____ tractor car."
+Carl,child,19526,low,whale,the->the,the,the,9,1,0.20882723452175592,0.011029042079757967,0.494485478960121,0.011029042079757967,0.3918844884337811,0.2162310231324378,0.699610819176536,0.399221638353072,"*MOT: oh Eve.
+*MOT: I think it's coming your way the big whale.
+*MOT: what's his name?
+*CHI: whale.
+*MOT: just whale?
+*CHI: here he comes.
+*CHI: here he comes whale.
+*CHI: here he comes whale.
+*CHI: he's coming.
+*MOT: oh he's coming.
+*CHI: here is ____ whale."
+Aran,child,38711,low,house,a->the,a,the,3,2,0.2052743150817494,0.17391050582503587,0.5869552529125179,0.17391050582503587,0.3817880234904988,0.23642395301900243,0.6027442432006049,0.20548848640120987,"*CHI: a crane.
+*MOT: a crane.
+*MOT: a great big crane.
+*CHI: just like that.
+*MOT: yes.
+*MOT: it was lowering concrete girders off a lorry „ wasn't it?
+*MOT: hm?
+*MOT: they're going to build a house there „ aren't they?
+*MOT: what did that other crane do that we saw at Bramhall_Park?
+*MOT: what was that one doing?
+*CHI: knock ____ house down."
+Gail,child,3342,low,ribbon,a->the,a,the,9,2,0.20374142173729312,0.07186727888832256,0.3190199846351174,0.36196003072976524,0.5886984777968958,0.17739695559379154,0.5359336394441613,0.07186727888832256,"*MOT: you've gotta put everything back, sweetheart.
+*MOT: I don't think she minds if she's missing a ribbon.
+*MOT: doesn't matter.
+*MOT: you can have it for Nicole.
+*MOT: oh.
+*MOT: oh, Gail.
+*MOT: look out.
+*MOT: Andy's there.
+*MOT: that was mean.
+*MOT: don't get everything out.
+*CHI: I am just going to find ____ ribbon."
+Aran,child,47978,low,boat,a->a,a,a,10,1,0.20347502297779996,0.003168314729451671,0.3091465081585868,0.3817069836828264,0.3872251147394391,0.2255497705211218,0.5015841573647258,0.003168314729451671,"*MOT: what_about going on your seesaw as a boat?
+*MOT: that's much better „ isn't it?
+*MOT: the waves all come to you „ don't they?
+*MOT: and they're very high waves.
+*CHI: boat.
+*MOT: no don't tread on everything.
+*MOT: you're going to break it all „ aren't you?
+*MOT: you'll be sorry if you break your digger.
+*MOT: you will.
+*MOT: I think you're a bit too fat for that, Aran.
+*CHI: ____ boat."
+Warren,child,68623,low,cat,the->a,the,a,9,2,0.19716628608678732,0.07343421665878558,0.6865229223872017,0.3730458447744034,0.4632828916706072,0.07343421665878558,0.5725093984135865,0.145018796827173,"*CHI: I don't wanna chew it.
+*MOT: I don't think that one goes there because the cat doesn't have two heads, does it?
+*CHI: that one goes there.
+*CHI: no.
+*CHI: that one go there.
+*CHI: it's gone there.
+*MOT: does that make a good picture?
+*CHI: no.
+*MOT: no.
+*MOT: do you remember what goes here near the cat's bottom?
+*CHI: ____ little cat."
+Carl,child,21870,low,digger,the->the,the,the,2,2,0.19613536194294465,0.06786378300932161,0.5887212460892107,0.17744249217842145,0.3284500946794546,0.34309981064109085,0.5339318915046608,0.06786378300932161,"*CHI: up that roof.
+*CHI: he's up that roof.
+*CHI: he's up that roof.
+*MOT: that car's up on the roof.
+*CHI: the car's go ing over the roof.
+*MOT: it's going over the roof.
+*CHI: this is great, Mummy.
+*CHI: and a digger.
+*MOT: what's the digger going to do?
+*CHI: brumm.
+*CHI: ____ digger."
+Becky,child,14364,low,pond,the->the,the,the,2,2,0.19036316732490197,0.1726800154063881,0.393974465502463,0.21205106899507398,0.5931792087866219,0.18635841757324378,0.586340007703194,0.1726800154063881,"*CHI: what are we make ing?
+*CHI: .
+*MOT: no.
+*MOT: I don't think that's the idea, Becky.
+*MOT: don't put it in there.
+*CHI: in the pool.
+*MOT: in the pool.
+*MOT: okay.
+*MOT: in the pond.
+*CHI: in this yellow pond.
+*CHI: in ____ hot pond."
+Aran,child,45189,low,monkey,the->a,the,a,1,2,0.18202862984745372,0.0016742895647490208,0.6703736111000141,0.3407472222000283,0.3981678111112081,0.20366437777758384,0.5008371447823745,0.0016742895647490208,"*MOT: you have „ haven't you?
+*CHI: I have got one like that.
+*CHI: run.
+*CHI: run.
+*CHI: away.
+*CHI: run away.
+*MOT: running away „ is it that car?
+*MOT: is it frightened of the animals?
+*MOT: what's this, Aran?
+*MOT: is this for the monkey?
+*CHI: ____ monkey."
+Dominic,child,7788,low,lion,the->a,the,a,2,2,0.18057382662898722,0.023079295987115334,0.4213818254432278,0.15723634911354445,0.5115396479935577,0.023079295987115334,0.6807029173931509,0.36140583478630184,"*CHI: .
+*MOT: oh.
+*MOT: okay.
+*MOT: right.
+*MOT: so.
+*MOT: you've got them all on /.
+*MOT: the animals.
+*MOT: we've got an elephant.
+*MOT: is that the lion?
+*MOT: or a tiger?
+*CHI: that's ____ lion."
+Aran,child,41859,low,train,the->a,the,a,1,2,0.17554271623320702,0.03032719961853414,0.5151635998092671,0.03032719961853414,0.4816535864982852,0.03669282700342957,0.7298040610388287,0.45960812207765733,"*CHI: no.
+*CHI: they're not.
+*MOT: what are they?
+*MOT: bracelets?
+*MOT: oh now.
+*MOT: what has Mummy said about that?
+*MOT: no.
+*MOT: you don't pull dolly's hair.
+*MOT: that's not at all nice.
+*MOT: you've pulled the train to bits now „ haven't you?
+*CHI: it's not go be ____ train anymore."
+Gail,child,3682,low,driver,the->the,the,the,2,2,0.1692702044726122,0.12701641856048274,0.4244066099575884,0.15118678008482322,0.6148037073862653,0.22960741477253066,0.5635082092802414,0.12701641856048274,"*CHI: let's put the trucks on.
+*CHI: &~a put the truck on.
+*CHI: truck on.
+*CHI: there.
+*CHI: Caroline do it.
+*MOT: .
+*CHI: where's the driver gone?
+*MOT: you have a look for him.
+*MOT: is he the driver?
+*CHI: no.
+*CHI: there's ____ driver."
+Liz,child,16463,low,car,a->a,a,a,5,1,0.1644213653458609,0.02178883707829149,0.316239244537606,0.367521510924788,0.4480231259827484,0.10395374803450319,0.5108944185391457,0.02178883707829149,"*MOT: let's shake it from this end.
+*MOT: there it goes.
+*MOT: oh that's a good train.
+*MOT: isn't it good?
+*CHI: look what I made.
+*MOT: so now we've got an aeroplane a car and a train.
+*CHI: 0.
+*MOT: excuse me.
+*MOT: bless you.
+*CHI: aeroplane.
+*CHI: ____ car."
+Aran,child,42469,low,shirt,a->a,a,a,4,1,0.16220697854990873,0.08989175510864733,0.3738487142585384,0.25230257148292323,0.5449458775543237,0.08989175510864733,0.4277866954709222,0.14442660905815563,"*CHI: I can put on.
+*MOT: no.
+*MOT: I don't think you can darling.
+*MOT: you're a bit big for that „ aren't you?
+*MOT: just a bit big.
+*CHI: and here's a shirt.
+*MOT: that's a shirt.
+*CHI: yeah.
+*MOT: isn't it?
+*MOT: oh doesn't dolly look pretty with that frock on.
+*CHI: and let's put ____ shirt on now."
+Warren,child,66865,low,station,a->the,a,the,8,3,0.16104965818005082,0.0492141340523955,0.5246070670261977,0.0492141340523955,0.6308017515935,0.2616035031870001,0.5861656686503784,0.1723313373007569,"*MOT: maybe.
+*MOT: right.
+*MOT: now I'm going to make a station over here.
+*CHI: no.
+*CHI: there.
+*MOT: no.
+*MOT: I wanna make it here because there's more room then we can have ramps and exciting things.
+*CHI: make a roads.
+*MOT: no.
+*MOT: I'm making ramps for my station.
+*CHI: making ramps ____ station."
+Aran,child,45602,low,egg,the->the,the,the,5,2,0.1589280729827397,0.04987718658844231,0.47506140670577884,0.04987718658844231,0.6408404674318166,0.2816809348636331,0.5726130487480718,0.14522609749614368,"*MOT: right.
+*MOT: now we want an egg.
+*MOT: a boiled egg.
+*CHI: that's that's a boiled egg.
+*MOT: right.
+*MOT: well you find the boiled egg.
+*MOT: is it like the one Missis_Southerland gave you?
+*CHI: yeah.
+*MOT: is it?
+*MOT: well you find it then.
+*CHI: that's ____ egg."
+Carl,child,20799,low,train,the->the,the,the,4,1,0.15744782295241952,0.010105977168690994,0.4949470114156545,0.010105977168690994,0.410642130392698,0.17871573921460404,0.6417608762369817,0.2835217524739635,"*CHI: want another train.
+*MOT: there's only that train.
+*CHI: I want
+*MOT: look.
+*MOT: there's another little person, look.
+*CHI: I wanna see.
+*MOT: you could have people on the train, couldn't you?
+*MOT: instead of the animals.
+*CHI: there's a there's a people.
+*CHI: there.
+*CHI: need pull ____ train."
+Joel,child,28420,low,monkey,the->a,the,a,7,2,0.1545865468645977,0.07008186586328935,0.5882920465428527,0.17658409308570544,0.5350409329316447,0.07008186586328935,0.3914531591776009,0.21709368164479825,"*MOT: it would me.
+*CHI: yeah.
+*CHI: .
+*MOT: mum's got the monkey.
+*CHI: Mum_Mum.
+*CHI: .
+*MOT: yeah.
+*MOT: I've given it to Caroline.
+*MOT: oh.
+*MOT: very artistic.
+*CHI: ____ monkey."
+Warren,child,71941,low,wheel,a->a,a,a,1,2,0.1543524269657062,0.04239069967443432,0.3298397359947724,0.3403205280104552,0.5401730266061145,0.0803460532122291,0.5211953498372172,0.04239069967443432,"*MOT: what're you looking for?
+*CHI: the wheel.
+*MOT: a wheel?
+*CHI: yes.
+*CHI: it's broke.
+*MOT: a wheel which broke?
+*CHI: yes.
+*MOT: who broke it?
+*CHI: Warren.
+*MOT: a wheel or a whale.
+*CHI: ____ wheel."
+John,child,57697,low,bull,a->a,a,a,5,1,0.15047757833090736,0.06238971042435526,0.5925102207336702,0.18502044146734042,0.46880514478782237,0.06238971042435526,0.3979887084494868,0.2040225831010264,"*CHI: oh.
+*CHI: yes.
+*CHI: yes.
+*MOT: what's that?
+*CHI: a bull.
+*MOT: it's a bull.
+*MOT: yes.
+*CHI: a pig.
+*MOT: yes.
+*MOT: we're still looking for the pig then.
+*CHI: ____ bull."
+Warren,child,67699,low,box,the->the,the,the,2,2,0.14969206376787492,0.10188135984711444,0.5509406799235572,0.10188135984711444,0.6099883767552812,0.21997675351056234,0.436390961027026,0.12721807794594797,"*MOT: is he in this box?
+*MOT: he should be.
+*MOT: what's the man who drives the tractor called?
+*MOT: do you remember?
+*CHI: yeah.
+*CHI: oh there's my red vehicle.
+*MOT: &~ah.
+*MOT: there's the mystery of the missing Henry.
+*MOT: he's in the wrong box.
+*CHI: yeah.
+*CHI: wanna put it in ____ box."
+Aran,child,38767,low,hook,the->a,the,a,3,1,0.14837449670881853,0.11157635295308044,0.4169845520633198,0.1660308958733604,0.5557881764765402,0.11157635295308044,0.4162418793499926,0.16751624130001475,"*CHI: it is a tractor, Mummy.
+*MOT: well it's a tractor with a crane on now „ isn't it?
+*MOT: after all my hard work.
+*MOT: isn't it?
+*CHI: tie.
+*MOT: right.
+*MOT: they're tied together now.
+*MOT: well what_about the hook on the end?
+*MOT: you seem to have forgotten about that „ don't you?
+*CHI: that hook.
+*CHI: it's it's ____ tractor hook on the back."
+John,child,58897,low,car,the->the,the,the,1,3,0.12779819894446046,0.038567787262773434,0.5192838936313867,0.038567787262773434,0.6163872359829176,0.23277447196583512,0.5560261688023864,0.11205233760477284,"*MOT: no no it's not quite a horse.
+*MOT: look at it carefully.
+*MOT: it's got a big.
+*CHI: giraffe.
+*MOT: it's a giraffe.
+*CHI: giraffe.
+*CHI: it is a giraffe.
+*CHI: a tail.
+*MOT: yeah it's got a tail.
+*MOT: can you put the giraffe on the car?
+*CHI: ____ car."
+Carl,child,24412,low,hippo,the->the,the,the,3,3,0.1163942510391854,0.06896506620343446,0.5647001059967925,0.1294002119935851,0.5344825331017172,0.06896506620343446,0.5754087374602683,0.15081747492053665,"*CHI: I can't.
+*MOT: here.
+*MOT: let me have a look.
+*MOT: I don't think it'll fit on.
+*MOT: let's have a look.
+*CHI: I want the hippo.
+*MOT: oh the hippo.
+*MOT: well you find the hippo.
+*MOT: leave the baby.
+*CHI: there hippo.
+*CHI: there's ____ hippo."
+Carl,child,24417,low,wall,a->a,a,a,1,0,0.1036560158642339,0.08411134425827205,0.4437571758453268,0.11248564830934638,0.457944327870864,0.08411134425827205,0.44281447248745837,0.11437105502508327,"*CHI: now I can make another one.
+*MOT: no.
+*MOT: it's only got two.
+*MOT: Carl.
+*MOT: it's only got two.
+*CHI: where's that one go?
+*MOT: it's only got two.
+*MOT: there's the elephant.
+*MOT: oh look.
+*MOT: somebody's made a wall, Carl.
+*CHI: that's ____ wall."
+John,child,60909,low,hole,a->the,a,the,4,2,0.08891451342131962,0.0069395429598124725,0.5034697714799062,0.0069395429598124725,0.4466032258680881,0.10679354826382381,0.5765052245201613,0.15301044904032257,"*CHI: everywhere blood on this.
+*MOT: no.
+*MOT: it's not.
+*MOT: are you just pretending?
+*CHI: blood on this.
+*CHI: hello.
+*MOT: is there a hole?
+*MOT: oh yeah.
+*MOT: two little holes.
+*CHI: hello.
+*CHI: open ____ hole."
+Ruth,child,32967,low,bull,the->a,the,a,5,1,0.08886216218840315,0.011499120125358697,0.3807875777732171,0.23842484445356582,0.49166873900685754,0.01666252198628493,0.5057495600626793,0.011499120125358697,"*MOT: shall we put our fence back up again?
+*CHI: no.
+*MOT: no?
+*CHI: knock our down.
+*MOT: yeah.
+*MOT: oh is the bull gonna stay with Anna?
+*CHI: mhm.
+*MOT: right.
+*CHI: stay
+*MOT: whoops.
+*CHI: ____ naughty bull."
+Aran,child,40902,low,snake,a->the,a,the,6,2,0.05862310350641601,0.040566757521381724,0.4608142496059903,0.07837150078801935,0.5202833787606909,0.040566757521381724,0.5284655261049235,0.056931052209846955,"*CHI: it's not.
+*MOT: what is it then?
+*CHI: a worm.
+*MOT: a worm.
+*MOT: I thought it was a snake.
+*MOT: or a tiger to frighten people off.
+*MOT: that's a good idea „ isn't it?
+*CHI: that's Tigger.
+*MOT: that's Tigger.
+*CHI: he.
+*CHI: he eats ____ snake up."
