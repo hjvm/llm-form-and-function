@@ -2,9 +2,9 @@
 
 Code for the paper **"Measuring Form and Function in Language Models"** (Vázquez Martínez & Yang, UPenn Linguistics).
 
-We evaluate 45 language models on two benchmarks for English determiner usage derived from child language research: a formal test of syntactic productivity (Yang 2013) and a functional test of discourse-driven reference (Gleitman & Yang 2022). Both benchmarks are applied to child-directed speech from the Manchester CHILDES corpus and evaluated via a novel **Contextual Alternative Choice (CAC)** prompting paradigm.
+We evaluate 47 language models on two benchmarks for English determiner usage derived from child language research: a formal test of syntactic productivity (Yang 2013) and a functional test of discourse-driven reference (Gleitman & Yang 2022). Both benchmarks are applied to child-directed speech from the Manchester CHILDES corpus and evaluated via a novel **Contextual Alternative Choice (CAC)** prompting paradigm.
 
-**Key finding:** 30/45 models pass the formal D×N test; only 3/45 pass the TPR test (*ltg-bert-bnc*, *roberta-base*, *t5-base*). Only two models—*ltg-bert-bnc* (100M-word BNC) and *roberta-base* (30B words)—pass both, but both are trained on far more data than is available to 2–3-year-old children (~10–20M words). No model trained on a developmentally plausible amount of data passes both tests simultaneously.
+**Key finding:** across 49 model–architecture evaluations (47 distinct models; the two mixed-objective gpt-bert models are scored under both MLM and AR), 30 pass the formal D×N test and only 3 pass the discourse-functional TPR test (*ltg-bert-bnc*, *roberta-base*, *t5-base*). Only two models—*ltg-bert-bnc* (100M-word BNC) and *roberta-base* (30B words)—pass both, but both are trained on far more data than is available to 2–3-year-old children (~10–20M words). No model trained on a developmentally plausible amount of data passes both tests simultaneously.
 
 ---
 
@@ -37,21 +37,26 @@ The paper uses **probabilistic (sampled) predictions** rather than argmax to avo
 
 ```
 .
+├── run_pipeline.py                 # one-command driver (runs Steps 1–5 in order)
 ├── run_experiments.py              # Step 1 — CAC inference for all models
-├── compute_analytical_metrics.py   # Step 2 — D×N overlap and TPR from stored probabilities
-├── human_baseline.ipynb            # Step 3 — TPR human baseline + model statistical tests
-├── analysis.ipynb                  # Step 4 — paper figures and tables
-├── cac_utils.py                    # Core library (corpus, model loading, scoring, metrics)
-├── analytical_metrics.py           # Analytical formulas for overlap and TPR
-├── pair_extractors.py              # spaCy D×N extraction (DeterminerNounExtractor)
-├── overlap_list_v2.py              # Yang (2013) expected overlap formula
-├── model_configs.json              # 45 evaluated models (name, type, description)
-├── figures/                        # Paper figures, tables (.png/.tex/.csv), and methodology assets
+├── human_baseline.ipynb            # Step 2 — human TPR baseline, distance analysis, exports
+├── compute_analytical_metrics.py   # Step 3 — D×N overlap and TPR from stored probabilities
+├── lm_tpr_analysis.ipynb           # Step 4 — per-model TPR tests + context-corrected analyses
+├── analysis.ipynb                  # Step 5 — paper figures and tables
+├── build_annotation_sample.py      # optional — draft human-annotation sample (after Step 4)
+├── cac_utils.py                    # determiner-study glue (corpus, extraction, TPR prep, processing)
+├── src/
+│   ├── cac/                        # reusable CAC core (pip-installable): scoring, models, readout, context
+│   └── determiner/                 # this study's client: pair_extractors, overlap_list_v2, analytical_metrics
+├── model_configs.json              # evaluated models (name, type, description)
+├── pyproject.toml                  # installs the `cac` + `determiner` packages (pip install -e .)
+├── figures/                        # paper figures + tables (.png/.tex/.csv)
 ├── results/
-│   ├── overlap/                    # Per-model D×N overlap summaries + human baseline
+│   ├── overlap/                    # per-model D×N overlap summaries + human baseline
 │   └── tpr/                        # TPR model results + human baseline CSVs
-└── data/
-    └── dn.txt                      # Flat D×N pair list for standalone overlap_list_v2.py use
+├── data/
+│   └── dn.txt                      # flat D×N pair list for standalone overlap_list_v2 use
+└── docs/REORG.md                   # reorganization design record (CAC carve, decisions, status)
 ```
 
 ---
@@ -61,6 +66,7 @@ The paper uses **probabilistic (sampled) predictions** rather than argmax to avo
 ```bash
 pip install transformers torch scipy numpy pandas tqdm spacy nltk
 python -m spacy download en_core_web_sm
+pip install -e .          # installs the `cac` core and `determiner` study packages
 ```
 
 Device selection is automatic: MPS (Apple Silicon) → CUDA → CPU.
@@ -78,23 +84,31 @@ data/CHILDES/tpr-data/       # 17 dyads with other-adult speakers (used for TPR 
 
 ## Running the Pipeline
 
-The analysis runs in four sequential steps. Each step depends on the outputs of the previous one.
+The analysis runs in five sequential steps, each depending on the previous. The simplest path is the driver:
+
+```bash
+python run_pipeline.py            # full pipeline (Steps 1–5)
+python run_pipeline.py --from 2   # skip the expensive inference; re-run analysis from cached predictions
+python run_pipeline.py --list     # show the step plan
+```
+
+The individual steps, for reference:
 
 ### Step 1 — Model Inference: `run_experiments.py`
 
 Runs CAC prompting for all models on the Manchester corpus. For each model × dyad × utterance, scores *a* and *the* in context and saves the result.
 
-The paper uses CHILDES-style speaker labels (`*CHI`/`*MOT`). Pass `--discourse-label-style childes` to reproduce paper results.
+CHILDES-style speaker labels (`*CHI`/`*MOT`) are the default (the paper setting); pass `--discourse-label-style spoken` for `MOTHER`/`CHILD` labels instead.
 
 ```bash
 # Experiment 1 (ablation): single utterance, no discourse context
 python run_experiments.py isolated --models model_configs.json
 
-# Experiment 2 (main): full discourse context with CHILDES speaker labels
-python run_experiments.py discourse --models model_configs.json --discourse-label-style childes
+# Experiment 2 (main): full discourse context (CHILDES labels by default)
+python run_experiments.py discourse --models model_configs.json
 
 # Overwrite existing results (default: skip if output exists)
-python run_experiments.py discourse --models model_configs.json --discourse-label-style childes --force
+python run_experiments.py discourse --models model_configs.json --force
 ```
 
 **Outputs** (per-model, per-dyad CSV files):
@@ -108,23 +122,17 @@ Within each: `{model_type}/{model_name}/{child_name}/child_predictions.csv` and 
 
 ### Step 2 — Human Baseline: `human_baseline.ipynb`
 
-Run this notebook **after** Step 1 and **before** `compute_analytical_metrics.py`. It prepares Manchester corpus metadata (TPR case index, human TPR baseline), processes the tpr-data corpus to establish the adult-to-adult TPR reference, and runs all four statistical comparisons per model.
+Run **after** Step 1 and **before** `compute_analytical_metrics.py`. It prepares Manchester corpus metadata and computes the **human-side** baselines — the per-model TPR tests now live in Step 4.
 
 **What it does:**
 
-1. Loads Manchester corpus and generates `output/manchester_tpr_childes/tpr_cached_inputs.csv` (TPR case metadata consumed by Step 3)
-2. Computes the restricted-noun Manchester human TPR baseline (`results/tpr/tpr_human_baseline.csv`)
-3. Computes TPR for tpr-data other-adult speakers (17 dyads)
-4. **Validates** that tpr-data is statistically equivalent to Manchester (Welch tests)
-5. Establishes the global adult TPR population mean (~0.215) used as the 1-sample test reference
-6. Runs four comparisons per model:
-   - 1-sample t-test vs. adult population mean
-   - Welch t-test vs. 17 other-adult dyad TPRs
-   - Paired t-test vs. Manchester children (12 dyads)
-   - Paired t-test vs. Manchester caretakers (12 dyads)
-7. Exports two CSVs consumed by `analysis.ipynb`:
-   - `results/tpr/tpr_human_summary.csv` — human baseline statistics
-   - `results/tpr/tpr_model_summary_analytical.csv` — per-model test results
+1. Loads Manchester corpus and generates `output/manchester_tpr_childes/tpr_cached_inputs.csv` (TPR case metadata, with `true_dist`, consumed by Steps 3–4)
+2. Computes the restricted-noun Manchester human TPR baseline (`results/tpr/tpr_human_baseline.csv`) and the unrestricted baseline used for reported results
+3. Computes TPR for tpr-data other-adult speakers (17 dyads), **validates** corpus equivalence (Welch tests), and establishes the pooled adult TPR population mean (~0.215)
+4. Characterizes the human baseline by antecedent distance / context window → `figures/human_tpr_vs_window.png`, `figures/human_antecedent_distance_hist.png`, `results/tpr/human_tpr_by_window.csv` (and `human_switch_rate_by_window.csv`, `human_antecedent_distance_counts.csv`, `human_tpr_by_distance_summary.csv`)
+5. Exports the human artifacts consumed downstream:
+   - `results/tpr/tpr_human_summary.csv` — per-speaker aggregate TPR + tests
+   - `results/tpr/tpr_human_perdyad_references.csv` — per-dyad reference TPRs (consumed by Step 4)
 
 ### Step 3 — Analytical Metrics: `compute_analytical_metrics.py`
 
@@ -142,7 +150,29 @@ python compute_analytical_metrics.py \
 - `results/overlap/{type}/{model}/analytical_overlap_summary.csv` — per-model D×N overlap (one file per model)
 - `results/tpr/analytical_tpr_all_results.csv` — TPR for all models (one aggregate file)
 
-### Step 4 — Paper Artifacts: `analysis.ipynb`
+### Step 4 — Model TPR Analysis: `lm_tpr_analysis.ipynb`
+
+Corpus-free, model-side TPR analysis. Consumes Step 3's `analytical_tpr_all_results.csv`, the Step 1 prediction distributions, and the Step 2 human artifacts. Produces:
+
+- the canonical **four-test per-model TPR summary** → `results/tpr/tpr_model_summary_analytical.csv` (one-sample vs the pooled adult mean, Welch vs other-adult dyads, paired vs children, paired vs caretakers) — consumed by Step 5;
+- a **context-window validity audit** (`in_window` = antecedent within each model's window, verified against the models' actual inputs) and antecedent-visibility breakdown;
+- the **corrected, context-aware comparison** (each model on its in-window child sites, paired vs children on the same sites) → `results/tpr/tpr_model_corrected_in_window.csv`.
+
+```bash
+jupyter nbconvert --to notebook --execute --inplace lm_tpr_analysis.ipynb
+```
+
+**Outputs** (the TPR audits + corrected figures, tracked in git):
+
+| File | Description |
+|---|---|
+| `results/tpr/tpr_model_summary_analytical.csv` | Canonical four-test per-model TPR summary (→ Step 5) |
+| `results/tpr/tpr_model_corrected_in_window.csv` | Per-model in-window (context-corrected) TPR + matched test |
+| `figures/appendix_full_results_table_corrected.tex` | Appendix: corrected results table (in-window TPR, matched test) |
+| `figures/appendix_full_tpr_figure_corrected.png` | Appendix: corrected TPR by context-window tier |
+| `figures/appendix_full_tpr_vs_window_models_figure.png` | Appendix: per-family model TPR vs context window *K* |
+
+### Step 5 — Paper Artifacts: `analysis.ipynb`
 
 Loads all results and generates every figure and table in the paper. Configuration is in **cell 2**:
 
@@ -158,7 +188,7 @@ Changing these two variables and re-running from cell 6 onward switches the enti
 | Experiment 1: Isolated | Family-grouped D×N overlap scatter (context ablation) |
 | Experiment 2: Discourse | Human overlap figure + family-grouped model overlap figure |
 | Experiment 3: TPR | Full TPR figure with SD bars, pass shading, human reference lines |
-| Final Summary | Cross-experiment significance table; full results table (all 45 models) |
+| Final Summary | Cross-experiment significance table; full results table (all evaluated models) |
 | Tables and Figures for paper | Paper artifacts written to `figures/` |
 
 **Paper artifacts saved to `figures/`:**
@@ -169,9 +199,12 @@ Changing these two variables and re-running from cell 6 onward switches the enti
 | `appendix_full_overlap_models_figure.png` | Appendix: all models by family (Exp. 2) |
 | `appendix_full_overlap_human_figure.png` | Appendix: human baseline overlap |
 | `appendix_full_tpr_figure.png` | Appendix: full TPR results for all models |
-| `appendix_full_results_table.csv/.tex` | Appendix: complete results for all 45 models |
+| `appendix_accuracy_figure.png` | Appendix: per-model determiner accuracy |
+| `appendix_full_results_table.csv/.tex` | Appendix: complete results for all evaluated models |
 | `main_joint_table.csv/.tex` | Main paper: selected representative model table |
 | `human_baseline_overlap.tex` | Human baseline overlap statistics |
+
+The **context-corrected TPR audits/figures** (`appendix_full_results_table_corrected.tex`, `appendix_full_tpr_figure_corrected.png`, `appendix_full_tpr_vs_window_models_figure.png`) come from **Step 4**, and the **human antecedent-distance figures** (`human_tpr_vs_window.png`, `human_antecedent_distance_hist.png`) from **Step 2**; `analysis.ipynb` preserves them when regenerating its own artifacts, so a full `run_pipeline.py` produces the complete figure set.
 
 ---
 
@@ -181,19 +214,19 @@ Changing these two variables and re-running from cell 6 onward switches the enti
 
 For each model × dyad: extract D×N pairs from CAC predictions, compute the expected empirical overlap analytically from stored probability distributions (Eq. 2 in paper), and compute the Yang (2013) prediction from the analytical bias and corpus statistics (N unique nouns, S total tokens). The 12 (empirical, predicted) pairs are submitted to a paired t-test. Pass if *p* > 0.05.
 
-Implementation: `overlap_list_v2.py` (Yang 2013 formula), `analytical_metrics.py` (analytical overlap and bias), `compute_analytical_metrics.py` (per-model aggregation), `analysis.ipynb` cells 10–17 (testing and figures).
+Implementation: `src/determiner/overlap_list_v2.py` (Yang 2013 formula), `src/determiner/analytical_metrics.py` (analytical overlap and bias), `compute_analytical_metrics.py` (per-model aggregation), `analysis.ipynb` (testing and figures).
 
 ### Discourse-Functional Grammar
 
 For each model × dyad: find CAC sites where the same noun was mentioned by the *other* speaker (with any determiner) earlier in the same session. TPR = expected probability of switching from the prior human determiner, computed analytically from stored *P*(the) values. Four statistical comparisons are run against the human baseline.
 
-Implementation: `analytical_metrics.py` (analytical TPR), `compute_analytical_metrics.py` (per-model aggregation), `human_baseline.ipynb` (all four statistical comparisons and export), `analysis.ipynb` cells 18–19 (TPR figure).
+Implementation: `src/determiner/analytical_metrics.py` (analytical TPR), `compute_analytical_metrics.py` (per-model aggregation), `human_baseline.ipynb` (human baseline + per-dyad references), `lm_tpr_analysis.ipynb` (the four per-model statistical comparisons, context-window audit, and corrected analyses), `analysis.ipynb` (TPR figures/tables).
 
 ---
 
 ## Model Configurations
 
-`model_configs.json` lists all 45 evaluated models. Each entry:
+`model_configs.json` lists the evaluated models — **49 entries for 47 distinct models**, since the two mixed-objective models (`*-gpt-bert-mixed`) are listed twice, once as `mlm` and once as `ar`, to score them under both architectures. Each entry:
 
 ```json
 {"name": "HuggingFace/repo-id", "type": "mlm|ar|seq2seq", "description": "..."}

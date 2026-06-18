@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cac"
+version = "0.1.0"
+description = "Contextual Alternative Choice (CAC): corpus/candidate/language-agnostic prompting and scoring for closed grammatical alternations in language models."
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "scipy",
+    "torch",
+    "transformers",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

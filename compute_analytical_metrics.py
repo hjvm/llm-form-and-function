@@ -31,7 +31,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from analytical_metrics import (
+from determiner.analytical_metrics import (
     analytical_accuracy,
     analytical_bias,
     analytical_empirical_overlap,

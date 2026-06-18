@@ -34,9 +34,11 @@ from scipy.special import softmax
 from scipy.stats import ttest_rel
 from transformers import AutoModelForMaskedLM, AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer
 
+import cac
+
 # Import pair extractor
 try:
-    from pair_extractors import DeterminerNounExtractor
+    from determiner.pair_extractors import DeterminerNounExtractor
 except ImportError:
     print("Warning: pair_extractors.py not found. DeterminerNounExtractor will not be available.")
     DeterminerNounExtractor = None
@@ -47,6 +49,7 @@ except ImportError:
 # =============================================================================
 
 DETERMINERS = ['a', 'an', 'the']
+DETERMINER_CANDIDATES = {'a': ['a', 'an'], 'the': ['the']}  # a/an merged into the 'a' category
 AR_BLANK_TOKEN = '___'
 MLM_BLANK_TOKEN = '[MASK]'
 MAX_SKIP = 3
@@ -495,297 +498,19 @@ def get_determiner_token_ids(tokenizer):
 # MODEL LOADING
 # =============================================================================
 
-def load_model(model_config: Dict[str, str], device: Optional[torch.device] = None):
-    """
-    Load a language model and tokenizer based on configuration.
-    
-    Args:
-        model_config: Dict with 'name' and 'type' ('mlm', 'ar', or 'seq2seq')
-        device: torch device to load model on
-        
-    Returns:
-        tuple: (model, tokenizer)
-    """
-    if device is None:
-        if torch.backends.mps.is_available():
-            device = torch.device("mps")
-            os.environ['PYTORCH_ENABLE_MPS_FALLBACK'] = '0'
-        elif torch.cuda.is_available():
-            device = torch.device("cuda:0")
-        else:
-            device = torch.device("cpu")
-
-    
-    model_name = model_config['name']
-    model_type = model_config['type']
-    
-    print(f"Loading {model_type.upper()} model: {model_name}")
-    
-    try:
-        if model_type == 'mlm':
-            model = AutoModelForMaskedLM.from_pretrained(model_name, trust_remote_code=True).to(device)
-        elif model_type == 'ar':
-            model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=True).to(device)
-        elif model_type == 'seq2seq':
-            model = AutoModelForSeq2SeqLM.from_pretrained(model_name, trust_remote_code=True).to(device)
-        else:
-            raise ValueError(f"Unsupported model_type '{model_type}'. Expected one of: mlm, ar, seq2seq")
-        
-        tokenizer = AutoTokenizer.from_pretrained(model_name)
-        
-        # Set pad token if not present
-        if tokenizer.pad_token is None:
-            tokenizer.pad_token = tokenizer.eos_token
-
-        # Validate seq2seq sentinels early so unsupported tokenizers fail fast.
-        if model_type == 'seq2seq':
-            _seq2seq_sentinel_tokens(tokenizer)
-        
-        model.eval()
-        return model, tokenizer
-        
-    except Exception as e:
-        print(f"Error loading model {model_name}: {e}")
-        raise
+def load_model(model_config, device=None, revision=None):
+    """Load a model + tokenizer for CAC scoring (delegates to the carved `cac` package)."""
+    return cac.load_model(model_config, device=device, revision=revision)
 
 
 # =============================================================================
 # DETERMINER PROBABILITY EXTRACTION
 # =============================================================================
 
-def extract_determiner_probabilities_mlm(model, tokenizer, masked_sentence: str, 
-                                         det_token_ids: Dict[str, int]) -> Dict[str, float]:
-    """
-    Get probability distribution over determiners for masked language model.
-    
-    Args:
-        model: Masked language model
-        tokenizer: Model tokenizer
-        masked_sentence: Sentence with [MASK] token
-        det_token_ids: Dict of {det: token_id}
-        
-    Returns:
-        dict: {det: probability} for 'a' and 'the' (normalized)
-    """
-    # Tokenize the input
-    inputs = tokenizer(masked_sentence, return_tensors="pt").to(device)
-    
-    # Find the position of [MASK] token
-    mask_token_id = tokenizer.mask_token_id
-    mask_position = (inputs['input_ids'] == mask_token_id).nonzero(as_tuple=True)[1]
-    
-    if len(mask_position) == 0:
-        return {'a': 0.5, 'the': 0.5}  # Fallback
-    
-    mask_position = mask_position[0]
-    
-    # Get model predictions
-    with torch.no_grad():
-        try:
-            outputs = model(**inputs)
-        except TypeError as e:
-            if "token_type_ids" in str(e) and "token_type_ids" in inputs:
-                inputs.pop("token_type_ids")
-                outputs = model(**inputs)
-            else:
-                raise
-                
-        # Handle tuple outputs from some models
-        if isinstance(outputs, tuple):
-            logits = outputs[0]
-        else:
-            logits = outputs.logits
-    
-    # Get logits for the mask position
-    mask_logits = logits[0, mask_position, :].cpu().numpy()
-    
-    # Extract logits for determiner candidate tokens and map to shared a/the probs.
-    det_scores = {det: float(mask_logits[token_id]) for det, token_id in det_token_ids.items()}
-    return _normalize_det_log_scores(det_scores)
-
-
-def extract_determiner_probabilities_ar(model, tokenizer, masked_sentence: str, 
-                                       det_token_ids: Dict[str, int]) -> Dict[str, float]:
-    """
-    Get probability distribution over determiners for autoregressive model.
-    
-    Scores complete sentences with each determiner choice to match MLM setup.
-    Both MLM and AR models now see the full context (left + noun + right).
-    
-    For "Anne is looking at ___ truck on the road":
-    - Score: "Anne is looking at the truck on the road"
-    - Score: "Anne is looking at a truck on the road"  
-    - Score: "Anne is looking at an truck on the road"
-    
-    Args:
-        model: Autoregressive language model
-        tokenizer: Model tokenizer  
-        masked_sentence: Sentence with ___ blank (e.g., "Anne is looking at ___ truck")
-        det_token_ids: Dict of {det: token_id} (not used in this version)
-        
-    Returns:
-        dict: {det: probability} for 'a' and 'the' (normalized)
-    """
-    # Check if blank is present
-    blank_pos = masked_sentence.find(AR_BLANK_TOKEN)
-    if blank_pos == -1:
-        return {'a': 0.5, 'the': 0.5}  # Fallback
-    
-    # Get the model's max length for truncation
-    model_max = getattr(tokenizer, 'model_max_length', 512)
-    if model_max > 512 or model_max < 1:
-        model_max = 512
-    
-    # Score each complete sentence with determiner filled in
-    candidates = ['the', 'a', 'an']
-    scores = {}
-    
-    for det in candidates:
-        # Build complete sentence with this determiner
-        full_sentence = masked_sentence.replace(AR_BLANK_TOKEN, det)
-        
-        # Tokenize without tokenizer-side truncation so we never cut an utterance
-        # mid-line. Upstream formatting is responsible for fitting within budget.
-        inputs = tokenizer(full_sentence, return_tensors="pt").to(device)
-        
-        if inputs['input_ids'].numel() == 0:
-            scores[det] = -1000  # Very low score for empty
-            continue
-        
-        # Get model outputs
-        with torch.no_grad():
-            try:
-                outputs = model(**inputs)
-            except TypeError as e:
-                if "token_type_ids" in str(e) and "token_type_ids" in inputs:
-                    inputs.pop("token_type_ids")
-                    outputs = model(**inputs)
-                else:
-                    raise
-                    
-            # Handle tuple outputs from some models
-            if isinstance(outputs, tuple):
-                logits = outputs[0]
-            else:
-                logits = outputs.logits
-        
-        # Compute log probability of the entire sequence
-        # For each position, get log prob of the actual next token
-        # logits[0, :-1] = predictions for positions 0 to n-1
-        # input_ids[0, 1:] = actual tokens at positions 1 to n
-        logprobs = torch.log_softmax(logits[0, :-1], dim=-1)
-        target_ids = inputs['input_ids'][0, 1:]
-        
-        # Sum log probabilities across all positions
-        token_logprobs = logprobs[range(len(target_ids)), target_ids]
-        total_logprob = token_logprobs.sum().item()
-        
-        scores[det] = total_logprob
-    
-    return _normalize_det_log_scores(scores)
-
-
-def _normalize_det_log_scores(det_log_scores: Dict[str, float]) -> Dict[str, float]:
-    """Collapse {a,an,the} log scores to normalized probabilities over {a,the}."""
-    logit_a = float(det_log_scores.get('a', -np.inf))
-    logit_an = float(det_log_scores.get('an', -np.inf))
-    logit_the = float(det_log_scores.get('the', -np.inf))
-
-    # Combine a/an in log-space so both forms count toward the indefinite article.
-    merged_a = np.logaddexp(logit_a, logit_an)
-
-    if not np.isfinite(merged_a) and not np.isfinite(logit_the):
-        return {'a': 0.5, 'the': 0.5}
-
-    probs = softmax([merged_a, logit_the])
-    return {'a': float(probs[0]), 'the': float(probs[1])}
-
-
-def _seq2seq_sentinel_tokens(tokenizer) -> Tuple[str, str]:
-    """Resolve and validate span-infilling sentinels from the tokenizer."""
-    cached = getattr(tokenizer, '_cached_seq2seq_sentinels', None)
-    if cached is not None:
-        return cached
-
-    first = '<extra_id_0>'
-    second = '<extra_id_1>'
-
-    unk_id = getattr(tokenizer, 'unk_token_id', None)
-    for tok in (first, second):
-        tok_id = tokenizer.convert_tokens_to_ids(tok)
-        if tok_id is None:
-            raise ValueError(f"Tokenizer is missing required seq2seq sentinel token: {tok}")
-        if isinstance(tok_id, int) and tok_id < 0:
-            raise ValueError(f"Tokenizer returned invalid id for sentinel token {tok}: {tok_id}")
-        if unk_id is not None and tok_id == unk_id:
-            raise ValueError(
-                f"Tokenizer maps required seq2seq sentinel token {tok} to unk_token_id ({unk_id}); "
-                "cannot use seq2seq span-infilling path safely."
-            )
-
-    tokenizer._cached_seq2seq_sentinels = (first, second)
-    return tokenizer._cached_seq2seq_sentinels
-
-
-def _score_seq2seq_target(model, tokenizer, encoder_text: str, target_text: str) -> float:
-    """Compute log P(target_text | encoder_text) under teacher forcing."""
-    model_inputs = tokenizer(encoder_text, return_tensors='pt').to(device)
-    label_ids = tokenizer(target_text, return_tensors='pt').input_ids.to(device)
-
-    with torch.no_grad():
-        try:
-            outputs = model(**model_inputs, labels=label_ids)
-        except TypeError as e:
-            if "token_type_ids" in str(e) and "token_type_ids" in model_inputs:
-                model_inputs.pop("token_type_ids")
-                outputs = model(**model_inputs, labels=label_ids)
-            else:
-                raise
-        logits = outputs.logits[0]
-
-    token_logprobs = torch.log_softmax(logits, dim=-1)
-    targets = label_ids[0]
-    valid = targets != tokenizer.pad_token_id
-    if valid.sum().item() == 0:
-        return float('-inf')
-
-    gathered = token_logprobs.gather(1, targets.unsqueeze(1)).squeeze(1)
-    return float(gathered[valid].sum().item())
-
-
-def extract_determiner_probabilities_seq2seq(model, tokenizer, masked_sentence: str,
-                                             det_token_ids: Dict[str, int]) -> Dict[str, float]:
-    """
-    Get determiner probabilities for seq2seq (encoder-decoder) models.
-
-    We preserve the same setup as MLM/AR by fixing context+noun and varying only
-    the determiner choice in a span-infilling target.
-    """
-    blank_pos = masked_sentence.find(AR_BLANK_TOKEN)
-    if blank_pos == -1:
-        return {'a': 0.5, 'the': 0.5}
-
-    s0, s1 = _seq2seq_sentinel_tokens(tokenizer)
-    encoder_input = masked_sentence.replace(AR_BLANK_TOKEN, s0)
-
-    scores = {}
-    for det in ['the', 'a', 'an']:
-        target = f"{s0} {det} {s1}"
-        scores[det] = _score_seq2seq_target(model, tokenizer, encoder_input, target)
-
-    return _normalize_det_log_scores(scores)
-
-
-def extract_determiner_probabilities(model, tokenizer, model_type: str, masked_sentence: str,
-                                     det_token_ids: Dict[str, int]) -> Dict[str, float]:
-    """Unified determiner extraction across mlm/ar/seq2seq model families."""
-    if model_type == 'mlm':
-        return extract_determiner_probabilities_mlm(model, tokenizer, masked_sentence, det_token_ids)
-    if model_type == 'ar':
-        return extract_determiner_probabilities_ar(model, tokenizer, masked_sentence, det_token_ids)
-    if model_type == 'seq2seq':
-        return extract_determiner_probabilities_seq2seq(model, tokenizer, masked_sentence, det_token_ids)
-    raise ValueError(f"Unsupported model_type '{model_type}'. Expected one of: mlm, ar, seq2seq")
+def extract_determiner_probabilities(model, tokenizer, model_type, masked_sentence, det_token_ids=None):
+    """Determiner CAC scoring via the carved `cac` core (a/an merged into the "a" category)."""
+    return cac.score_candidates(model, tokenizer, model_type, masked_sentence,
+                                DETERMINER_CANDIDATES, device=device)
 
 
 def choose_determiner_predictions(probs: Dict[str, float]) -> Tuple[str, str]:
@@ -811,54 +536,9 @@ def choose_determiner_predictions(probs: Dict[str, float]) -> Tuple[str, str]:
 # =============================================================================
 
 
-def _estimate_max_context_lines(model_configs_path: str,
-                                corpus_sample: pd.DataFrame) -> int:
-    """
-    Estimate the maximum number of prior lines any model can ever use.
-
-    Loads tokenizer configs from local HuggingFace cache (no model weights,
-    ~instant) for each model in model_configs_path, falls back to a
-    name-based heuristic for uncached models, then divides the largest
-    context window by the average tokens-per-utterance in the corpus.
-
-    Returns the computed line cap (minimum 10).
-    """
-    from transformers import AutoTokenizer
-
-    def _max_length_from_name(name: str, mtype: str) -> int:
-        n = name.lower()
-        if mtype == 'ar' or any(k in n for k in ('gpt', 'llama', 'causal', 'opt')):
-            return 1024
-        return 512  # BERT / RoBERTa / T5
-
-    try:
-        with open(model_configs_path) as f:
-            configs = json.load(f)
-    except Exception:
-        configs = []
-
-    max_model_tokens = 512
-    for cfg in configs:
-        name = cfg.get('name', '')
-        mtype = cfg.get('type', 'mlm')
-        try:
-            tok = AutoTokenizer.from_pretrained(name, local_files_only=True)
-            ml = getattr(tok, 'model_max_length', None)
-            if ml and isinstance(ml, int) and 1 < ml <= 100_000:
-                max_model_tokens = max(max_model_tokens, ml)
-                continue
-        except Exception:
-            pass
-        max_model_tokens = max(max_model_tokens, _max_length_from_name(name, mtype))
-
-    # Average tokens per utterance: use char/4 heuristic on a corpus sample (fast).
-    sample_texts = corpus_sample['sentence'].dropna().head(2000).tolist()
-    avg_tokens = max(1.0, sum(len(t) for t in sample_texts) / max(len(sample_texts), 1) / 4.0)
-
-    max_lines = max(10, int(max_model_tokens / avg_tokens) + 5)
-    print(f"  Context window estimate: {max_model_tokens} tokens, "
-          f"avg {avg_tokens:.1f} tok/utterance → capping context at {max_lines} lines")
-    return max_lines
+def _estimate_max_context_lines(model_configs_path, corpus_sample):
+    """Delegates to cac.estimate_max_context_lines (carved into the cac package)."""
+    return cac.estimate_max_context_lines(model_configs_path, corpus_sample)
 
 
 def prepare_discourse_inputs_all_sessions(corpus: Dict[str, pd.DataFrame],
@@ -912,48 +592,9 @@ def prepare_discourse_inputs_all_sessions(corpus: Dict[str, pd.DataFrame],
     # Dynamically estimate how many prior lines any model can ever attend to.
     # Build a flat sample from the corpus for the avg-tokens heuristic.
     sample_df = pd.concat(list(corpus.values()), ignore_index=True) if corpus else pd.DataFrame(columns=['sentence'])
-    max_context_lines = _estimate_max_context_lines(model_configs_path, sample_df)
-
-    # Pre-group corpus once by (child_name, filename), sorted by line_num.
-    file_utterances: Dict[tuple, pd.DataFrame] = {}
-    for child_name, combined_df in corpus.items():
-        if len(combined_df) == 0:
-            continue
-        for filename, grp in combined_df.groupby('filename', sort=False):
-            file_utterances[(child_name, filename)] = (
-                grp.sort_values('line_num').reset_index(drop=True)
-            )
-
-    # Single linear pass per (child_name, filename).
-    # The deque stores only line_nums (integers) — no text, keeping memory tiny.
-    # O(corpus_rows + target_rows) total — the file cursor never resets.
+    max_context_lines = cac.estimate_max_context_lines(model_configs_path, sample_df)
     targets = det_noun_locations.reset_index(drop=True)
-    # Maps target DataFrame index → context_start_line_num (-1 means no context)
-    context_start: Dict[int, int] = {}
-
-    for (child_name, filename), group_targets in targets.groupby(
-            ['child_name', 'filename'], sort=False):
-        key = (child_name, filename)
-        file_df = file_utterances.get(key)
-
-        if file_df is None:
-            for idx in group_targets.index:
-                context_start[idx] = -1
-            continue
-
-        file_line_nums = file_df['line_num'].values
-        n_file = len(file_df)
-
-        sorted_targets = group_targets.sort_values('line_num')
-        prior: deque = deque(maxlen=max_context_lines)  # stores int line_nums only
-        file_idx = 0
-
-        for idx, t_row in sorted_targets.iterrows():
-            target_line = int(t_row['line_num'])
-            while file_idx < n_file and int(file_line_nums[file_idx]) < target_line:
-                prior.append(int(file_line_nums[file_idx]))
-                file_idx += 1
-            context_start[idx] = int(prior[0]) if prior else -1
+    context_start = cac.compute_context_starts(corpus, targets, max_window_lines=max_context_lines)
 
     # Build output rows in original target order.
     prepared_rows = []
@@ -982,109 +623,18 @@ def prepare_discourse_inputs_all_sessions(corpus: Dict[str, pd.DataFrame],
     return pd.DataFrame()
 
 
-def format_discourse_input(context_utterances: List, target_speaker: str,
-                          target_sentence: str, model_type: str,
-                          tokenizer=None, max_tokens: Optional[int] = None,
-                          discourse_label_style: str = 'spoken') -> Tuple[str, bool]:
-    """
-    Format discourse context for model input.
-    
-    Creates a script-style format with speaker labels in ALL CAPS by default:
-    MOTHER: [utterance]
-    CHILD: [target sentence with blank]
-
-    If discourse_label_style='childes', uses CHILDES-style labels:
-    *MOT: [utterance]
-    *CHI: [target sentence with blank]
-    
-    Args:
-        context_utterances: Prior utterances (oldest -> newest). Supports either:
-                   - list[str] (legacy; assumed to be OTHER speaker)
-                   - list[dict] with keys {'speaker_type', 'sentence'}
-        target_speaker: 'child' or 'mother'
-        target_sentence: The target sentence with blank token
-        model_type: 'mlm', 'ar', or 'seq2seq'
-        tokenizer: Optional tokenizer used to estimate token lengths for truncation
-        max_tokens: Optional token budget for full formatted input
-        discourse_label_style: 'spoken' (MOTHER/CHILD) or 'childes' (*MOT/*CHI)
-        
-    Returns:
-        tuple: (formatted_string, was_truncated)
-    """
+def format_discourse_input(context_utterances, target_speaker, target_sentence, model_type,
+                          tokenizer=None, max_tokens=None, discourse_label_style='spoken'):
+    """Determiner discourse formatter — delegates to cac.format_context_input."""
     if discourse_label_style not in {'spoken', 'childes'}:
         raise ValueError(
-            f"Unsupported discourse_label_style '{discourse_label_style}'. Expected 'spoken' or 'childes'."
-        )
-
-    def speaker_label_for(speaker_value: str) -> str:
-        speaker = str(speaker_value).lower()
-        if discourse_label_style == 'childes':
-            return '*CHI' if speaker == 'child' else '*MOT'
-        return 'CHILD' if speaker == 'child' else 'MOTHER'
-
-    target_label = speaker_label_for(target_speaker)
-
-    def estimate_tokens(text: str) -> int:
-        if tokenizer is None:
-            return max(1, len(text) // 4)
-        try:
-            return len(tokenizer.encode(text, add_special_tokens=False))
-        except Exception:
-            return max(1, len(text) // 4)
-
-    # Normalize context rows to formatted lines in chronological order.
-    context_lines = []
-    for utt in context_utterances:
-        if isinstance(utt, dict):
-            speaker_label = speaker_label_for(utt.get('speaker_type', 'mother'))
-            sentence_text = str(utt.get('sentence', ''))
-        else:
-            # Backward compatibility for legacy list[str] inputs.
-            speaker_label = speaker_label_for('mother' if target_speaker == 'child' else 'child')
-            sentence_text = str(utt)
-        context_lines.append(f"{speaker_label}: {sentence_text}")
-
-    target_line = f"{target_label}: {target_sentence}"
-    was_truncated = False
-
-    # If no budget is provided, include all available context lines.
-    if max_tokens is None or max_tokens <= 0:
-        formatted = "\n".join(context_lines + [target_line])
-        return formatted, was_truncated
-
-    # Keep as much recent context as fits in the model's window.
-    base_tokens = estimate_tokens(target_line)
-    available_tokens = max_tokens - base_tokens - 10  # safety margin
-
-    included_context = []
-    if available_tokens > 0:
-        for line in reversed(context_lines):
-            line_tokens = estimate_tokens(line + "\n")
-            if available_tokens >= line_tokens:
-                included_context.insert(0, line)
-                available_tokens -= line_tokens
-            else:
-                was_truncated = True
-                break
-    elif len(context_lines) > 0:
-        was_truncated = True
-
-    # Exact budget check: drop whole oldest utterances until input fits.
-    # This guarantees we never keep a partially included utterance.
-    if tokenizer is not None:
-        while included_context:
-            candidate = "\n".join(included_context + [target_line])
-            try:
-                tok_len = len(tokenizer.encode(candidate, add_special_tokens=True))
-            except Exception:
-                tok_len = len(candidate) // 4
-            if tok_len <= max_tokens:
-                break
-            included_context = included_context[1:]
-            was_truncated = True
-
-    formatted = "\n".join(included_context + [target_line])
-    return formatted, was_truncated
+            f"Unsupported discourse_label_style '{discourse_label_style}'. Expected 'spoken' or 'childes'.")
+    if discourse_label_style == 'childes':
+        _resolver = lambda s: '*CHI' if str(s).lower() == 'child' else '*MOT'
+    else:
+        _resolver = lambda s: 'CHILD' if str(s).lower() == 'child' else 'MOTHER'
+    return cac.format_context_input(context_utterances, target_speaker, target_sentence, model_type,
+                                    speaker_label=_resolver, tokenizer=tokenizer, max_tokens=max_tokens)
 
 
 # =============================================================================

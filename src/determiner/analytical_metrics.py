@@ -18,7 +18,7 @@ tpr_df : DataFrame with one row per eligible cross-speaker reference pair.
 
 import numpy as np
 import pandas as pd
-from overlap_list_v2 import average_expected_overlap
+from determiner.overlap_list_v2 import average_expected_overlap
 
 
 # ---------------------------------------------------------------------------
