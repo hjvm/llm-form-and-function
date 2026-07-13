@@ -22,6 +22,7 @@ Usage:
 import json
 import os
 import re
+import shutil
 import time
 from collections import deque
 from datetime import date
@@ -153,30 +154,58 @@ def extract_and_save_det_noun_locations(corpus, output_dir):
     return locations_df
 
 
+# Committed site inventories (results/site_inventory/) that seed the output/ caches.
+# The paper's evaluation sites were extracted with en_core_web_sm 3.7.1; newer spaCy models
+# tag the same sentences differently, so a fresh extraction would NOT reproduce them
+# (regeneration requires pinning spacy>=3.7,<3.8 + en_core_web_sm==3.7.1).
+# Seeding from the committed copies guarantees any clone works on the exact published sites.
+SITE_INVENTORY_DIR = './results/site_inventory'
+SITE_INVENTORY_SEEDS = {
+    'manchester': 'manchester_det_noun_locations.csv',
+    'tpr_data':   'tpr_data_det_noun_locations.csv',
+}
+
+
 def load_or_extract_det_noun_locations(corpus, output_dir):
     """
-    Load pre-extracted det-noun locations if available, otherwise extract and save.
-    
+    Load pre-extracted det-noun locations if available, otherwise seed from the
+    committed inventory (results/site_inventory/), otherwise extract and save.
+
     This ensures we only extract pairs once per output directory, maintaining
-    consistency across all models and experiments.
-    
+    consistency across all models and experiments. Extraction from scratch is a
+    last resort: it is spaCy-model-version dependent and will not reproduce the
+    published sites on a different spaCy (those require en_core_web_sm==3.7.1).
+
     Args:
         corpus: Dict[child_name: DataFrame] from load_manchester_corpus
         output_dir: Directory where det_noun_locations.csv is stored
-        
+
     Returns:
         DataFrame with det-noun pair locations
     """
     locations_file = os.path.join(output_dir, 'det_noun_locations.csv')
-    
+
     if os.path.exists(locations_file):
         print(f"Loading pre-extracted det-noun pairs from {locations_file}")
         locations_df = pd.read_csv(locations_file)
         print(f"Loaded {len(locations_df)} determiner-noun pairs")
         return locations_df
-    else:
-        print(f"No pre-extracted pairs found. Extracting from corpus...")
-        return extract_and_save_det_noun_locations(corpus, output_dir)
+
+    dir_name = os.path.basename(os.path.normpath(output_dir)).lower()
+    for key, seed_name in SITE_INVENTORY_SEEDS.items():
+        seed_file = os.path.join(SITE_INVENTORY_DIR, seed_name)
+        if key in dir_name and os.path.exists(seed_file):
+            print(f"Seeding det-noun pairs from committed inventory {seed_file}")
+            os.makedirs(output_dir, exist_ok=True)
+            shutil.copyfile(seed_file, locations_file)
+            locations_df = pd.read_csv(locations_file)
+            print(f"Loaded {len(locations_df)} determiner-noun pairs")
+            return locations_df
+
+    print(f"No pre-extracted pairs found. Extracting from corpus...")
+    print("WARNING: fresh extraction is spaCy-version dependent; reproducing the "
+          "published evaluation sites requires en_core_web_sm==3.7.1 (spacy>=3.7,<3.8).")
+    return extract_and_save_det_noun_locations(corpus, output_dir)
 
 
 # =============================================================================
