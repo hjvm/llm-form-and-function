@@ -45,7 +45,8 @@ from determiner.analytical_metrics import (
     analytical_tpr_a,
     analytical_tpr_the,
 )
-from determiner.paths import DISCOURSE_DIR, MANCHESTER_TPR_DIR, RESULTS_DIR, chdir_to_root
+from determiner.paths import (DISCOURSE_DIR, MANCHESTER_TPR_DIR, RESULTS_DIR, SITE_INVENTORY_DIR,
+                              chdir_to_root)
 
 # ---------------------------------------------------------------------------
 # Defaults
@@ -180,9 +181,9 @@ def _compute_human_baseline(discourse_path: Path, results_overlap_dir: Path) -> 
     humans and models are scored on identical sites by identical code.
     """
     inventory_file = discourse_path / "det_noun_locations.csv"
-    if not inventory_file.exists():
-        print(f"[warn] {inventory_file} not found — skipping human overlap baseline")
-        return
+    if not inventory_file.exists():  # predictions obtained without running Step 1 here
+        inventory_file = SITE_INVENTORY_DIR / "manchester_det_noun_locations.csv"
+    print(f"Human overlap baseline from {inventory_file}")
 
     sites = pd.read_csv(inventory_file)
     sites["P_the"] = (sites["det"].str.lower() == "the").astype(float)
