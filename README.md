@@ -50,7 +50,7 @@ Each step can also be run by hand, e.g. `python pipeline/03_compute_metrics.py -
 
 **Determiner–noun sites.** The sites every benchmark is computed over were extracted with spaCy `en_core_web_sm` 3.7.1, and newer spaCy models tag the same sentences differently. The inventories used in the paper are committed in `results/site_inventory/` and copied into the pipeline caches automatically, so spaCy is not needed. To re-extract from scratch, `pip install -e ".[sites]"` installs the pinned model.
 
-**Determinism.** Steps 2–5 are deterministic. Step 1 is deterministic given the model weights on the Hugging Face Hub.
+**Determinism.** Steps 2–5 are deterministic: the paper tables come out byte-identical, and other results agree to floating-point precision across library versions. Step 1 is deterministic given the model weights on the Hugging Face Hub.
 
 See [`docs/REPLICATION.md`](docs/REPLICATION.md) for where every committed file comes from and which step reads it.
 

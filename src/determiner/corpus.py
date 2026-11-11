@@ -175,7 +175,7 @@ def load_manchester_corpus(corpus_path: str = DEFAULT_CORPUS_PATH, cache_dir: st
     
     print("Processing raw corpus files (this will be cached for future use)...")
     corpus_data = {}
-    children = [f.name for f in os.scandir(corpus_path) if f.is_dir()]
+    children = sorted(f.name for f in os.scandir(corpus_path) if f.is_dir())
     
     # Row identifiers from CHAT format
     MOTHER_ROW = '*MOT:'
@@ -186,7 +186,7 @@ def load_manchester_corpus(corpus_path: str = DEFAULT_CORPUS_PATH, cache_dir: st
         combined_rows = []
         
         # Read all transcript files for this child
-        for trans_file in os.scandir(child_path):
+        for trans_file in sorted(os.scandir(child_path), key=lambda e: e.name):
             if not trans_file.name.endswith('.cha'):
                 continue
                 

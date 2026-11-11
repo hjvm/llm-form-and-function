@@ -61,4 +61,4 @@ The CAC diagram (Figure 1) and the model information tables were made by hand. C
 
 ## Checking a re-run
 
-After `python run_pipeline.py --from 2`, `git status` should show only the executed notebooks as changed: every CSV and `.tex` file in `results/` and `figures/` should be byte-identical. PNGs can differ at the byte level across matplotlib versions, and Bayes factors can differ in the 12th significant digit across SciPy versions (numerical integration).
+After `python run_pipeline.py --from 2`, `git diff` shows what changed. The paper tables (`figures/*.tex`, `figures/*.csv`) and the human baselines come out byte-identical. Other result CSVs can differ in the last floating-point digits (relative differences around 1e-12) with other NumPy and SciPy versions, and PNGs differ at the byte level across matplotlib versions; neither changes any reported number.

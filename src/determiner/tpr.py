@@ -6,7 +6,7 @@ rate at which the speaker switches determiner relative to that antecedent
 (Gleitman & Yang 2022).
 """
 import os
-from typing import Dict
+from typing import Dict, Optional
 
 import numpy as np
 import pandas as pd
@@ -330,35 +330,32 @@ def calculate_tpr_human_baseline_unrestricted(det_noun_locations: pd.DataFrame,
 
 
 def prepare_tpr_cases(det_noun_locations: pd.DataFrame,
-                      attested_nouns: Dict[str, Dict[str, set]],
-                      output_dir: str) -> pd.DataFrame:
+                      attested_nouns: Optional[Dict[str, Dict[str, set]]] = None) -> pd.DataFrame:
     """
-    Build (or load) the TPR case metadata, cached as ``<output_dir>/tpr_cached_inputs.csv``.
+    The TPR cases: one row per site whose noun was last mentioned, earlier in the same
+    session, by the other speaker (child <- mother, mother <- child, other adult <- mother).
 
-    One row per site whose noun (in the session's attested set) was last mentioned by
-    the other speaker earlier in the same session. ``sentence_id`` is the site's row in
-    the inventory, which is how Step 3 joins model predictions to cases.
+    The paper uses every noun (``attested_nouns=None``). Passing ``attested_nouns`` restricts
+    each session to those nouns. ``sentence_id`` is the site's row in the inventory, which is
+    how Step 3 joins model predictions to cases.
     """
-    cache_file = os.path.join(output_dir, 'tpr_cached_inputs.csv')
-    if os.path.exists(cache_file):
-        print(f"  Loading cached TPR cases from {cache_file}")
-        return pd.read_csv(cache_file)
-
-    print("  Computing TPR cases for all sessions...")
-    sessions = [
-        (child_name, filename)
-        for child_name, sessions_of_child in attested_nouns.items()
-        for filename, nouns in sessions_of_child.items()
-        if len(nouns) > 0
-    ]
+    if attested_nouns is None:
+        sessions = list(det_noun_locations.groupby(['child_name', 'filename']).groups.keys())
+    else:
+        sessions = [
+            (child_name, filename)
+            for child_name, sessions_of_child in attested_nouns.items()
+            for filename, nouns in sessions_of_child.items()
+            if len(nouns) > 0
+        ]
 
     cases = []
     for child_name, filename in sessions:
-        session_locs = det_noun_locations[
-            (det_noun_locations['child_name'] == child_name)
-            & (det_noun_locations['filename'] == filename)
-            & (det_noun_locations['noun'].isin(attested_nouns[child_name][filename]))
-        ].sort_values('line_num')
+        in_session = ((det_noun_locations['child_name'] == child_name)
+                      & (det_noun_locations['filename'] == filename))
+        if attested_nouns is not None:
+            in_session &= det_noun_locations['noun'].isin(attested_nouns[child_name][filename])
+        session_locs = det_noun_locations[in_session].sort_values('line_num')
 
         last_mention = {}  # noun -> most recent mention in this session
         for idx, loc in session_locs.iterrows():
@@ -392,10 +389,7 @@ def prepare_tpr_cases(det_noun_locations: pd.DataFrame,
                 'sentence': loc['sentence'],
             }
 
-    cases_df = pd.DataFrame(cases)
-    cases_df.to_csv(cache_file, index=False)
-    print(f"  Saved {len(cases_df)} TPR cases to {cache_file}")
-    return cases_df
+    return pd.DataFrame(cases)
 
 
 def add_antecedent_distance(cases: pd.DataFrame, corpus: Dict[str, pd.DataFrame]) -> pd.DataFrame:
