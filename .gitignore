@@ -13,15 +13,18 @@ saved_models
 # Apple productivity files
 *.numbers
 
-# Generated experiment outputs (reproduced by running the pipeline)
+# Pipeline caches. Mostly regenerable, EXCEPT the det_noun_locations.csv site inventories,
+# which are spaCy-version-pinned (en_core_web_sm 3.7.1) — those are committed at
+# results/site_inventory/ and seeded back into output/ automatically by
+# load_or_extract_det_noun_locations().
 output/
 
 # Dev/test configs not needed for replication
 model_configs_test.json
 
-# Corpus data (too large / not redistributable — see README for download instructions)
+# Corpus data (not redistributable; see data/README.md)
 data/*
-!data/dn.txt
+!data/README.md
 
 
 # Byte-compiled / optimized / DLL files

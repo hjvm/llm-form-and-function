@@ -1,11 +1,18 @@
+#!/usr/bin/env python3
 """
-Compute analytical D×N overlap and TPR metrics for all models.
+Step 3 — analytical D×N overlap and TPR metrics for humans and all models.
 
-Reads probability distributions stored by run_experiments.py (discourse
-experiment) and computes all metrics analytically — no model inference needed.
+Reads the probability distributions stored by Step 1 and the TPR cases from Step 2,
+and computes every metric analytically (no model inference).
 
 Outputs
 -------
+Human overlap baseline (per dyad-speaker, from the same site inventory used to
+prompt the models — det_noun_locations.csv — with the attested determiner as a
+deterministic distribution, so humans and models go through identical code):
+    results/overlap/overlap_human_baseline.csv
+    Columns: speaker, N, S, emp_bias, r, empirical, naive_zipf_predicted
+
 Per-model overlap (one file per model):
     results/overlap/{type}/{model}/analytical_overlap_summary.csv
     Columns: model_name, model_type, child_name, speaker,
@@ -18,13 +25,11 @@ Aggregate TPR (one file):
 
 Usage
 -----
-    python compute_analytical_metrics.py
-    python compute_analytical_metrics.py --discourse-dir output/manchester_discourse_childes
-    python compute_analytical_metrics.py --force
+    python pipeline/03_compute_metrics.py
+    python pipeline/03_compute_metrics.py --force    # recompute models whose summaries exist
 """
 
 import argparse
-import os
 import sys
 from pathlib import Path
 
@@ -40,14 +45,16 @@ from determiner.analytical_metrics import (
     analytical_tpr_a,
     analytical_tpr_the,
 )
+from determiner.paths import (DISCOURSE_DIR, MANCHESTER_TPR_DIR, RESULTS_DIR, SITE_INVENTORY_DIR,
+                              chdir_to_root)
 
 # ---------------------------------------------------------------------------
 # Defaults
 # ---------------------------------------------------------------------------
 
-DEFAULT_DISCOURSE_DIR = "./output/manchester_discourse_childes"
-DEFAULT_TPR_DIR       = "./output/manchester_tpr_childes"
-DEFAULT_RESULTS_DIR   = "./results"
+DEFAULT_DISCOURSE_DIR = str(DISCOURSE_DIR)
+DEFAULT_TPR_DIR       = str(MANCHESTER_TPR_DIR)
+DEFAULT_RESULTS_DIR   = str(RESULTS_DIR)
 MODEL_TYPE_DIRS       = ["ar", "mlm", "seq2seq"]
 
 
@@ -165,6 +172,40 @@ def _compute_tpr_rows(predictions: pd.DataFrame, tpr_metadata: pd.DataFrame) -> 
     return rows
 
 
+def _compute_human_baseline(discourse_path: Path, results_overlap_dir: Path) -> None:
+    """
+    Human D×N overlap baseline from the exact site inventory the models were
+    prompted on (det_noun_locations.csv). The attested determiner becomes a
+    deterministic distribution (P_the ∈ {0, 1}), under which the analytical
+    overlap functions reduce exactly to the count-based Yang formulas — so
+    humans and models are scored on identical sites by identical code.
+    """
+    inventory_file = discourse_path / "det_noun_locations.csv"
+    if not inventory_file.exists():  # predictions obtained without running Step 1 here
+        inventory_file = SITE_INVENTORY_DIR / "manchester_det_noun_locations.csv"
+    print(f"Human overlap baseline from {inventory_file}")
+
+    sites = pd.read_csv(inventory_file)
+    sites["P_the"] = (sites["det"].str.lower() == "the").astype(float)
+    sites["P_a"] = 1.0 - sites["P_the"]
+
+    rows = []
+    for (child_name, speaker_type), group in sites.groupby(["child_name", "speaker_type"]):
+        rows.append({
+            "speaker":              child_name if speaker_type == "child" else f"{child_name}_mot",
+            "N":                    group["noun"].nunique(),
+            "S":                    len(group),
+            "emp_bias":             analytical_bias(group),
+            "r":                    len(group) / group["noun"].nunique(),
+            "empirical":            analytical_empirical_overlap(group),
+            "naive_zipf_predicted": analytical_predicted_overlap(group),
+        })
+
+    out = results_overlap_dir / "overlap_human_baseline.csv"
+    pd.DataFrame(rows).to_csv(out)
+    print(f"[done] Human overlap baseline ({len(rows)} dyad-speakers) → {out}\n")
+
+
 # ---------------------------------------------------------------------------
 # Main processing loop
 # ---------------------------------------------------------------------------
@@ -175,15 +216,18 @@ def run(discourse_dir: str, tpr_dir: str, results_dir: str = DEFAULT_RESULTS_DIR
     tpr_path            = Path(tpr_dir)
     results_overlap_dir = Path(results_dir) / "overlap"
     results_tpr_dir     = Path(results_dir) / "tpr"
+    results_overlap_dir.mkdir(parents=True, exist_ok=True)
     results_tpr_dir.mkdir(parents=True, exist_ok=True)
+
+    _compute_human_baseline(discourse_path, results_overlap_dir)
 
     tpr_metadata = pd.DataFrame()
     if not skip_tpr:
         tpr_metadata_file = tpr_path / "tpr_cached_inputs.csv"
         if not tpr_metadata_file.exists():
             print(f"ERROR: TPR metadata not found at {tpr_metadata_file}")
-            print("Run:  python run_experiments.py tpr --models model_configs.json "
-                  "--discourse-label-style childes")
+            print("Run Step 2 first: pipeline/02_human_baseline.ipynb "
+                  "(or python run_pipeline.py --only 2).")
             print("Or pass --skip-tpr to compute only overlap metrics.")
             sys.exit(1)
         print(f"Loading TPR metadata from {tpr_metadata_file} …")
@@ -256,8 +300,9 @@ def main():
     parser.add_argument("--force", action="store_true",
                         help="Recompute even if analytical_overlap_summary.csv already exists")
     parser.add_argument("--skip-tpr", action="store_true",
-                        help="Skip TPR computation (useful when tpr_cached_inputs.csv is absent, e.g. isolated experiment)")
+                        help="Compute only the overlap metrics (no TPR cases needed)")
     args = parser.parse_args()
+    chdir_to_root()
     run(args.discourse_dir, args.tpr_dir, results_dir=args.results_dir,
         force=args.force, skip_tpr=args.skip_tpr)
 

@@ -2,7 +2,7 @@
 Analytical metrics for the D×N overlap and TPR benchmarks.
 
 All functions operate on probability distributions stored in the prediction CSVs
-produced by run_experiments.py (discourse experiment). No model inference is
+produced by Step 1 (pipeline/01_run_inference.py). No model inference is
 required; these are post-hoc, deterministic computations over stored P_the / P_a
 values.
 
@@ -18,7 +18,8 @@ tpr_df : DataFrame with one row per eligible cross-speaker reference pair.
 
 import numpy as np
 import pandas as pd
-from determiner.overlap_list_v2 import average_expected_overlap
+from scipy import integrate
+from determiner.overlap import average_expected_overlap
 
 
 # ---------------------------------------------------------------------------
@@ -115,6 +116,46 @@ def analytical_accuracy(sites_df: pd.DataFrame) -> float:
     p = _p_the(sites_df)
     predicted = p.map(lambda x: "the" if (not np.isnan(x) and x >= 0.5) else "a")
     return float((predicted == sites_df["original_det"]).mean())
+
+
+# ---------------------------------------------------------------------------
+# Bayes factor (used for both the D×N and the TPR tests)
+# ---------------------------------------------------------------------------
+
+def jzs_bf01(t: float, n: int, r: float = 0.707) -> float:
+    """
+    JZS Bayes factor BF01 (evidence for the null of equal means) for a
+    paired/one-sample t statistic, following Rouder, Speckman, Sun, Morey &
+    Iverson (2009, Psychon Bull Rev 16(2), 225-237), Eq. 1, with a Cauchy
+    prior on the standardized effect size (scale r).
+
+    BF01 > 1 favors the null (no difference between empirical and predicted
+    overlap, i.e. the productive-grammar hypothesis for a passing model).
+    r = 0.707 is the JASP / R `BayesFactor` default ("medium"); r = 0.5
+    ("narrow") and r = 1.0 ("wide", the Rouder et al. original default) are
+    reported as robustness checks.
+
+    Args:
+        t: paired t statistic (df = n - 1)
+        n: number of pairs
+        r: Cauchy prior scale on effect size
+
+    Returns:
+        BF01, or NaN if t is NaN or n < 2.
+    """
+    if t is None or np.isnan(t) or n < 2:
+        return np.nan
+    v = n - 1
+
+    def _integrand(g):
+        a = 1.0 + n * g * r * r
+        return (a ** -0.5
+                * (1.0 + t * t / (a * v)) ** (-(v + 1) / 2.0)
+                * (2.0 * np.pi) ** -0.5 * g ** -1.5 * np.exp(-1.0 / (2.0 * g)))
+
+    marginal_alt, _ = integrate.quad(_integrand, 0, np.inf)
+    marginal_null = (1.0 + t * t / v) ** (-(v + 1) / 2.0)
+    return float(marginal_null / marginal_alt)
 
 
 # ---------------------------------------------------------------------------
