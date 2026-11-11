@@ -2,7 +2,7 @@
 Analytical metrics for the D×N overlap and TPR benchmarks.
 
 All functions operate on probability distributions stored in the prediction CSVs
-produced by run_experiments.py (discourse experiment). No model inference is
+produced by Step 1 (pipeline/01_run_inference.py). No model inference is
 required; these are post-hoc, deterministic computations over stored P_the / P_a
 values.
 
@@ -19,7 +19,7 @@ tpr_df : DataFrame with one row per eligible cross-speaker reference pair.
 import numpy as np
 import pandas as pd
 from scipy import integrate
-from determiner.overlap_list_v2 import average_expected_overlap
+from determiner.overlap import average_expected_overlap
 
 
 # ---------------------------------------------------------------------------
@@ -119,7 +119,7 @@ def analytical_accuracy(sites_df: pd.DataFrame) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Bayes factor for the D×N test
+# Bayes factor (used for both the D×N and the TPR tests)
 # ---------------------------------------------------------------------------
 
 def jzs_bf01(t: float, n: int, r: float = 0.707) -> float:
