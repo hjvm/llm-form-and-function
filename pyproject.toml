@@ -3,16 +3,43 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "cac"
-version = "0.1.0"
-description = "Contextual Alternative Choice (CAC): corpus/candidate/language-agnostic prompting and scoring for closed grammatical alternations in language models."
-requires-python = ">=3.9"
+name = "form-and-function"
+version = "1.0.0"
+description = "Code and results for 'Measuring Form and Function in Language Models' (BabyLM 2026): CAC prompting, the D×N overlap test and the Tolerance-of-Productivity Ratio (TPR)."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+# Enough for Steps 2-5 (human baselines, metrics, model TPR tests, paper tables and figures).
 dependencies = [
-    "numpy",
-    "scipy",
-    "torch",
-    "transformers",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "seaborn>=0.12",
+    "tqdm",
+    "jupyter",
+    "nbconvert>=7",
+    "ipykernel",
 ]
+
+[project.optional-dependencies]
+# Step 1: running the language models (CAC inference).
+inference = [
+    "torch>=2.1",
+    "transformers>=4.40",
+    "sentencepiece",
+    "protobuf",
+]
+# Only needed to re-extract the D×N site inventories from scratch instead of using the
+# committed ones in results/site_inventory/. The published sites require exactly this model.
+sites = [
+    "spacy>=3.7,<3.8",
+    "en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl",
+]
+all = ["form-and-function[inference,sites]"]
+
+[project.urls]
+Paper = "https://aclanthology.org/2026.babylm-main.35/"
 
 [tool.setuptools.packages.find]
 where = ["src"]

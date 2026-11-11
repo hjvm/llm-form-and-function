@@ -19,15 +19,12 @@ saved_models
 # load_or_extract_det_noun_locations().
 output/
 
-# Internal working notes
-docs/REPLICATION_INVENTORY.md
-
 # Dev/test configs not needed for replication
 model_configs_test.json
 
-# Corpus data (too large / not redistributable — see README for download instructions)
+# Corpus data (not redistributable; see data/README.md)
 data/*
-!data/dn.txt
+!data/README.md
 
 
 # Byte-compiled / optimized / DLL files
