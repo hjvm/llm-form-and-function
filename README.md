@@ -89,6 +89,10 @@ The overlap formula also works as a standalone tool on a list of `det noun` pair
 python -m determiner.overlap pairs.txt
 ```
 
+### Follow-up: baselines (not in the paper)
+
+`pipeline/06_baselines.py` and `src/baselines/` score coin-flip, memory-model and 5-gram baselines with the paper's tests, and audit what the D×N test measures when nouns are fixed to the transcripts. Results are in `results/baselines/` and `figures/baselines/`. See [`docs/BASELINES.md`](docs/BASELINES.md). It is not one of the numbered steps in `run_pipeline.py`.
+
 ---
 
 ## Citation

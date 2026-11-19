@@ -1,0 +1,145 @@
+child_name,speaker,emp,pred,nouns,coin
+Anne,child,0.3146608767990576,0.28751361564876726,"Zipf(1), calibrated vocabulary",fair
+Anne,mother,0.5910112281972447,0.5552648835356429,"Zipf(1), calibrated vocabulary",fair
+Aran,child,0.4108071867378353,0.37474565580366115,"Zipf(1), calibrated vocabulary",fair
+Aran,mother,0.543980848918403,0.5078879767365008,"Zipf(1), calibrated vocabulary",fair
+Becky,child,0.348348455716256,0.31629571834177295,"Zipf(1), calibrated vocabulary",fair
+Becky,mother,0.47435439811405516,0.43702349780757344,"Zipf(1), calibrated vocabulary",fair
+Carl,child,0.6559678951279052,0.6216128916946485,"Zipf(1), calibrated vocabulary",fair
+Carl,mother,0.5484112425425027,0.5108904545458067,"Zipf(1), calibrated vocabulary",fair
+Dominic,child,0.262214733995539,0.23679026645815993,"Zipf(1), calibrated vocabulary",fair
+Dominic,mother,0.562644511777726,0.5252387324125805,"Zipf(1), calibrated vocabulary",fair
+Gail,child,0.24733153266866764,0.22830258964205777,"Zipf(1), calibrated vocabulary",fair
+Gail,mother,0.34364068615284016,0.31498922878569807,"Zipf(1), calibrated vocabulary",fair
+Joel,child,0.2701703036359304,0.2486912444857577,"Zipf(1), calibrated vocabulary",fair
+Joel,mother,0.3536785108101022,0.32387968195418787,"Zipf(1), calibrated vocabulary",fair
+John,child,0.4538741240198766,0.4144635476566576,"Zipf(1), calibrated vocabulary",fair
+John,mother,0.4096303517131348,0.3753603179224229,"Zipf(1), calibrated vocabulary",fair
+Liz,child,0.3866011843897416,0.3514656139388233,"Zipf(1), calibrated vocabulary",fair
+Liz,mother,0.4133061538772566,0.3785064331845226,"Zipf(1), calibrated vocabulary",fair
+Nicole,child,0.2688688907184175,0.24573281565093477,"Zipf(1), calibrated vocabulary",fair
+Nicole,mother,0.4147684982475278,0.3808442936999772,"Zipf(1), calibrated vocabulary",fair
+Ruth,child,0.3393110474287804,0.30682715107112324,"Zipf(1), calibrated vocabulary",fair
+Ruth,mother,0.4950317427654369,0.45902240382338344,"Zipf(1), calibrated vocabulary",fair
+Warren,child,0.49143688136246333,0.451918854216998,"Zipf(1), calibrated vocabulary",fair
+Warren,mother,0.518628911194753,0.4815485957578711,"Zipf(1), calibrated vocabulary",fair
+Anne,child,0.21644929626898454,0.1950640637851638,"Zipf(1), calibrated vocabulary",0.82 toward the
+Anne,mother,0.42268785197524694,0.40004223788857274,"Zipf(1), calibrated vocabulary",0.82 toward the
+Aran,child,0.28386936950771247,0.2590980696605616,"Zipf(1), calibrated vocabulary",0.82 toward the
+Aran,mother,0.38630716783530816,0.3623537625088909,"Zipf(1), calibrated vocabulary",0.82 toward the
+Becky,child,0.23919372556977167,0.21631424720724876,"Zipf(1), calibrated vocabulary",0.82 toward the
+Becky,mother,0.3326240530000157,0.30754611840467516,"Zipf(1), calibrated vocabulary",0.82 toward the
+Carl,child,0.47556162990199913,0.456131043709121,"Zipf(1), calibrated vocabulary",0.82 toward the
+Carl,mother,0.3905211280843895,0.36562998591035756,"Zipf(1), calibrated vocabulary",0.82 toward the
+Dominic,child,0.17851146019146275,0.15911209635536008,"Zipf(1), calibrated vocabulary",0.82 toward the
+Dominic,mother,0.400986922900179,0.3768405059788267,"Zipf(1), calibrated vocabulary",0.82 toward the
+Gail,child,0.16894861899709274,0.15179372754762363,"Zipf(1), calibrated vocabulary",0.82 toward the
+Gail,mother,0.23640767061820517,0.2148231974052999,"Zipf(1), calibrated vocabulary",0.82 toward the
+Joel,child,0.18479790426522671,0.16640830188625558,"Zipf(1), calibrated vocabulary",0.82 toward the
+Joel,mother,0.2432144233441214,0.22057232745259717,"Zipf(1), calibrated vocabulary",0.82 toward the
+John,child,0.3158324141573008,0.2904989354487324,"Zipf(1), calibrated vocabulary",0.82 toward the
+John,mother,0.284306226718781,0.25997784999623136,"Zipf(1), calibrated vocabulary",0.82 toward the
+Liz,child,0.26723825131337464,0.24300076401199575,"Zipf(1), calibrated vocabulary",0.82 toward the
+Liz,mother,0.28690353428312004,0.2624949164482904,"Zipf(1), calibrated vocabulary",0.82 toward the
+Nicole,child,0.18369522244656725,0.1641309176080899,"Zipf(1), calibrated vocabulary",0.82 toward the
+Nicole,mother,0.28767193695412213,0.2640374665659099,"Zipf(1), calibrated vocabulary",0.82 toward the
+Ruth,child,0.2326235128750089,0.2093188662596879,"Zipf(1), calibrated vocabulary",0.82 toward the
+Ruth,mother,0.3482954652256516,0.32430977747223483,"Zipf(1), calibrated vocabulary",0.82 toward the
+Warren,child,0.34354871717093033,0.3186551907300939,"Zipf(1), calibrated vocabulary",0.82 toward the
+Warren,mother,0.3669933272447589,0.3417659564781534,"Zipf(1), calibrated vocabulary",0.82 toward the
+Anne,child,0.20323023592886666,0.1832073640221946,"Zipf(1), calibrated vocabulary",speaker's own bias
+Anne,mother,0.40326890649350966,0.3821817317197239,"Zipf(1), calibrated vocabulary",speaker's own bias
+Aran,child,0.30644288846332746,0.2781293707836426,"Zipf(1), calibrated vocabulary",speaker's own bias
+Aran,mother,0.402515924256734,0.37691703069355137,"Zipf(1), calibrated vocabulary",speaker's own bias
+Becky,child,0.21267080319964324,0.1932914894459718,"Zipf(1), calibrated vocabulary",speaker's own bias
+Becky,mother,0.32534412493798626,0.30102246557014595,"Zipf(1), calibrated vocabulary",speaker's own bias
+Carl,child,0.5335042937975051,0.5075543060464458,"Zipf(1), calibrated vocabulary",speaker's own bias
+Carl,mother,0.42117920195670244,0.3927075875251369,"Zipf(1), calibrated vocabulary",speaker's own bias
+Dominic,child,0.13631529996719324,0.12078979622255967,"Zipf(1), calibrated vocabulary",speaker's own bias
+Dominic,mother,0.42938884016413353,0.4024009074340421,"Zipf(1), calibrated vocabulary",speaker's own bias
+Gail,child,0.13690165671447227,0.12313301656496163,"Zipf(1), calibrated vocabulary",speaker's own bias
+Gail,mother,0.2231671685386257,0.20273626100107092,"Zipf(1), calibrated vocabulary",speaker's own bias
+Joel,child,0.13756545221814023,0.12364995678657151,"Zipf(1), calibrated vocabulary",speaker's own bias
+Joel,mother,0.2284727475624306,0.20757714052452228,"Zipf(1), calibrated vocabulary",speaker's own bias
+John,child,0.34123064564701516,0.31243715325304144,"Zipf(1), calibrated vocabulary",speaker's own bias
+John,mother,0.3083142118849999,0.28046874914631936,"Zipf(1), calibrated vocabulary",speaker's own bias
+Liz,child,0.22381278410651,0.20374464107232873,"Zipf(1), calibrated vocabulary",speaker's own bias
+Liz,mother,0.2707868498420582,0.24797270920191564,"Zipf(1), calibrated vocabulary",speaker's own bias
+Nicole,child,0.1543313740838446,0.13875467981789621,"Zipf(1), calibrated vocabulary",speaker's own bias
+Nicole,mother,0.27464228199973756,0.25162912807200866,"Zipf(1), calibrated vocabulary",speaker's own bias
+Ruth,child,0.23740713660477833,0.21469455346197713,"Zipf(1), calibrated vocabulary",speaker's own bias
+Ruth,mother,0.36658246732291705,0.3397508611344314,"Zipf(1), calibrated vocabulary",speaker's own bias
+Warren,child,0.38326810078332885,0.3530568952227477,"Zipf(1), calibrated vocabulary",speaker's own bias
+Warren,mother,0.3892374966693367,0.3625748528296177,"Zipf(1), calibrated vocabulary",speaker's own bias
+Anne,child,0.45674438202247186,0.2821670333459326,transcripts,fair
+Anne,mother,0.5839154727793697,0.5511947517609282,transcripts,fair
+Aran,child,0.4745888077858881,0.3704305409952365,transcripts,fair
+Aran,mother,0.5183718689788054,0.5053131245601228,transcripts,fair
+Becky,child,0.47415128205128204,0.3110065906439469,transcripts,fair
+Becky,mother,0.5222347107438017,0.43306700054314295,transcripts,fair
+Carl,child,0.5425849514563107,0.620419780049992,transcripts,fair
+Carl,mother,0.522134765625,0.5084957212833205,transcripts,fair
+Dominic,child,0.32520915032679737,0.23363673051281872,transcripts,fair
+Dominic,mother,0.4810759259259259,0.5243687042849232,transcripts,fair
+Gail,child,0.367725988700565,0.22471199321545207,transcripts,fair
+Gail,mother,0.44286473988439307,0.31062848408490673,transcripts,fair
+Joel,child,0.3989923076923077,0.2432785568128466,transcripts,fair
+Joel,mother,0.4173325,0.3194312584941227,transcripts,fair
+John,child,0.5244915254237288,0.41015446564799424,transcripts,fair
+John,mother,0.4795901639344262,0.37107835345094103,transcripts,fair
+Liz,child,0.5321722054380665,0.3453592603013819,transcripts,fair
+Liz,mother,0.4926759410801964,0.3742864852280572,transcripts,fair
+Nicole,child,0.3951724137931034,0.24117050172407528,transcripts,fair
+Nicole,mother,0.48739303482587065,0.3764213004827983,transcripts,fair
+Ruth,child,0.3782645739910314,0.30489512601299557,transcripts,fair
+Ruth,mother,0.5324104046242775,0.45505075868971206,transcripts,fair
+Warren,child,0.5014988452655889,0.44904096728199894,transcripts,fair
+Warren,mother,0.4892052505966587,0.4788298533406149,transcripts,fair
+Anne,child,0.32029775280898876,0.199454016831655,transcripts,0.82 toward the
+Anne,mother,0.4640687679083094,0.4003506853594704,transcripts,0.82 toward the
+Aran,child,0.34695133819951335,0.26140235854234645,transcripts,0.82 toward the
+Aran,mother,0.3971830443159923,0.3617522165302818,transcripts,0.82 toward the
+Becky,child,0.3424153846153846,0.22037940256748395,transcripts,0.82 toward the
+Becky,mother,0.3948892561983471,0.3085228303451092,transcripts,0.82 toward the
+Carl,child,0.4294029126213592,0.4537379795645001,transcripts,0.82 toward the
+Carl,mother,0.40821875,0.3653326947860234,transcripts,0.82 toward the
+Dominic,child,0.2186143790849673,0.16062057361842416,transcripts,0.82 toward the
+Dominic,mother,0.36814629629629625,0.3747754594248972,transcripts,0.82 toward the
+Gail,child,0.2523502824858757,0.15697705672648288,transcripts,0.82 toward the
+Gail,mother,0.31901965317919073,0.21735800647657835,transcripts,0.82 toward the
+Joel,child,0.2768589743589744,0.1701400597837852,transcripts,0.82 toward the
+Joel,mother,0.30620625,0.22275765201253286,transcripts,0.82 toward the
+John,child,0.385,0.2920865689922869,transcripts,0.82 toward the
+John,mother,0.3540163934426229,0.2618111255663105,transcripts,0.82 toward the
+Liz,child,0.3850151057401812,0.2470747723187903,transcripts,0.82 toward the
+Liz,mother,0.3656857610474632,0.26480832715240343,transcripts,0.82 toward the
+Nicole,child,0.26816091954022986,0.16872287004267336,transcripts,0.82 toward the
+Nicole,mother,0.36425995024875624,0.26616223332779454,transcripts,0.82 toward the
+Ruth,child,0.2649775784753363,0.21080704813188933,transcripts,0.82 toward the
+Ruth,mother,0.4096791907514451,0.32535749194745195,transcripts,0.82 toward the
+Warren,child,0.3761408775981524,0.3190452012246778,transcripts,0.82 toward the
+Warren,mother,0.37692840095465396,0.3414822185353402,transcripts,0.82 toward the
+Anne,child,0.301061797752809,0.18822086938701385,transcripts,speaker's own bias
+Anne,mother,0.4486919770773639,0.3817226841256044,transcripts,speaker's own bias
+Aran,child,0.3687347931873479,0.27969961629459006,transcripts,speaker's own bias
+Aran,mother,0.410854527938343,0.3768105484610924,transcripts,speaker's own bias
+Becky,child,0.3059461538461538,0.19720920678430512,transcripts,speaker's own bias
+Becky,mother,0.3884595041322314,0.3023168251770169,transcripts,speaker's own bias
+Carl,child,0.46642961165048547,0.5059401928588929,transcripts,speaker's own bias
+Carl,mother,0.432115234375,0.3929308794924352,transcripts,speaker's own bias
+Dominic,child,0.1637516339869281,0.12284235850418884,transcripts,speaker's own bias
+Dominic,mother,0.38870185185185185,0.4011351854586825,transcripts,speaker's own bias
+Gail,child,0.20258757062146893,0.1276316996661393,transcripts,speaker's own bias
+Gail,mother,0.3024543352601156,0.20541662415750955,transcripts,speaker's own bias
+Joel,child,0.20457435897435897,0.12858062446304297,transcripts,speaker's own bias
+Joel,mother,0.28885625,0.2087242801963516,transcripts,speaker's own bias
+John,child,0.4132570621468927,0.31441173987542703,transcripts,speaker's own bias
+John,mother,0.3786010928961749,0.28277372041556853,transcripts,speaker's own bias
+Liz,child,0.3230845921450151,0.20706865814257097,transcripts,speaker's own bias
+Liz,mother,0.347417348608838,0.25057421790468853,transcripts,speaker's own bias
+Nicole,child,0.22310344827586207,0.14276965695229538,transcripts,speaker's own bias
+Nicole,mother,0.35031467661691545,0.25393700097991223,transcripts,speaker's own bias
+Ruth,child,0.27140807174887893,0.21572194198363978,transcripts,speaker's own bias
+Ruth,mother,0.4240057803468208,0.3403706853186097,transcripts,speaker's own bias
+Warren,child,0.41072979214780597,0.3529893034168434,transcripts,speaker's own bias
+Warren,mother,0.39501789976133656,0.36221457586570843,transcripts,speaker's own bias
