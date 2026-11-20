@@ -37,6 +37,10 @@ def load_model(model_config: Dict[str, str], device: Optional[torch.device] = No
             import os
             os.environ['PYTORCH_ENABLE_MPS_FALLBACK'] = '0'
 
+    if 'ngram' in model_config:   # n-gram baselines (follow-up work): see cac/ngram.py
+        from cac.ngram import load_ngram
+        return load_ngram(model_config)
+
     model_name = model_config['name']
     model_type = model_config['type']
     if model_type not in _LOADERS:

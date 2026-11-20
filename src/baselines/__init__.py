@@ -11,7 +11,7 @@ Modules
 common       shared loading, scoring and the closed-form overlap expectations
 coins        coin-flip baselines (fair, 0.82, noun-level P(the | noun))
 memory       Yang's (2013) memory model, by simulation and in closed form
-ngram        5-gram baselines (Kneser-Ney on AO-CHILDES; Wikipedia KenLM scores)
+ngram        5-gram baselines, run through the CAC pipeline (src/cac/ngram.py)
 zipf_audit   what the D×N test measures at fixed sites (Zipf, bias estimator, decomposition)
 other_adults D×N pairs of the Manchester adults other than the mother (memory-model input)
 figures      overlap scatterplots in the paper's style

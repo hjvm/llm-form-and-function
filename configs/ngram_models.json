@@ -1,0 +1,6 @@
+[
+  {"name": "ngram/aochildes-kn5", "type": "ar",
+   "ngram": {"backend": "kn", "corpus": "data/AOCHILDES/aochildes.txt", "order": 5}},
+  {"name": "ngram/wikipedia-kenlm5", "type": "ar",
+   "ngram": {"backend": "kenlm", "path": "data/ngram/wiki_en_token.arpa.bin"}}
+]

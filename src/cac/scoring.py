@@ -218,4 +218,7 @@ def score_candidates(model, tokenizer, model_type: str, prompt: str,
     """
     if model_type not in _DISPATCH:
         raise ValueError(f"Unsupported model_type '{model_type}'. Expected one of: mlm, ar, seq2seq")
+    if getattr(model, 'is_ngram', False):   # n-gram baselines scored as 'ar' (cac/ngram.py)
+        from cac.ngram import score_ngram
+        return score_ngram(model, prompt, candidates, AR_BLANK_TOKEN)
     return _DISPATCH[model_type](model, tokenizer, prompt, candidates, device or _DEFAULT_DEVICE)

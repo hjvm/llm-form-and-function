@@ -15,9 +15,28 @@ Inputs:
 - the committed human references in `results/tpr/`;
 - `results/baselines/inputs/manchester_other_adult_det_noun.csv`, the non-mother adults' D×N pairs, extracted by `baselines.other_adults`.
 
-The n-gram site scores are committed in `results/baselines/ngram/`. Re-scoring them (`--rescore-ngrams`) needs `data/AOCHILDES/aochildes.txt`. AO-CHILDES is from Huebner & Willits (2021), <https://github.com/UIUCLearningLanguageLab/AOCHILDES>. Re-scoring the Wikipedia model also needs `kenlm` and `wiki_en_token.arpa.bin` from `BramVanroy/kenlm_wikipedia_en`.
+The 5-grams are run through the paper's own CAC pipeline as autoregressive models (next section). Their Step 1 predictions are committed in `results/baselines/ngram/<model>_cac_predictions.csv.gz`.
 
 Outputs go to `results/baselines/` and `figures/baselines/`.
+
+## The 5-grams go through the paper's pipeline
+
+`src/cac/ngram.py` wraps each 5-gram as an `ar` model, and the unchanged Step 1 runs it:
+
+```
+python pipeline/01_run_inference.py --models configs/ngram_models.json
+python pipeline/06_baselines.py --collect-ngrams --only ngram zipf figures
+```
+
+- **Prompts.** Step 1 builds the same discourse prompt as for GPT-2: the preceding session lines labelled `*CHI:`/`*MOT:`, then the target line with `___`, trimmed to the same 1,024-token budget. The target lines are identical to GPT-2's.
+- **Scoring.** Each form (*a*, *an*, *the*) is put in the blank and the whole prompt is scored. A line break is an utterance boundary, since both models were trained one utterance per line, so the prompt's log-probability is the sum of its lines' sentence log-probabilities. The context lines are the same for every form and cancel in the normalisation.
+- **Normalisation.** `merge_and_normalize`, as for every model: P(a) = logaddexp(a, an), then a softmax.
+- **Metrics.** Step 3 unchanged (analytical overlap, bias, predicted overlap, TPR), then the D×N and TPR tests of notebooks 04 and 05.
+- **Validation.** On GPT-2's paper predictions, the same Step 3 and tests give the committed values exactly: D×N t = 2.476, BF₀₁ = 0.414; TPR 0.252, t = 2.981, p = 0.012.
+
+Models: `aochildes-kn5`, an interpolated Kneser-Ney 5-gram trained on AO-CHILDES (Huebner & Willits 2021, <https://github.com/UIUCLearningLanguageLab/AOCHILDES>; needs `data/AOCHILDES/aochildes.txt`); `wikipedia-kenlm5`, the public KenLM model `BramVanroy/kenlm_wikipedia_en` (needs `kenlm`, spaCy `en_core_web_sm` and `wiki_en_token.arpa.bin`).
+
+An earlier version scored each target utterance on its own, outside the pipeline. Its results are withdrawn. Re-scoring the target line without its speaker label reproduces those old probabilities exactly, so the only difference is the `*CHI:`/`*MOT:` label, which a 5-gram can see when the determiner is near the start of the line.
 
 ## Scoring
 
@@ -52,7 +71,7 @@ The memory model's closed form agrees with the mean of its 1,000 simulated draws
 
 ## Results
 
-Numbers are from `results/baselines/`. Accuracy is at child / caretaker sites. D×N and TPR are at child sites, scored analytically; "draws" means the share of 1,000 realised transcripts that pass.
+Numbers are from `results/baselines/`. Accuracy is at child / caretaker sites, pooled over sites. D×N and TPR are at child sites, scored analytically; "draws" means the share of 1,000 realised transcripts that pass.
 
 | Baseline | Accuracy | D×N: emp vs pred | D×N p (BF₀₁) | Draws passing D×N | TPR (vs 0.215) |
 |---|---|---|---|---|---|
@@ -61,8 +80,8 @@ Numbers are from `results/baselines/`. Accuracy is at child / caretaker sites. D
 | 0.82 coin | | 0.322 vs 0.259 | < 0.001 | 0% | 0.502, fails |
 | Noun-level coin, P(the given noun) | | 0.321 vs 0.312 | 0.592 (3.05) | 46% | 0.346, fails |
 | Memory model, all adults | | 0.218 vs 0.155 | < 0.001 | 0% | n/a |
-| 5-gram, child-directed (AO-CHILDES) | 0.77 / 0.83 | 0.348 vs 0.311 | 0.054 (0.64) | 0% | 0.341, fails |
-| 5-gram, Wikipedia | 0.68 / 0.75 | 0.388 vs 0.333 | 0.008 | 0% | 0.399, fails |
+| 5-gram, child-directed (AO-CHILDES), through CAC | 0.75 / 0.82 | 0.358 vs 0.320 | 0.049 (0.59) | 0% | 0.357, fails |
+| 5-gram, Wikipedia, through CAC | to be run | | | | |
 
 The memory model is scored on its own sampled pairs. Yang's comparison of it with the children's empirical overlap gives 0.218 against 0.259 (Wilcoxon p = 0.001).
 
@@ -94,7 +113,7 @@ Every model in the paper, and every baseline here except the memory model, is sc
 
 The memory model draws its own nouns. With the child's S, a sample from the input contains about 530 noun types against the child's 339, so each noun is used fewer times. Keep the child's nouns and counts and use the input's P(the given noun) instead (C with t = input statistics). The memory model then gives 0.313, *above* the children's 0.259 (p = 0.0001).
 
-The n-grams are scored on the child's nouns, so they cannot undershoot that way. At every noun frequency, they put both determiners on a noun more often than the children do: see `overlap_by_noun_frequency.csv`. Their per-site probabilities hedge, and a 5-gram cannot see that a referent was introduced earlier in the session.
+The 5-grams are scored on the child's nouns, so they cannot undershoot that way. At every noun frequency, the child-directed 5-gram puts both determiners on a noun more often than the children do (nouns used 3–4 times: 0.58 against 0.39; 5–9 times: 0.80 against 0.59; `overlap_by_noun_frequency.csv`). Its per-site probabilities hedge, and with four words of context it cannot see that a referent was introduced earlier in the session.
 
 ## Files
 
@@ -103,8 +122,8 @@ The n-grams are scored on the child's nouns, so they cannot undershoot that way.
 | `coin_results.csv` | Coins: analytical and sampled. |
 | `memory_results.csv` | Memory model: closed form, draws, Yang's comparison, D×N. |
 | `memory_per_dyad.csv` | Memory model, per dyad. |
-| `ngram_results.csv` | Both 5-grams, with accuracy. |
-| `ngram/*_site_scores.csv.gz` | log10 P of each site's utterance with *a* / *the* / *an*. `row` is `sentence_id`. |
+| `ngram_results.csv` | The 5-grams, with accuracy. |
+| `ngram/<model>_cac_predictions.csv.gz` | Step 1 predictions of each 5-gram: `sentence_id`, `speaker`, `P_a`, `P_the`, `truncated`. |
 | `zipf_decomposition.csv` | emp, Y, C, `zipfian_fit` slope and frequency spectrum per speaker sample. |
 | `zipf_noun_coins.csv` | Coins on Zipf-drawn nouns vs on transcript nouns. |
 | `formula_self_check.csv` | Data from the formula's own assumptions, scored with b̂ and with the true b. |

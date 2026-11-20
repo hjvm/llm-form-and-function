@@ -5,9 +5,10 @@
     python pipeline/06_baselines.py --only coins memory   # some parts
     python pipeline/06_baselines.py --draws 100           # fewer simulated transcripts (quick check)
 
-Needs: Step 2's TPR cases (output/manchester_tpr_childes/tpr_cached_inputs.csv); for the
-child-directed 5-gram, data/AOCHILDES/aochildes.txt. The Wikipedia 5-gram scores are committed;
-re-scoring them needs kenlm and the model file (--kenlm-model).
+Needs: Step 2's TPR cases (output/manchester_tpr_childes/tpr_cached_inputs.csv). The 5-grams'
+predictions come from the paper's own Step 1 (see src/baselines/ngram.py):
+    python pipeline/01_run_inference.py --models configs/ngram_models.json
+    python pipeline/06_baselines.py --collect-ngrams      # copy them into results/baselines/ngram/
 
 Writes results/baselines/*.csv and figures/baselines/*.png.
 """
@@ -20,22 +21,32 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from baselines import coins, memory, ngram, zipf_audit                     # noqa: E402
-from baselines.common import BASELINE_RESULTS, Scorer, load_inventory      # noqa: E402
+from baselines.common import BASELINE_RESULTS, Scorer                    # noqa: E402
 from baselines.figures import overlap_figure, zipf_audit_figure            # noqa: E402
 from determiner.paths import FIGURES_DIR                                   # noqa: E402
 
 PARTS = ["coins", "memory", "ngram", "zipf", "figures"]
 OUT, FIG = BASELINE_RESULTS, FIGURES_DIR / "baselines"
-NGRAM_SCORES = {"5-gram, child-directed speech (AO-CHILDES)": OUT / "ngram" / "aochildes5_site_scores.csv.gz",
-                "5-gram, Wikipedia (KenLM)": OUT / "ngram" / "wikipedia5_site_scores.csv.gz"}
+
+
+def ngram_p_the(sentence_ids):
+    """{label: P(the) per site} for every 5-gram whose CAC predictions are committed."""
+    out = {}
+    for model, label in ngram.NGRAM_MODELS.items():
+        path = OUT / "ngram" / f"{model}_cac_predictions.csv.gz"
+        if path.exists():
+            out[label] = ngram.p_the(pd.read_csv(path), sentence_ids)
+        else:
+            print(f"  {model}: no CAC predictions yet ({path.name}); skipped", flush=True)
+    return out
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--only", nargs="+", choices=PARTS, default=PARTS)
     ap.add_argument("--draws", type=int, default=1000, help="simulated transcripts per baseline")
-    ap.add_argument("--rescore-ngrams", action="store_true", help="retrain/re-score the n-grams instead of reading committed scores")
-    ap.add_argument("--kenlm-model", help="path to wiki_en_token.arpa.bin, for re-scoring the Wikipedia 5-gram")
+    ap.add_argument("--collect-ngrams", action="store_true",
+                    help="copy the 5-grams' Step 1 predictions from output/ into results/baselines/ngram/")
     a = ap.parse_args()
     for d in (OUT, OUT / "ngram", FIG):
         d.mkdir(parents=True, exist_ok=True)
@@ -53,14 +64,15 @@ def main():
         print("memory done", flush=True)
 
     if "ngram" in a.only:
-        inv = load_inventory()
-        if a.rescore_ngrams:
-            ngram.score_sites_aochildes(inv).to_csv(NGRAM_SCORES["5-gram, child-directed speech (AO-CHILDES)"], index=False)
-            if a.kenlm_model:
-                ngram.score_sites_kenlm(inv, a.kenlm_model).to_csv(NGRAM_SCORES["5-gram, Wikipedia (KenLM)"], index=False)
+        if a.collect_ngrams:
+            for model in ngram.NGRAM_MODELS:
+                try:
+                    ngram.collect_predictions(model).drop(columns="child_name").to_csv(
+                        OUT / "ngram" / f"{model}_cac_predictions.csv.gz", index=False, float_format="%.6g")
+                except FileNotFoundError as e:
+                    print(f"  {e}", flush=True)
         out = []
-        for name, path in NGRAM_SCORES.items():
-            p = ngram.p_the_from_scores(pd.read_csv(path), scorer.sites.sentence_id)
+        for name, p in ngram_p_the(scorer.sites.sentence_id).items():
             acc = (p > 0.5) == scorer.sites.orig_the.values
             extra = {lab: dict(accuracy=acc[(scorer.sites.speaker == lab.split()[0]).values].mean())
                      for lab in ("child sites", "mother sites")}
@@ -81,8 +93,7 @@ def main():
         models = {"children (realised)": scorer.sites.orig_the.values.astype(float),
                   "0.82 coin": np.full(len(scorer.sites), 0.82),
                   "noun-level coin": scorer.sites.noun_pthe.values}
-        for name, path in NGRAM_SCORES.items():
-            models[name] = ngram.p_the_from_scores(pd.read_csv(path), scorer.sites.sentence_id)
+        models.update(ngram_p_the(scorer.sites.sentence_id))
         zipf_audit.overlap_by_frequency(scorer.sites, models).to_csv(OUT / "overlap_by_noun_frequency.csv")
         print("zipf audit done", flush=True)
 
@@ -98,8 +109,8 @@ def main():
             ov = ov[ov.speaker == "child"]
             points.append(pd.DataFrame(dict(panel="Coin-toss model", label=lab, predicted=ov.predicted, empirical=ov.empirical)))
             results.append(dict(label=lab, dxn_p=res["child sites"]["dxn_p"]))
-        for name in NGRAM_SCORES:
-            res, ov, _ = scorer.evaluate(ngram.p_the_from_scores(pd.read_csv(NGRAM_SCORES[name]), scorer.sites.sentence_id))
+        for name, p in ngram_p_the(scorer.sites.sentence_id).items():
+            res, ov, _ = scorer.evaluate(p)
             ov = ov[ov.speaker == "child"]
             lab = name.split(" (")[0]
             points.append(pd.DataFrame(dict(panel="N-gram model", label=lab, predicted=ov.predicted, empirical=ov.empirical)))
