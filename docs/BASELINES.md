@@ -81,7 +81,7 @@ Numbers are from `results/baselines/`. Accuracy is at child / caretaker sites, p
 | Noun-level coin, P(the given noun) | | 0.321 vs 0.312 | 0.592 (3.05) | 46% | 0.346, fails |
 | Memory model, all adults | | 0.218 vs 0.155 | < 0.001 | 0% | n/a |
 | 5-gram, child-directed (AO-CHILDES), through CAC | 0.75 / 0.82 | 0.358 vs 0.320 | 0.049 (0.59) | 0% | 0.357, fails |
-| 5-gram, Wikipedia, through CAC | to be run | | | | |
+| 5-gram, Wikipedia, through CAC | 0.70 / 0.74 | 0.387 vs 0.332 | 0.008 (0.15) | 0% | 0.395, fails |
 
 The memory model is scored on its own sampled pairs. Yang's comparison of it with the children's empirical overlap gives 0.218 against 0.259 (Wilcoxon p = 0.001).
 
@@ -113,7 +113,7 @@ Every model in the paper, and every baseline here except the memory model, is sc
 
 The memory model draws its own nouns. With the child's S, a sample from the input contains about 530 noun types against the child's 339, so each noun is used fewer times. Keep the child's nouns and counts and use the input's P(the given noun) instead (C with t = input statistics). The memory model then gives 0.313, *above* the children's 0.259 (p = 0.0001).
 
-The 5-grams are scored on the child's nouns, so they cannot undershoot that way. At every noun frequency, the child-directed 5-gram puts both determiners on a noun more often than the children do (nouns used 3–4 times: 0.58 against 0.39; 5–9 times: 0.80 against 0.59; `overlap_by_noun_frequency.csv`). Its per-site probabilities hedge, and with four words of context it cannot see that a referent was introduced earlier in the session.
+The 5-grams are scored on the child's nouns, so they cannot undershoot that way. At every noun frequency, both 5-grams put both determiners on a noun more often than the children do (nouns used 3–4 times: 0.58 child-directed and 0.65 Wikipedia, against 0.39; 5–9 times: 0.80 and 0.86, against 0.59; `overlap_by_noun_frequency.csv`). Their per-site probabilities hedge, and with four words of context they cannot see that a referent was introduced earlier in the session.
 
 ## Files
 
