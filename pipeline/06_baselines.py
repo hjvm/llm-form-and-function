@@ -22,7 +22,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from baselines import coins, memory, ngram, zipf_audit                     # noqa: E402
 from baselines.common import BASELINE_RESULTS, Scorer                    # noqa: E402
-from baselines.figures import overlap_figure, zipf_audit_figure            # noqa: E402
+from baselines.figures import overlap_figure, tpr_figure, zipf_audit_figure            # noqa: E402
 from determiner.paths import FIGURES_DIR                                   # noqa: E402
 
 PARTS = ["coins", "memory", "ngram", "zipf", "figures"]
@@ -103,6 +103,9 @@ def main():
         m = mem[mem.speaker == "child"]
         points.append(pd.DataFrame(dict(panel="Memory model", label="D×N sampling from caretaker input",
                                         predicted=m.draws_predicted, empirical=m.draws_empirical)))
+        mres = pd.read_csv(OUT / "memory_results.csv")
+        results.append(dict(label="D×N sampling from caretaker input",
+                            dxn_p=float(mres[mres.sites == "child sites"].dxn_p_median.iloc[0])))
         for key, lab in [("fair (P(the)=0.5)", "Fair coin"), ("0.82 toward 'the'", "0.82 coin"),
                          ("noun-level bias (corpus P(the|noun))", "Noun-level-bias coin")]:
             res, ov, _ = scorer.evaluate(coins.COINS[key](scorer.sites))
@@ -118,6 +121,21 @@ def main():
         points, results = pd.concat(points), pd.DataFrame(results)
         overlap_figure(points, results, FIG / "overlap_baselines.png", ngram=False)
         overlap_figure(points, results, FIG / "overlap_baselines_with_ngram.png", ngram=True)
+        tpr_pts = [pd.DataFrame(dict(label="Children\n& caretakers", speaker=spk, child_name=ref.index, tpr=ref.values))
+                   for spk, ref in [("child", scorer.child_ref), ("mother", scorer.mother_ref)]]
+        tpr_models = {"Fair coin": coins.COINS["fair (P(the)=0.5)"](scorer.sites),
+                      "0.82 coin": coins.COINS["0.82 toward 'the'"](scorer.sites),
+                      "Noun-level\ncoin": coins.COINS["noun-level bias (corpus P(the|noun))"](scorer.sites)}
+        tpr_models.update({k.replace("5-gram, child-directed speech (AO-CHILDES)", "5-gram,\nchild-directed")
+                             .replace("5-gram, Wikipedia (KenLM)", "5-gram,\nWikipedia"): v
+                           for k, v in ngram_p_the(scorer.sites.sentence_id).items()})
+        for lab, p in tpr_models.items():
+            _, _, tp = scorer.evaluate(p)
+            per = tp.groupby(["speaker", "child_name"]).contrib.mean().reset_index(name="tpr")
+            tpr_pts.append(per.assign(label=lab))
+        tpr_pts = pd.concat(tpr_pts, ignore_index=True)
+        tpr_pts.to_csv(OUT / "tpr_per_dyad.csv", index=False)
+        tpr_figure(tpr_pts, scorer.adult_pop, FIG / "tpr_baselines.png")
         cp = pd.read_csv(OUT / "zipf_noun_coins_points.csv")
         cp = cp[(cp.coin == "0.82 toward the") & (cp.speaker == "child")]
         zipf_audit_figure(cp, pd.read_csv(OUT / "formula_self_check_points.csv"), FIG / "zipf_audit.png")

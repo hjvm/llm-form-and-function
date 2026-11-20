@@ -1,0 +1,241 @@
+label,speaker,child_name,tpr
+"Children
+& caretakers",child,anne,0.168
+"Children
+& caretakers",child,aran,0.2605985037406483
+"Children
+& caretakers",child,becky,0.1940639269406392
+"Children
+& caretakers",child,carl,0.2604395604395604
+"Children
+& caretakers",child,dominic,0.2209302325581395
+"Children
+& caretakers",child,gail,0.2410714285714285
+"Children
+& caretakers",child,joel,0.1450151057401812
+"Children
+& caretakers",child,john,0.3065539112050739
+"Children
+& caretakers",child,liz,0.1662198391420911
+"Children
+& caretakers",child,nicole,0.2136752136752136
+"Children
+& caretakers",child,ruth,0.2724014336917563
+"Children
+& caretakers",child,warrenen,0.261501210653753
+"Children
+& caretakers",mother,anne,0.1582952815829528
+"Children
+& caretakers",mother,aran,0.1519925857275255
+"Children
+& caretakers",mother,becky,0.1970802919708029
+"Children
+& caretakers",mother,carl,0.2079851439182915
+"Children
+& caretakers",mother,dominic,0.2606382978723404
+"Children
+& caretakers",mother,gail,0.1923076923076923
+"Children
+& caretakers",mother,joel,0.1325842696629213
+"Children
+& caretakers",mother,john,0.2756653992395437
+"Children
+& caretakers",mother,liz,0.1926829268292683
+"Children
+& caretakers",mother,nicole,0.1785714285714285
+"Children
+& caretakers",mother,ruth,0.1827956989247312
+"Children
+& caretakers",mother,warrenen,0.2648305084745763
+Fair coin,child,Anne,0.5
+Fair coin,child,Aran,0.5
+Fair coin,child,Becky,0.5
+Fair coin,child,Carl,0.5
+Fair coin,child,Dominic,0.5
+Fair coin,child,Gail,0.5
+Fair coin,child,Joel,0.5
+Fair coin,child,John,0.5
+Fair coin,child,Liz,0.5
+Fair coin,child,Nicole,0.5
+Fair coin,child,Ruth,0.5
+Fair coin,child,Warren,0.5
+Fair coin,mother,Anne,0.5
+Fair coin,mother,Aran,0.5
+Fair coin,mother,Becky,0.5
+Fair coin,mother,Carl,0.5
+Fair coin,mother,Dominic,0.5
+Fair coin,mother,Gail,0.5
+Fair coin,mother,Joel,0.5
+Fair coin,mother,John,0.5
+Fair coin,mother,Liz,0.5
+Fair coin,mother,Nicole,0.5
+Fair coin,mother,Ruth,0.5
+Fair coin,mother,Warren,0.5
+0.82 coin,child,Anne,0.46288
+0.82 coin,child,Aran,0.41301745635910225
+0.82 coin,child,Becky,0.5482191780821918
+0.82 coin,child,Carl,0.46975824175824177
+0.82 coin,child,Dominic,0.6116279069767442
+0.82 coin,child,Gail,0.5542857142857143
+0.82 coin,child,Joel,0.518368580060423
+0.82 coin,child,John,0.42490486257928123
+0.82 coin,child,Liz,0.5523324396782842
+0.82 coin,child,Nicole,0.5574358974358974
+0.82 coin,child,Ruth,0.48508960573476706
+0.82 coin,child,Warren,0.4232929782082324
+0.82 coin,mother,Anne,0.4917199391171994
+0.82 coin,mother,Aran,0.47835032437442077
+0.82 coin,mother,Becky,0.6016058394160584
+0.82 coin,mother,Carl,0.4634540389972145
+0.82 coin,mother,Dominic,0.6804255319148936
+0.82 coin,mother,Gail,0.6006993006993007
+0.82 coin,mother,Joel,0.5755056179775282
+0.82 coin,mother,John,0.480532319391635
+0.82 coin,mother,Liz,0.6061463414634146
+0.82 coin,mother,Nicole,0.6714285714285714
+0.82 coin,mother,Ruth,0.5378494623655914
+0.82 coin,mother,Warren,0.5033898305084745
+"Noun-level
+coin",child,Anne,0.3081018736530827
+"Noun-level
+coin",child,Aran,0.35436844753906843
+"Noun-level
+coin",child,Becky,0.3350045394199402
+"Noun-level
+coin",child,Carl,0.365956561940697
+"Noun-level
+coin",child,Dominic,0.40132172375034003
+"Noun-level
+coin",child,Gail,0.3173623960622793
+"Noun-level
+coin",child,Joel,0.2953913191729263
+"Noun-level
+coin",child,John,0.38881628500952603
+"Noun-level
+coin",child,Liz,0.3077197100436267
+"Noun-level
+coin",child,Nicole,0.32364133797196026
+"Noun-level
+coin",child,Ruth,0.38474467081756464
+"Noun-level
+coin",child,Warren,0.36876816818201
+"Noun-level
+coin",mother,Anne,0.31963019003440674
+"Noun-level
+coin",mother,Aran,0.3574796473741086
+"Noun-level
+coin",mother,Becky,0.34593328423624414
+"Noun-level
+coin",mother,Carl,0.3590057456457155
+"Noun-level
+coin",mother,Dominic,0.40318670010105606
+"Noun-level
+coin",mother,Gail,0.33683686666288004
+"Noun-level
+coin",mother,Joel,0.3016326804400278
+"Noun-level
+coin",mother,John,0.3766946345768864
+"Noun-level
+coin",mother,Liz,0.3205209861668411
+"Noun-level
+coin",mother,Nicole,0.36027004879368285
+"Noun-level
+coin",mother,Ruth,0.37632040479874984
+"Noun-level
+coin",mother,Warren,0.37307368938684304
+"5-gram,
+child-directed",child,Anne,0.30741812011768
+"5-gram,
+child-directed",child,Aran,0.38294414171564073
+"5-gram,
+child-directed",child,Becky,0.3467375830522831
+"5-gram,
+child-directed",child,Carl,0.36857336879857144
+"5-gram,
+child-directed",child,Dominic,0.3752218351040698
+"5-gram,
+child-directed",child,Gail,0.33452786483214286
+"5-gram,
+child-directed",child,Joel,0.29821301698871905
+"5-gram,
+child-directed",child,John,0.41392687517313953
+"5-gram,
+child-directed",child,Liz,0.3384749688318686
+"5-gram,
+child-directed",child,Nicole,0.37499391536324783
+"5-gram,
+child-directed",child,Ruth,0.39828811171684586
+"5-gram,
+child-directed",child,Warren,0.340324548392494
+"5-gram,
+child-directed",mother,Anne,0.30466987494075054
+"5-gram,
+child-directed",mother,Aran,0.3500117207694069
+"5-gram,
+child-directed",mother,Becky,0.3597018706987682
+"5-gram,
+child-directed",mother,Carl,0.3332925386398329
+"5-gram,
+child-directed",mother,Dominic,0.3532200150929255
+"5-gram,
+child-directed",mother,Gail,0.36391077773951047
+"5-gram,
+child-directed",mother,Joel,0.2870386995815281
+"5-gram,
+child-directed",mother,John,0.35300853784420344
+"5-gram,
+child-directed",mother,Liz,0.35769065619837803
+"5-gram,
+child-directed",mother,Nicole,0.3584773511446075
+"5-gram,
+child-directed",mother,Ruth,0.31685629105072577
+"5-gram,
+child-directed",mother,Warren,0.3554564818817733
+"5-gram,
+Wikipedia",child,Anne,0.3811270762712
+"5-gram,
+Wikipedia",child,Aran,0.42288319703491273
+"5-gram,
+Wikipedia",child,Becky,0.3660138626754795
+"5-gram,
+Wikipedia",child,Carl,0.41069512140846154
+"5-gram,
+Wikipedia",child,Dominic,0.40642488407558136
+"5-gram,
+Wikipedia",child,Gail,0.37651230824598214
+"5-gram,
+Wikipedia",child,Joel,0.3530881482258006
+"5-gram,
+Wikipedia",child,John,0.45159859504460886
+"5-gram,
+Wikipedia",child,Liz,0.3658569224887399
+"5-gram,
+Wikipedia",child,Nicole,0.38357091217478634
+"5-gram,
+Wikipedia",child,Ruth,0.4018831422978495
+"5-gram,
+Wikipedia",child,Warren,0.4223914483970944
+"5-gram,
+Wikipedia",mother,Anne,0.3545998011738204
+"5-gram,
+Wikipedia",mother,Aran,0.3809869354649676
+"5-gram,
+Wikipedia",mother,Becky,0.3523587357271168
+"5-gram,
+Wikipedia",mother,Carl,0.36794041307632314
+"5-gram,
+Wikipedia",mother,Dominic,0.39602592650585106
+"5-gram,
+Wikipedia",mother,Gail,0.3634658769222028
+"5-gram,
+Wikipedia",mother,Joel,0.3186205835146517
+"5-gram,
+Wikipedia",mother,John,0.42002971026977187
+"5-gram,
+Wikipedia",mother,Liz,0.3664292106735732
+"5-gram,
+Wikipedia",mother,Nicole,0.35276436038482145
+"5-gram,
+Wikipedia",mother,Ruth,0.31061163086854837
+"5-gram,
+Wikipedia",mother,Warren,0.406994431203876

@@ -80,3 +80,31 @@ def zipf_audit_figure(coin_points: pd.DataFrame, self_check_points: pd.DataFrame
     fig.tight_layout()
     fig.savefig(out_path, dpi=200, bbox_inches="tight")
     plt.close(fig)
+
+
+def tpr_figure(points: pd.DataFrame, adult_mean: float, out_path):
+    """points: rows (label, speaker, child_name, tpr), per-dyad TPR; one column per label,
+    child sites (blue) and caretaker sites (pink), dashed line at the pooled adult mean."""
+    sns.set_style("whitegrid")
+    labels = list(dict.fromkeys(points.label))
+    fig, ax = plt.subplots(figsize=(1.45 * len(labels) + 2, 5.4))
+    rng = np.random.default_rng(0)
+    for i, lab in enumerate(labels):
+        for spk, col, dx in [("child", "skyblue", -0.17), ("mother", "pink", 0.17)]:
+            g = points[(points.label == lab) & (points.speaker == spk)]
+            ax.scatter(i + dx + rng.uniform(-0.06, 0.06, len(g)), g.tpr, color=col, **KW)
+            ax.plot([i + dx - 0.13, i + dx + 0.13], [g.tpr.mean()] * 2, color="black", lw=2, zorder=4)
+    ax.axhline(adult_mean, color="red", ls="--", lw=1.2, zorder=1)
+    ax.text(len(labels) - 0.5, adult_mean + 0.008, f"adult mean {adult_mean:.3f}", color="red", ha="right", fontsize=9)
+    ax.set_xticks(range(len(labels)))
+    ax.set_xticklabels(labels, fontsize=10)
+    ax.set_xlim(-0.6, len(labels) - 0.4)
+    ax.set_ylim(0, 0.65)
+    ax.set_ylabel("TPR per dyad")
+    ax.set_title("Transition probability ratio (TPR)", fontsize=13)
+    ax.scatter([], [], color="skyblue", label="child sites", **KW)
+    ax.scatter([], [], color="pink", label="caretaker sites", **KW)
+    ax.legend(loc="upper left", fontsize=9)
+    fig.tight_layout()
+    fig.savefig(out_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
