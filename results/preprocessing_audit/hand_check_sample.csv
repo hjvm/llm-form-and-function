@@ -1,0 +1,281 @@
+corpus,child,speaker,raw,clean,det,noun,in_mor,kind
+Bloom,Peter,child,this is a horsie [!!] .,this is a horsie.,a,horse,True,mor_only
+Bloom,Peter,child,I gon(na) be the farmer eating milk . 3783424_3786415,I gonna be the farmer eating milk.,the,farm,True,mor_only
+Bloom,Peter,child,Lois have a scissors ? 354377_358473,Lois have a scissors?,a,scissors,True,mor_only
+Bloom,Peter,mother,Peter should I make you a chicken sandwich to eat ? 13840572_13843606,Peter should I make you a chicken sandwich to eat?,a,sandwich,True,mor_only
+Bloom,Peter,mother,then you could take the bus home with daddy . 7231596_7234555,then you could take the bus home with daddy.,the,bus,True,mor_only
+Bloom,Peter,child,right (.) a steering [!!] wheel ! 4790186_4792858,right a steering wheel!,a,wheel,True,mor_only
+Bloom,Peter,child,xxx (.) an there (.) an there . 12413527_12435818,an there an there.,a,there,True,mor_only
+Bloom,Peter,child,where the stove ? 10137546_10139459,where the stove?,the,stove,True,mor_only
+Bloom,Peter,child,all the (.) thing . 6947897_6950514,all the thing.,the,thing,True,mor_only
+Bloom,Peter,child,just a stick . 3620803_3624184,just a stick.,a,stick,True,mor_only
+Bloom,Peter,child,<that's a re(corder)> [/] that's a tape recorder . 494518_497758,that's a tape recorder.,a,record,True,mor_only
+Bloom,Peter,child,working on the railroad (.) sing . 14332582_14339676,working on the railroad sing.,the,railroad,True,mor_only
+Bloom,Peter,child,oh (.) a big thing . 1980045_1986264,oh a big thing.,a,thing,True,mor_only
+Bloom,Peter,child,it's a ring (.) a (.) ring (.) a . 4984295_4986247,it's a ring a ring a.,a,ring,True,mor_only
+Bloom,Peter,child,the scissor(s) [*] . 13630623_13632329,the scissors.,the,scissors,True,mor_only
+Bloom,Peter,child,the cow's gonna go .,the cow's gonna go.,the,cow,True,mor_only
+Bloom,Peter,child,screws and a tire (.) screws . 12670776_12675697,screws and a tire screws.,a,tire,True,mor_only
+Bloom,Peter,child,xxx water (.) this the chair (.) chair (.) and the pottie . 2392860_2403111,water this the chair chair and the pottie.,the,pot,True,mor_only
+Bloom,Peter,child,the mommy going <in it> [//] in the pottie right (.) here . 3094455_3108912,the mommy going in the pottie right here.,the,pot,True,mor_only
+Bloom,Peter,child,spare tire (.) right there (.) no (.) <spare tire (.) a there (.) huh> [>] . 9190362_9194820,spare tire right there no spare tire a there huh.,a,there,True,mor_only
+Bloom,Peter,child,where's the tunnel . 4872033_4874471,where's the tunnel.,the,tunnel,True,site
+Bloom,Peter,child,I roll it up and put the band [!!] an and put it inside (.) in the house . 13202110_13211467,I roll it up and put the band an and put it inside in the house.,the,band,True,site
+Bloom,Peter,mother,did you ride the rocking horse ? 9109195_9111715,did you ride the rocking horse?,the,horse,True,site
+Bloom,Peter,child,and here's a bigger [!!] circle . 15266844_15272045,and here's a bigger circle.,a,circle,True,site
+Bloom,Peter,child,put a bandaid on it (.) right (.) put a bandaid on it .,put a bandaid on it right put a bandaid on it.,a,bandaid,True,site
+Bloom,Peter,child,this is a wheel . 7603854_7608296,this is a wheel.,a,wheel,True,site
+Bloom,Peter,child,yeah (..) where's the weasel book ? 7509967_7512321,yeah where's the weasel book?,the,book,True,site
+Bloom,Peter,child,fix the truck . 7540496_7543032,fix the truck.,the,truck,True,site
+Bloom,Peter,child,yep (..) put it on [!!] me (.) put it on <my horse> [//] the horse . 13840262_13864318,yep put it on me put it on the horse.,the,horse,True,site
+Bloom,Peter,child,the sky goes yyy ! 32460_35467,the sky goes!,the,sky,True,site
+Bloom,Peter,child,gonna see a go on the fire engine . 11299175_11301394,gonna see a go on the fire engine.,the,engine,True,site
+Bloom,Peter,child,I write a cow (.) one (.) two (.) that is a cow (.) that's a cow . 129380_141982,I write a cow one two that is a cow that's a cow.,a,cow,True,site
+Bloom,Peter,child,you're gonna cry on the train . 14551073_14566815,you're gonna cry on the train.,the,train,True,site
+Bloom,Peter,child,I'm gon(na) put the wheel in the trunk . 680214_684651,I'm gonna put the wheel in the trunk.,the,trunk,True,site
+Bloom,Peter,child,look mom look a surprise .,look mom look a surprise.,a,surprise,True,site
+Bloom,Peter,child,right (.) it's a small circle . 5004195_5007350,right it's a small circle.,a,circle,True,site
+Bloom,Peter,mother,well two people can't sit on it the same time (.) you can [/] why don't you stand in the back . 6714763_6718655,well two people can't sit on it the same time you why don't you stand in the back.,the,back,False,site
+Bloom,Peter,child,the car . 12002544_12003661,the car.,the,car,True,site
+Bloom,Peter,child,xxx (.) a paper (.) xxx . 14214361_14220672,a paper.,a,paper,True,site
+Bloom,Peter,child,look at this (.) gonna put on the bed (.) who put that on the bed ?,look at this gonna put on the bed who put that on the bed?,the,bed,True,site
+Brown,Sarah,child,fallin(g) down the wood (.) hop@o .,falling down the wood hop.,the,wood,True,mor_only
+Brown,Sarah,child,how (a)bout a rabbit for him ?,how about a rabbit for him?,a,rabbit,True,mor_only
+Brown,Adam,child,iss@c look like a big carrier .,iss look like a big carrier.,a,carry,True,mor_only
+Brown,Eve,mother,it's beside the taperecorder .,it's beside the taperecorder.,the,taperecord,True,mor_only
+Brown,Adam,child,de [: the] pig wanna talk to de [: the] pencil .,the pig wanna talk to the pencil.,the,pig,True,mor_only
+Brown,Sarah,child,yeah (.) a seal .,yeah a seal.,a,seal,True,mor_only
+Brown,Adam,mother,you're cutting in the trash can ?,you're cutting in the trash can?,the,trash,True,mor_only
+Brown,Adam,child,where de [: the] edge ?,where the edge?,the,edge,True,mor_only
+Brown,Adam,mother,no (.) the wheel .,no the wheel.,the,wheel,True,mor_only
+Brown,Adam,child,dat [: that] a spoon ?,that a spoon?,a,spoon,True,mor_only
+Brown,Adam,mother,there are some blue ones and some white ones (.) but where are the yellow ones ?,there are some blue ones and some white ones but where are the yellow ones?,the,yellow,True,mor_only
+Brown,Adam,child,where de [: the] roller ?,where the roller?,the,roll,True,mor_only
+Brown,Adam,child,de [: the] monkey's foot .,the monkey's foot.,the,foot,True,mor_only
+Brown,Sarah,mother,Sarah (.) I think that's the biggest accomplishment she's made in such such a long time .,Sarah I think that's the biggest accomplishment she's made in such such a long time.,a,time,True,mor_only
+Brown,Adam,child,now a duck .,now a duck.,a,duck,True,mor_only
+Brown,Sarah,child,next morning (.) a (.) black rabbit (.) and a white rabbit .,next morning a black rabbit and a white rabbit.,a,rabbit,True,mor_only
+Brown,Sarah,mother,on top the toy box .,on top the toy box.,the,box,True,mor_only
+Brown,Sarah,child,I be the mummie (.) Mummy .,I be the mummie Mummy.,the,mummie,True,mor_only
+Brown,Sarah,child,I eat all my supper all the time .,I eat all my supper all the time.,the,time,True,mor_only
+Brown,Sarah,mother,"she told Elaine that it was delicious and it was her favorite and she took a mouthful (.) she said (.) +""/.",she told Elaine that it was delicious and it was her favorite and she took a mouthful she said,a,mouthful,True,mor_only
+Brown,Adam,mother,a snowman (.) yes .,a snowman yes.,a,snowman,True,site
+Brown,Adam,child,Mommy (.) is dat [: that] de [: the] way I made ?,Mommy is that the way I made?,the,way,True,site
+Brown,Adam,mother,well (.) why don't you take the bread back out to the kitchen ?,well why don't you take the bread back out to the kitchen?,the,bread,True,site
+Brown,Sarah,mother,how would you feel it you saw a little girl coming down the street street with a purple face ?,how would you feel it you saw a little girl coming down the street street with a purple face?,the,street,True,site
+Brown,Adam,child,is dat [: that] de [: the] end ?,is that the end?,the,end,True,site
+Brown,Adam,child,I said to de [: the] carpenter you a nut .,I said to the carpenter you a nut.,the,carpenter,True,site
+Brown,Sarah,child,a girl .,a girl.,a,girl,True,site
+Brown,Sarah,child,I have a whole lot .,I have a whole lot.,a,lot,True,site
+Brown,Sarah,mother,oh (.) what'd you do (.) throw all the dirt in the back yard in it ?,oh what'd you do throw all the dirt in the back yard in it?,the,yard,True,site
+Brown,Adam,mother,oh no (.) let's play with one for a while .,oh no let's play with one for a while.,a,while,True,site
+Brown,Sarah,mother,that's the girl and that's the boy .,that's the girl and that's the boy.,the,boy,True,site
+Brown,Adam,mother,and the little boy is peeking out +...,and the little boy is peeking out,the,boy,True,site
+Brown,Adam,mother,perhaps the wheels are down in the box .,perhaps the wheels are down in the box.,the,box,True,site
+Brown,Adam,child,now I think I draw a airplane by myself .,now I think I draw a airplane by myself.,a,airplane,True,site
+Brown,Sarah,mother,hey (.) Jo_Ann (.) before ya go will ya go to the store for me ?,hey Jo_Ann before ya go will ya go to the store for me?,the,store,True,site
+Brown,Sarah,mother,because that's the way shadows sometimes are .,because that's the way shadows sometimes are.,the,way,True,site
+Brown,Sarah,mother,if he can get an airplane (.) he'll be home .,if he can get an airplane he'll be home.,a,airplane,True,site
+Brown,Sarah,child,in the room .,in the room.,the,room,True,site
+Brown,Adam,mother,you may make them ski just two at a time .,you may make them ski just two at a time.,a,time,True,site
+Brown,Sarah,child,a boo_boo eye .,a boo_boo eye.,a,eye,True,site
+Lara,lara,mother,I think Lara's getting a bit tired .,I think Lara's getting a bit tired.,a,bit,True,mor_only
+Lara,lara,mother,and the rest .,and the rest.,the,rest,True,mor_only
+Lara,lara,mother,not a birthday cake .,not a birthday cake.,a,cake,True,mor_only
+Lara,lara,mother,wait a minute .,wait a minute.,a,minute,True,mor_only
+Lara,lara,mother,there's a yellow one there as well .,there's a yellow one there as well.,a,yellow,True,mor_only
+Lara,lara,mother,does that mean I'm in the hoover ?,does that mean I'm in the hoover?,the,hoover,True,mor_only
+Lara,lara,child,the doggy's going to come in .,the doggy's going to come in.,the,dog,True,mor_only
+Lara,lara,mother,I've got to go to the big box now .,I've got to go to the big box now.,the,box,True,mor_only
+Lara,lara,mother,and I'll make him a helipad as well .,and I'll make him a helipad as well.,a,helipad,True,mor_only
+Lara,lara,mother,"it was a bit loud , wasn't it ?","it was a bit loud, wasn't it?",a,bit,True,mor_only
+Lara,lara,mother,"that one hasta go in the middle , look .","that one hasta go in the middle, look.",the,middle,True,mor_only
+Lara,lara,mother,let me just put her a bit lower down .,let me just put her a bit lower down.,a,bit,True,mor_only
+Lara,lara,child,a teddy bear and a monkey .,a teddy bear and a monkey.,a,bear,True,mor_only
+Lara,lara,child,and the spoon .,and the spoon.,the,spoon,True,mor_only
+Lara,lara,child,you can have the blue one .,you can have the blue one.,the,blue,True,mor_only
+Lara,lara,mother,the proper scissors .,the proper scissors.,the,scissors,True,mor_only
+Lara,lara,mother,a flower's not a bit boring .,a flower's not a bit boring.,a,bit,True,mor_only
+Lara,lara,mother,the cottage inside was just as pretty inside as outside . [+ R],the cottage inside was just as pretty inside as outside.,the,inside,True,mor_only
+Lara,lara,mother,you look after Amy a minute .,you look after Amy a minute.,a,minute,True,mor_only
+Lara,lara,child,where's the yellow one ?,where's the yellow one?,the,yellow,True,mor_only
+Lara,lara,child,where's the dad ?,where's the dad?,the,dad,True,site
+Lara,lara,mother,you can have an apple if you want .,you can have an apple if you want.,a,apple,True,site
+Lara,lara,child,not in the front of penguin .,not in the front of penguin.,the,front,True,site
+Lara,lara,child,a nana@c .,a nana.,a,nana,False,site
+Lara,lara,mother,hafta wipe the chocolate off your mouth .,hafta wipe the chocolate off your mouth.,the,chocolate,True,site
+Lara,lara,mother,go and read the story .,go and read the story.,the,story,True,site
+Lara,lara,child,he's a little boy .,he's a little boy.,a,boy,True,site
+Lara,lara,child,shall we make a tunnel now ?,shall we make a tunnel now?,a,tunnel,True,site
+Lara,lara,mother,when the snow is deep on the ground some people cannot cope . [+ R],when the snow is deep on the ground some people cannot cope.,the,ground,True,site
+Lara,lara,mother,let's have a look .,let's have a look.,a,look,False,site
+Lara,lara,child,are you the park keeper ?,are you the park keeper?,the,keeper,False,site
+Lara,lara,child,a pear .,a pear.,a,pear,True,site
+Lara,lara,mother,a Lara horse .,a Lara horse.,a,horse,False,site
+Lara,lara,mother,I think all these Sindy things need a wash .,I think all these Sindy things need a wash.,a,wash,True,site
+Lara,lara,mother,she's a bit of a whingebag@f .,she's a bit of a whingebag.,a,bit,True,site
+Lara,lara,child,I want a pencil please .,I want a pencil please.,a,pencil,True,site
+Lara,lara,child,I don't want Amy to get the field .,I don't want Amy to get the field.,the,field,True,site
+Lara,lara,mother,that's not an advent calendar .,that's not an advent calendar.,a,calendar,True,site
+Lara,lara,mother,"they can go in the wendy_house , can they ?","they can go in the wendy_house, can they?",the,wendy_house,False,site
+Lara,lara,mother,and then you have a brick in the middle like that .,and then you have a brick in the middle like that.,the,middle,True,site
+Manchester,Joel,child,a Dyononicus .,a Dyononicus.,a,dyononicus,True,mor_only
+Manchester,Dominic,mother,"not such a good bridge , &-eh ?","not such a good bridge,?",a,bridge,True,mor_only
+Manchester,Becky,mother,the whales are a bit big to fit in .,the whales are a bit big to fit in.,a,bit,True,mor_only
+Manchester,Ruth,child,here the doctor thing .,here the doctor thing.,the,thing,True,mor_only
+Manchester,Warren,mother,I'm looking for the other one .,I'm looking for the other one.,the,one,True,mor_only
+Manchester,Nicole,mother,it is a purply pink .,it is a purply pink.,a,pink,True,mor_only
+Manchester,Aran,mother,well you'll hafta take the other one out „ won't [: willn't] you ?,well you'll hafta take the other one out willn't you?,the,one,True,mor_only
+Manchester,Joel,mother,what a face .,what a face.,a,face,True,mor_only
+Manchester,Anne,mother,and the duck's fallen in the paint pot .,and the duck's fallen in the paint pot.,the,duck,True,mor_only
+Manchester,John,mother,they're a bit funny .,they're a bit funny.,a,bit,True,mor_only
+Manchester,Warren,mother,in a little while we'll be going in Nana's car again .,in a little while we'll be going in Nana's car again.,a,while,True,mor_only
+Manchester,Carl,child,that's not the one .,that's not the one.,the,one,True,mor_only
+Manchester,Carl,child,and a nice choo_choo trains .,and a nice choo_choo trains.,a,choochoo,True,mor_only
+Manchester,Warren,mother,it'll basically be a round one okay .,it'll basically be a round one okay.,a,round,True,mor_only
+Manchester,Dominic,mother,"just a little girl , aren't you ?","just a little girl, aren't you?",a,girl,True,mor_only
+Manchester,Warren,mother,let's make that a bit bigger .,let's make that a bit bigger.,a,bit,True,mor_only
+Manchester,Aran,child,not a car .,not a car.,a,car,True,mor_only
+Manchester,Gail,mother,do you wanna go on a Batman_helicopter ?,do you wanna go on a Batman_helicopter?,a,batmanhelicopter,True,mor_only
+Manchester,Becky,mother,"you [/] you had a pineapple yesterday , did you ?","you had a pineapple yesterday, did you?",a,yesterday,True,mor_only
+Manchester,Anne,mother,just a minute then .,just a minute then.,a,minute,True,mor_only
+Manchester,Liz,child,a snail .,a snail.,a,snail,True,site
+Manchester,John,mother,in the box ?,in the box?,the,box,True,site
+Manchester,Joel,child,xxx a name .,a name.,a,name,True,site
+Manchester,Carl,child,you can do the train .,you can do the train.,the,train,True,site
+Manchester,Warren,mother,well I hope the panda's not going to come driving back very fast .,well I hope the panda's not going to come driving back very fast.,the,panda,True,site
+Manchester,Joel,mother,go and get me a book .,go and get me a book.,a,book,True,site
+Manchester,John,mother,are you sure you've got a farmer ?,are you sure you've got a farmer?,a,farmer,True,site
+Manchester,John,child,<it's a> [/] it's a clown .,it's a clown.,a,clown,True,site
+Manchester,John,mother,found a lid .,found a lid.,a,lid,True,site
+Manchester,John,mother,you can't see the icecream .,you can't see the icecream.,the,icecream,True,site
+Manchester,Warren,mother,I think a quiet turkey might wake him up .,I think a quiet turkey might wake him up.,a,turkey,True,site
+Manchester,Anne,mother,who wanted a red lolly ?,who wanted a red lolly?,a,red,False,site
+Manchester,Carl,child,he pull it down the line .,he pull it down the line.,the,line,True,site
+Manchester,Aran,mother,the breakdown truck pulled it out and it fell back in again „ didn't it ?,the breakdown truck pulled it out and it fell back in again didn't it?,the,truck,True,site
+Manchester,Carl,child,<I be> [/] I be a train .,I be a train.,a,train,True,site
+Manchester,Carl,child,Annie put on the back .,Annie put on the back.,the,back,True,site
+Manchester,Dominic,mother,it will be not on the window because_of you .,it will be not on the window because_of you.,the,window,True,site
+Manchester,Carl,mother,"you're putting all the cars on the table , are you ?","you're putting all the cars on the table, are you?",the,table,True,site
+Manchester,Liz,child,I like to go a ride .,I like to go a ride.,a,ride,True,site
+Manchester,Dominic,child,&-um a yellow .,a yellow.,a,yellow,True,site
+Providence,ethan,mother,"and a red , and a white , and a green , and an orange and a yellow +/. 801400_807231","and a red, and a white, and a green, and an orange and a yellow",a,white,True,mor_only
+Providence,lily,mother,the duck stays stuck deep in the muck . 1666813_1669076,the duck stays stuck deep in the muck.,the,duck,True,mor_only
+Providence,william,mother,"but you know we're gonna go to the children's museum , we'll have lunch with Daddy . 2803767_2807350","but you know we're gonna go to the children's museum, we'll have lunch with Daddy.",the,museum,True,mor_only
+Providence,lily,mother,the baby birds rest . 1461342_1466071,the baby birds rest.,the,baby,True,mor_only
+Providence,lily,mother,perhaps you'd like to tell him he's [: he has] won a free supp(ly) supply of groceries ? 462771_466778,perhaps you'd like to tell him he has won a free supply supply of groceries?,a,supply,True,mor_only
+Providence,william,mother,"(be)cause the , the dumptruck looks like it's , kind of a crane . 2102563_2106018","because the, the dumptruck looks like it's, kind of a crane.",a,crane,True,mor_only
+Providence,lily,mother,oh very nice thank you you're raking up the flower petals ? 42248_48453,oh very nice thank you you're raking up the flower petals?,the,flower,True,mor_only
+Providence,lily,mother,twenty seven men have clip+on ties that are already made into bows the man with the wavy black and white hair (.) the ruffly shirt and the cummerbund ties on a very big white bow+tie . 638262_651613,twenty seven men have clip on ties that are already made into bows the man with the wavy black and white hair the ruffly shirt and the cummerbund ties on a very big white bow tie.,the,cummerbund,True,mor_only
+Providence,lily,mother,no that's not the mixer whada [: what do] we put what's this one ? 202958_205762,no that's not the mixer what do we put what's this one?,the,mix,True,mor_only
+Providence,lily,child,I wanna eat the peach jello . 2005326_2011150,I wanna eat the peach jello.,the,jello,True,mor_only
+Providence,ethan,mother,mm that's a blue x@l . 2393241_2396196,mm that's a blue x.,a,blue,True,mor_only
+Providence,ethan,mother,the rescue heroes get a call . 178531_181500,the rescue heroes get a call.,the,rescue,True,mor_only
+Providence,ethan,mother,the principal turned him into a werewolf wearing polka+dot underwear . 537041_543376,the principal turned him into a werewolf wearing polka dot underwear.,a,werewolf,True,mor_only
+Providence,ethan,child,it's a red one +... 793326_799725,it's a red one,a,red,True,mor_only
+Providence,lily,mother,right maybe a dress you can't see . 1031665_1033783,right maybe a dress you can't see.,a,dress,True,mor_only
+Providence,alex,mother,here's the kangaroo jumping . 2175728_2177321,here's the kangaroo jumping.,the,kangaroo,True,mor_only
+Providence,naima,mother,"hey , who did we see in the play+ground the other day +//?","hey, who did we see in the play ground the other day",the,playground,True,mor_only
+Providence,alex,mother,a white +//.,a white,a,white,True,mor_only
+Providence,naima,mother,let's have the mac [: macaroni] and cheese and you can have carrots from a jar too if you want . 2802258_2805195,let's have the macaroni and cheese and you can have carrots from a jar too if you want.,the,macaroni,True,mor_only
+Providence,william,mother,"yeah , it's like a cherry picker fire+truck , isn't it ?","yeah, it's like a cherry picker fire truck, isn't it?",a,pick,True,mor_only
+Providence,naima,child,be a bear . 3679895_3687583,be a bear.,a,bear,True,site
+Providence,lily,mother,as soon as she gets home Olivia gives it a try . 2796610_2800657,as soon as she gets home Olivia gives it a try.,a,try,False,site
+Providence,ethan,mother,"yeah it's a hard one , the roof is usually a triangle . 1485961_1489235","yeah it's a hard one, the roof is usually a triangle.",a,one,False,site
+Providence,lily,mother,then comes in the summer who paints in the flowers . 924113_926921,then comes in the summer who paints in the flowers.,the,summer,True,site
+Providence,naima,mother,"that's fine with me says puppy , splashing is the best game of all . 3445861_3450548","that's fine with me says puppy, splashing is the best game of all.",the,game,True,site
+Providence,lily,child,it came from the farm . 1482_5297,it came from the farm.,the,farm,True,site
+Providence,lily,mother,if you get lost an officer can help you find your way . 792173_798660,if you get lost an officer can help you find your way.,a,officer,True,site
+Providence,alex,mother,I wish I had the room for five hundred seeds . 3634545_3637608,I wish I had the room for five hundred seeds.,the,room,True,site
+Providence,lily,mother,a moving van carries everything a family owns to their new home . 3016595_3020300,a moving van carries everything a family owns to their new home.,a,family,True,site
+Providence,naima,mother,"he has a ribbon around his neck , doesn't he ? 819438_823498","he has a ribbon around his neck, doesn't he?",a,ribbon,True,site
+Providence,lily,mother,can Mama have a kiss ? 369242_371697,can Mama have a kiss?,a,kiss,True,site
+Providence,william,mother,"yeah , that is a boy in a chair . 2357465_2358663","yeah, that is a boy in a chair.",a,chair,True,site
+Providence,lily,mother,well done said the lady handing him a ticket . 2623275_2628776,well done said the lady handing him a ticket.,the,lady,True,site
+Providence,lily,mother,and the moose has big brown antlers .,and the moose has big brown antlers.,the,moose,True,site
+Providence,naima,mother,they're in a white bowl . 2926766_2928656,they're in a white bowl.,a,bowl,True,site
+Providence,lily,mother,"she said Manuela come , I open big present and it's a book , I open small present and its Pollys skis .","she said Manuela come, I open big present and it's a book, I open small present and its Pollys skis.",a,book,True,site
+Providence,naima,mother,well let's play with the toolbox and ignore the (.) backpack . 476093_480018,well let's play with the toolbox and ignore the backpack.,the,backpack,True,site
+Providence,naima,mother,she was wearing a hat ?,she was wearing a hat?,a,hat,True,site
+Providence,ethan,mother,we can go on the trolley and go around the park . 3293305_3297253,we can go on the trolley and go around the park.,the,trolley,True,site
+Providence,lily,mother,is it on the other side of the table ? 2287390_2289125,is it on the other side of the table?,the,table,True,site
+Sachs,Naomi,mother,put this up a little bit . 92625_94660,put this up a little bit.,a,bit,True,mor_only
+Sachs,Naomi,child,stepped on the (re)corder . 925722_928074,stepped on the recorder.,the,record,True,mor_only
+Sachs,Naomi,mother,Naomi (.) you really upset that lady the other day in the boat (.) honey (.) when you stuck your tongue out at her . 2249261_2255665,Naomi you really upset that lady the other day in the boat honey when you stuck your tongue out at her.,the,day,True,mor_only
+Sachs,Naomi,mother,there's only a little bit of a shadow . 1780194_1781796,there's only a little bit of a shadow.,a,bit,True,mor_only
+Sachs,Naomi,child,there was a little farmer sitting in . 1648444_1651879,there was a little farmer sitting in.,a,farm,True,mor_only
+Sachs,Naomi,mother,no (.) there was only a little bit . 80359_82478,no there was only a little bit.,a,bit,True,mor_only
+Sachs,Naomi,mother,you've been hurting yourself quite a bit this morning . 380421_386242,you've been hurting yourself quite a bit this morning.,a,bit,True,mor_only
+Sachs,Naomi,mother,do you remember what the horsie says ? 68984_70536,do you remember what the horsie says?,the,horse,True,mor_only
+Sachs,Naomi,mother,put the hanger down while you boo . 832573_835792,put the hanger down while you boo.,the,down,True,mor_only
+Sachs,Naomi,child,a little station wagon !,a little station wagon!,a,station,True,mor_only
+Sachs,Naomi,child,a doggie xxx . 307578_312565,a doggie.,a,dog,True,mor_only
+Sachs,Naomi,mother,not a birdie (.) a seal . 577397_582985,not a birdie a seal.,a,seal,True,mor_only
+Sachs,Naomi,child,yeah (.) the muffin song . 860541_864493,yeah the muffin song.,the,song,True,mor_only
+Sachs,Naomi,mother,oh an egg . 1078503_1080105,oh an egg.,a,egg,True,mor_only
+Sachs,Naomi,mother,Georgie is certainly sleeping a lot . 1666512_1672749,Georgie is certainly sleeping a lot.,a,lot,True,mor_only
+Sachs,Naomi,child,there was a little farmer standing in the sun . 1675594_1679546,there was a little farmer standing in the sun.,a,farm,True,mor_only
+Sachs,Naomi,mother,go put this in the diaper pail (.) Nomi .,go put this in the diaper pail Nomi.,the,pail,True,mor_only
+Sachs,Naomi,mother,Nomi (.) why don't you put the hanger down while you boo . 826420_832573,Nomi why don't you put the hanger down while you boo.,the,down,True,mor_only
+Sachs,Naomi,mother,can you have that be a baby kitty and have the baby kitty talk ? 1206687_1210822,can you have that be a baby kitty and have the baby kitty talk?,the,kitty,True,mor_only
+Sachs,Naomi,child,there the fish . 353039_354641,there the fish.,the,fish,True,mor_only
+Sachs,Naomi,child,get me a diaper (.) okay ? 496836_499787,get me a diaper okay?,a,diaper,True,site
+Sachs,Naomi,child,okay <I up> [?] and tell the story about the xxx . 109276_118365,okay I up and tell the story about the.,the,story,True,site
+Sachs,Naomi,child,a little baby . 97920_102241,a little baby.,a,baby,True,site
+Sachs,Naomi,mother,is that what you have on the telephone honey (.) a commersation@c ? 1155157_1159459,is that what you have on the telephone honey a commersation?,a,commersation,False,site
+Sachs,Naomi,mother,this is a barn .,this is a barn.,a,barn,True,site
+Sachs,Naomi,mother,Nomi (.) take the baby out over the top of the crib . 450311_454279,Nomi take the baby out over the top of the crib.,the,baby,True,site
+Sachs,Naomi,mother,yogurt in the tummy . 665838_670142,yogurt in the tummy.,the,tummy,False,site
+Sachs,Naomi,mother,what I try to do usually is fix the mattress so the metal's not sticking out quite so much . 487322_501516,what I try to do usually is fix the mattress so the metal's not sticking out quite so much.,the,metal,True,site
+Sachs,Naomi,child,she gave them all her children a spanking . 1503206_1509526,she gave them all her children a spanking.,a,spanking,False,site
+Sachs,Naomi,mother,way up in the sky . 2038432_2039482,way up in the sky.,the,sky,True,site
+Sachs,Naomi,child,I found the brush . 119049_122151,I found the brush.,the,brush,True,site
+Sachs,Naomi,mother,is that the tire ?,is that the tire?,the,tire,True,site
+Sachs,Naomi,mother,alright (.) we didn't have a nice conversation this morning . 1195715_1201452,alright we didn't have a nice conversation this morning.,a,conversation,False,site
+Sachs,Naomi,mother,the tape record ? 694227_694794,the tape record?,the,record,True,site
+Sachs,Naomi,child,look at the bug . 1062754_1064670,look at the bug.,the,bug,True,site
+Sachs,Naomi,child,he has a couch . 491028_495498,he has a couch.,a,couch,True,site
+Sachs,Naomi,mother,they're throwing a ball . 187858_189393,they're throwing a ball.,a,ball,True,site
+Sachs,Naomi,mother,do you have a ribbon (.) Nomi ? 959336_966076,do you have a ribbon Nomi?,a,ribbon,True,site
+Sachs,Naomi,mother,get the coffee out_of the wastebasket . 3621642_3623578,get the coffee out_of the wastebasket.,the,coffee,True,site
+Sachs,Naomi,mother,we'll see a sailboat this summer . 402374_403374,we'll see a sailboat this summer.,a,sailboat,True,site
+Suppes,Nina,mother,let's see if the dolly can go to the zoo and see him .,let's see if the dolly can go to the zoo and see him.,the,doll,True,mor_only
+Suppes,Nina,mother,but you can go a little bit later .,but you can go a little bit later.,a,bit,True,mor_only
+Suppes,Nina,child,that's a rabbit and that's a teddy bear .,that's a rabbit and that's a teddy bear.,a,bear,True,mor_only
+Suppes,Nina,mother,you gonna drink from the dolly's cup ?,you gonna drink from the dolly's cup?,the,cup,True,mor_only
+Suppes,Nina,child,that's (.) that's a cow's bed .,that's that's a cow's bed.,a,bed,True,mor_only
+Suppes,Nina,child,take a dolly .,take a dolly.,a,doll,True,mor_only
+Suppes,Nina,mother,what a funny place for a goat to be .,what a funny place for a goat to be.,a,place,True,mor_only
+Suppes,Nina,mother,who came for supper the other night to play at Nina's +...,who came for supper the other night to play at Nina's,the,night,True,mor_only
+Suppes,Nina,mother,and now we'll go on a merry-go-round .,and now we'll go on a merry-go-round.,a,merry–go–round,True,mor_only
+Suppes,Nina,mother,oh (.) what's happening to these children in the merry-go-round ?,oh what's happening to these children in the merry-go-round?,the,merry–go–round,True,mor_only
+Suppes,Nina,mother,he's on the boy's back .,he's on the boy's back.,the,back,True,mor_only
+Suppes,Nina,child,no that's the dolly's cup (.) that you're gonna give her .,no that's the dolly's cup that you're gonna give her.,the,cup,True,mor_only
+Suppes,Nina,child,then will you give me a hug ?,then will you give me a hug?,a,hug,True,mor_only
+Suppes,Nina,child,hug a doctor .,hug a doctor.,a,doctor,True,mor_only
+Suppes,Nina,mother,where is the dolly ?,where is the dolly?,the,doll,True,mor_only
+Suppes,Nina,mother,shall the lady knock on the door ?,shall the lady knock on the door?,the,knock,True,mor_only
+Suppes,Nina,mother,a warm kitty cat .,a warm kitty cat.,a,kitty,True,mor_only
+Suppes,Nina,mother,the other day I came and you were on a seesaw with lots_of children .,the other day I came and you were on a seesaw with lots_of children.,the,day,True,mor_only
+Suppes,Nina,child,<she drink all the> [/] she drink all the cricket's tea up .,she drink all the cricket's tea up.,the,tea,True,mor_only
+Suppes,Nina,mother,are you drinking from the dolly's cup now ?,are you drinking from the dolly's cup now?,the,cup,True,mor_only
+Suppes,Nina,child,that's a little kangaroo .,that's a little kangaroo.,a,kangaroo,True,site
+Suppes,Nina,mother,and what's inside the mouth ?,and what's inside the mouth?,the,mouth,True,site
+Suppes,Nina,mother,oh (.) here's the lamp .,oh here's the lamp.,the,lamp,True,site
+Suppes,Nina,mother,where did the circle go ?,where did the circle go?,the,circle,True,site
+Suppes,Nina,child,a elephant eat peanuts .,a elephant eat peanuts.,a,elephant,True,site
+Suppes,Nina,child,the car's in the crib .,the car's in the crib.,the,crib,True,site
+Suppes,Nina,mother,does the kitty cat eat milk ?,does the kitty cat eat milk?,the,cat,True,site
+Suppes,Nina,mother,he's sleeping outside the house ?,he's sleeping outside the house?,the,house,True,site
+Suppes,Nina,child,my read a book .,my read a book.,a,book,True,site
+Suppes,Nina,mother,do you think the mouse would like some tea ?,do you think the mouse would like some tea?,the,mouse,True,site
+Suppes,Nina,mother,what happened to the train ?,what happened to the train?,the,train,True,site
+Suppes,Nina,mother,we'll put him up on the window and look at him ?,we'll put him up on the window and look at him?,the,window,True,site
+Suppes,Nina,child,she wake up in her room with flowers and a [/] a rabbit .,she wake up in her room with flowers and a rabbit.,a,rabbit,True,site
+Suppes,Nina,mother,does she have a jacket on ?,does she have a jacket on?,a,jacket,True,site
+Suppes,Nina,child,xxx on the floor .,on the floor.,the,floor,True,site
+Suppes,Nina,child,a cheese on it .,a cheese on it.,a,cheese,True,site
+Suppes,Nina,child,a house .,a house.,a,house,True,site
+Suppes,Nina,mother,this is the mane of the horse .,this is the mane of the horse.,the,mane,True,site
+Suppes,Nina,mother,oh (.) this is an exciting page .,oh this is an exciting page.,a,page,True,site
+Suppes,Nina,mother,a kitty cat's inside there ?,a kitty cat's inside there?,a,cat,True,site
