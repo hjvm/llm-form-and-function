@@ -48,6 +48,12 @@ def main():
     else:
         corpus = load_corpus("tpr_data", "data/CHILDES/tpr6", SIX, keep=("child", "mother"))
     inv = inv[inv.speaker_type.isin(a.speakers)].rename_axis("orig_index").reset_index()
+    # the local transcripts must clean to exactly the sentences the inventory was extracted from
+    text = {(c, f, l): t for c, df in corpus.items() for f, l, t in zip(df.filename, df.line_num, df.sentence)}
+    bad = sum(text.get((c, f, l)) != t for c, f, l, t in zip(inv.child_name, inv.filename, inv.line_num, inv.sentence))
+    if bad:
+        sys.exit(f"{bad} of {len(inv)} inventory sentences do not match the local transcripts; check data/CHILDES links")
+    print(f"inventory matches the local transcripts ({len(inv)} sites)")
     os.makedirs(a.output, exist_ok=True)
     inv.to_csv(os.path.join(a.output, "det_noun_locations.csv"), index=False)
     prepared = prepare_discourse_inputs(corpus, inv, a.output, a.models)
