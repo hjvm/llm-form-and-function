@@ -66,6 +66,10 @@ _ref = OUT / "adult_tpr_reference.json"  # from adult_tpr_reference.py: every ad
 if _ref.exists():
     import json
     ADULT_REFS += [(f"24 dyads, {k}", v) for k, v in json.load(open(_ref)).items()]
+# MAIN reference (user, Nov 23): adults talking with each other = definition C, all adult-to-adult transitions
+# (mother following another adult, other adults following the mother, adults following each other), adult roles
+# only, all 24 dyads. The paper's .2155 used a narrower set (other adult following the mother, tpr-data 17 dyads).
+MAIN_REF = "24 dyads, C: all adult-to-adult"
 M12 = sorted(msites.child_name.unique()); Y6 = list(LO); T6 = [c.capitalize() for c in SIX]
 SAMPLES = {"Manchester 12 (paper)": M12, "All 24": M12 + Y6 + T6, "All 24 without Carl": [c for c in M12 + Y6 + T6 if c != "Carl"],
            "Manchester 12 + Yang 6": M12 + Y6, "Manchester 12 + Lara/Providence 6": M12 + T6}

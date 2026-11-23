@@ -92,3 +92,22 @@ rule fixes.
 Scripts: `scripts/preprocessing_audit/audit_extraction.py` (scores both pipelines),
 `summarize_audit.py`, `sample_for_hand_check.py`, `extract_new_children.py` (new inventories →
 `results/baselines/all_children/{yang,tpr6}_det_noun_locations.csv.gz`).
+
+## Adult TPR reference
+
+**Main reference: adults talking with each other.** Every transition in which an adult (mother or
+other adult, adult roles only) uses a D×N noun last mentioned earlier in the same session by a
+*different* adult: the mother following another adult, other adults following the mother, and other
+adults following each other. All 24 dyads, shared preprocessing (Manchester re-extracted with all
+speakers for this purpose only). Pooled switch rate **.2221** (n = 4,989; 23 dyads with ≥10 cases,
+dyad rates .15–.30). `scripts/yang_children/adult_tpr_reference.py` → `results/baselines/all_children/adult_tpr_reference.*`.
+
+The paper's .2155 used a narrower set: other adults following the mother only, in the 17 tpr-data
+dyads, with TV/media, siblings and child visitors counted as adults. Other definitions reported for
+comparison: other adult following the mother, 24 dyads, .2048 (n = 2,109); plus the mother following
+another adult, .2212 (n = 4,074).
+
+Mothers switch more when following another adult (.239, n = 1,965) than when following their child
+(.203 per-dyad mean). Under the main reference the 24 caretakers are borderline (p = .049); a
+leave-one-dyad-out reference gives the same (p = .052), so it is not the mothers' own transitions
+inflating the reference. `scripts/yang_children/adult_reference_loo.py`.
