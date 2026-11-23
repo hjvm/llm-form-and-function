@@ -60,6 +60,12 @@ ADULT_ALL = float(pd.concat([oa_adult.human_switch, oa2.human_switch]).mean())
 print(f"other-adult pooled TPR: paper (tpr-data 17) = {ADULT_PAPER:.4f} (n={len(oa)}); adult roles only = "
       f"{oa_adult.human_switch.mean():.4f} (n={len(oa_adult)}); + Eve/Sarah/Naomi = {ADULT_ALL:.4f} (n={len(oa_adult)+len(oa2)})")
 
+ADULT_REFS = [("paper", ADULT_PAPER), ("paper, adult roles only", float(oa_adult.human_switch.mean())),
+              ("adult roles + Eve/Sarah/Naomi", ADULT_ALL)]
+_ref = OUT / "adult_tpr_reference.json"  # from adult_tpr_reference.py: every adult transition in all 24 dyads
+if _ref.exists():
+    import json
+    ADULT_REFS += [(f"24 dyads, {k}", v) for k, v in json.load(open(_ref)).items()]
 M12 = sorted(msites.child_name.unique()); Y6 = list(LO); T6 = [c.capitalize() for c in SIX]
 SAMPLES = {"Manchester 12 (paper)": M12, "All 24": M12 + Y6 + T6, "All 24 without Carl": [c for c in M12 + Y6 + T6 if c != "Carl"],
            "Manchester 12 + Yang 6": M12 + Y6, "Manchester 12 + Lara/Providence 6": M12 + T6}
@@ -101,7 +107,7 @@ for name, p in models.items():
         for lab, ch in SAMPLES.items():
             sub = (sites.speaker == spk) & sites.child_name.isin(ch)
             if np.isnan(p[sub.values]).any(): continue
-            for adult_lab, adult in [("paper", ADULT_PAPER), ("adult roles + Eve/Sarah/Naomi", ADULT_ALL)]:
+            for adult_lab, adult in ADULT_REFS:
                 rows.append(dict(model=name, sites=spk, sample=lab, adult_ref=adult_lab, adult_mean=adult, **evaluate(p, ch, spk, adult)))
 # memory model (child and caretaker sample sizes), pool = Manchester adults
 pool = adult_pool(); pn, pt = pool.noun.values, pool.the.values; rng = np.random.default_rng(13); sims = []
