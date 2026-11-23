@@ -1,0 +1,7 @@
+sample,cases,n,tpr,loo_ref_no_repeats,p,bf01
+All 24,"mother, child+adult, no repeats",15578,0.261,0.2428,0.047,0.74
+All 24,"mother, child only, no repeats",13778,0.263,0.2428,0.072,1.02
+All 24,"child, no repeats",13876,0.249,0.2428,0.436,3.51
+Manchester 12,"mother, child+adult, no repeats",5511,0.267,0.2428,0.085,0.9
+Manchester 12,"mother, child only, no repeats",4989,0.269,0.2428,0.121,1.16
+Manchester 12,"child, no repeats",5144,0.238,0.2428,0.678,3.22
