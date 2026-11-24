@@ -52,3 +52,22 @@ The Providence children's det–noun lists are clean, and the result holds with 
 Still to confirm with Charles: which bias he used, his sample definition (age window, sessions), and his pass criterion. His own S, N and empirical value for one child (e.g. Lily) would settle it.
 
 Scripts: `scripts/providence_audit/` on the baselines branch. CSVs: `results/baselines/all_children/providence_audit/`.
+
+## 4. Literal CHILDES `%mor` extraction (Nov 24, follow-up)
+
+Pairs taken straight from each utterance's `%mor` tier, with no cleaning and no spaCy. A pair is an article tag (`det:art|a/an/the`; in Manchester's 2024 UD-style `%mor`, `det|a-…-Art`) immediately followed by a common noun (`n|` / `noun|`), with the noun as its `%mor` stem. Three variants: any number; singular only; singular with one adjective allowed in between. `scripts/providence_audit/mor_literal_dxn.py` → `providence_audit/mor_literal_dxn.csv`.
+
+**Children, per child (ours → literal `%mor`, singular).** Providence: Alex S 1,803 → 1,759, N 385 → 345, emp .309 → .336; Ethan 1,697 → 1,581, 552 → 509, .250 → .265; Lily 3,192 → 3,069, 838 → 733, .298 → .322; Naima 5,447 → 5,230, 971 → 879, .349 → .361; William 1,325 → 1,253, 360 → 322, .308 → .342. The `%mor` stems merge more forms ("doggie" → dog), so N drops by 8–13% and empirical overlap rises by .01–.03. The predicted overlap rises by about the same. Manchester changes by less than .03 in every cell.
+
+| Group | Extraction | Per-noun bias | Fixed 2/3 |
+|---|---|---|---|
+| Providence children (5) | ours | .303 vs .240, p .004 | .303 vs .310, p .60 |
+| | `%mor`, any number | .337 vs .270, p .016 | .337 vs .336, p .99 |
+| | `%mor`, singular | .325 vs .262, p .008 | .325 vs .330, p .76 |
+| | `%mor`, + adjective | .340 vs .278, p .016 | .340 vs .343, p .89 |
+| Manchester children (12) | ours | p .54 | p < .001 |
+| | `%mor` (all three) | p .62 / .84 / .79 | p ≤ .001 |
+| Providence mothers (5) | `%mor` (all three) | p .35 / .23 / .43 | p < .001 |
+| Manchester mothers (12) | `%mor` (all three) | p .93 / .95 / .10 | p < .001 |
+
+**Verdict: extraction alone does not change pass/fail.** With the literal `%mor` pairs, Providence children still fail under the per-noun bias and pass under 2/3. Manchester children and every group of mothers pass under the per-noun bias and fail under 2/3. The bias decides the outcome. The extraction does not.
