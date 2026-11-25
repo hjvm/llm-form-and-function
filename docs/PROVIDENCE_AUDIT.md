@@ -2,7 +2,9 @@
 
 **Question.** Charles reports that the Providence children pass the D×N test with the Goldin-Meadow & Yang (2017) method. In our pipeline they over-overlap (empirical > predicted) and fail. Why?
 
-**Short answer.** The det–noun lists are fine. The difference is the **bias** that goes into the predicted overlap. Yang's published expected values all correspond to a bias of about **2/3** (a 2:1 split between the two determiners). The paper uses each speaker's **per-noun** bias (share of tokens taking each noun's favored determiner, about .80–.85). With b = 2/3 the Providence children pass (p .60). With the per-noun bias they fail (p .004). No single bias makes every group pass: b = 2/3 passes Providence but fails the Manchester children and every group of mothers.
+> **Update Nov 25 (section 5):** Charles's code (Yang & Valian 2020 repo) uses the **same per-noun bias** as the paper, not 2/3. The 2/3 below only reproduces Yang's 2013 table. Under his code, the Providence children still over-overlap in every variant. See section 5.
+
+**Short answer (Nov 24).** The det–noun lists are fine. The difference is the **bias** that goes into the predicted overlap. Yang's published expected values all correspond to a bias of about **2/3** (a 2:1 split between the two determiners). The paper uses each speaker's **per-noun** bias (share of tokens taking each noun's favored determiner, about .80–.85). With b = 2/3 the Providence children pass (p .60). With the per-noun bias they fail (p .004). No single bias makes every group pass: b = 2/3 passes Providence but fails the Manchester children and every group of mothers.
 
 ## 1. The extractions
 
@@ -71,3 +73,35 @@ Pairs taken straight from each utterance's `%mor` tier, with no cleaning and no 
 | Manchester mothers (12) | `%mor` (all three) | p .93 / .95 / .10 | p < .001 |
 
 **Verdict: extraction alone does not change pass/fail.** With the literal `%mor` pairs, Providence children still fail under the per-noun bias and pass under 2/3. Manchester children and every group of mothers pass under the per-noun bias and fail under 2/3. The bias decides the outcome. The extraction does not.
+
+## 5. Charles Yang's code (Yang & Valian 2020 repo), Nov 25
+
+Source: github.com/charles-yang-upenn/Determiner-Productivity (`Analysis 1 & 2/overlap.py`, `overlap_phase.py`). I re-implemented it line by line rather than running the downloaded code: `scripts/providence_audit/yang_valian_reimpl.py`. **Check:** on the repo's own Manchester files, the re-implementation reproduces all 24 rows of its Table 1 and all 12 rows of its Table 2 to the third decimal. Run on the Providence tpr-data files (same `<file> %mor:` line format).
+
+**Differences from our pipeline**
+
+| # | His code | Ours | Changes pass/fail? |
+|---|---|---|---|
+| 1 | Pairs from `%mor`: `det:art|a/an/the` + `n|X` with no "PL" in the tag; also article + any word + `n|Y` (adjective + noun, second noun of a compound) | spaCy on cleaned text: article + optional modifier + singular common noun | No |
+| 2 | Noun = raw `%mor` string after `n|` (`dog-DIM`, `zip&dv-AGT` are their own types) | spaCy lemma | No |
+| 3 | **Bias = per-noun dominant share** (`find_bias`), the same as ours. The formula is identical too. | same | — |
+| 4 | Speakers: `*CHI` and `*MOT` only, all ages (Table 1) | child, mother; other adults only for TPR | No |
+| 5 | **Speaker bug:** after a `*CHI:` line, the *next* `%mor` line is taken even when the child's line has none, so the following speaker's `%mor` counts as the child's. Manchester: 4% of child lines. Providence: 14–26% of child lines (child utterances without `%mor` are common there). | each `%mor` stays with its own utterance | No; it inflates child S (Lily 5,633 vs 3,592 corrected) |
+| 6 | **Wrapped lines:** only the first line of a `%mor` tier is read. 25% of Providence `%mor` tiers wrap; his Manchester files are unwrapped. | continuation lines joined | Yes, for **mothers**: unjoined, Providence mothers over-overlap and fail (p .015); joined they pass (p .26) |
+| 7 | Table 2 "phase one": child pairs up to 50 distinct det+noun types, plus the rest of that session. The session key is `filename[:-5]`. On tpr-data's prefixes (`010102`) that is `"0"`, so phase one silently becomes the whole corpus. | — | see below |
+| 8 | No statistical test in the repo: tables of empirical vs expected only | paired t-test + JZS BF₀₁ | Possibly — see below |
+
+**Providence children under his code** (paired t of empirical vs expected, 5 children):
+
+| Variant | Empirical | Expected | p | Over-overlap |
+|---|---|---|---|---|
+| As written (unjoined lines, speaker bug) | .337 | .270 | .007 | 5/5 |
+| Lines joined | .344 | .294 | .022 | 5/5 |
+| Lines joined + speaker bug fixed | .326 | .271 | .023 | 5/5 |
+| Phase one (session rule fixed) | .110 | .089 | .046 | 5/5 |
+| Manchester children, his files, all ages | .295–.299 | .282–.285 | .47–.52 | 7/12 |
+| Manchester children, his phase one (Table 2) | .118 | .118 | .99 | 8/12 |
+
+**What this means.** With his own code and per-noun bias, the Providence children over-overlap and fail a paired t-test at every setting. In phase one they are close (.110 vs .089, differences of .002–.047 per child): that is the only setting where a judgment by eye could call them a match, and even there all 5 are above and p = .046. So Charles's "pass" is most likely the criterion (closeness of empirical and expected per child, without a test), or a phase-one style sample, not the bias or the extraction. The earlier 2/3 explanation does not apply to this code.
+
+CSVs: `providence_audit/yang_valian_reimpl*.csv`, `yang_valian_phase1.csv`.
