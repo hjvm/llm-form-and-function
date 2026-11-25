@@ -108,3 +108,36 @@ Paper: Yang & Valian (2020), "Determining the abstractness of determiners" (manu
 **Conclusion.** Under the analysis that corresponds to the claim (Analysis 2, per-speaker bias, paired t), the Providence children fail on the full corpus in every variant (p .007–.023). Phase one is small and unstable: it fails in three variants and passes in one (p .42). A concordance criterion would be more lenient: across the 5 children ρc = .37, but pooled with their mothers ρc = .78, about the same as Manchester's children (.79), because the offset of a few points is small against the spread across speakers. If Charles's "pass" is a concordance judgment as in GM&Y 2017, or a phase-one sample, that would explain it; under Analysis 2's own paired t-test on the full corpus, the Providence children over-overlap.
 
 Scripts: `scripts/providence_audit/yang_valian_reimpl.py`, `yv2020_analysis2_phase1.py`. CSVs: `providence_audit/yang_valian_reimpl*.csv`, `yv2020_analysis2_phase1.csv`.
+
+## 6. Why the Providence children over-overlap (Nov 25)
+
+Each speaker's gap (empirical − predicted, paper method) splits into three parts that add up exactly (`scripts/providence_audit/gap_decomposition.py`, 300 simulations per speaker):
+
+- **Test offset**: the gap a perfectly productive speaker gets under Yang's own model (Zipf nouns, free a/the choice) with the same number of noun types, tokens and estimated bias. It comes from estimating the bias from the same small sample.
+- **Noun-frequency shape**: how much more overlap the speaker's real noun frequencies give than Zipf frequencies with the same N and S, with a/the still chosen freely.
+- **Determiner use**: the speaker's real overlap minus what the real noun frequencies would give with free a/the choice. Negative means nouns stick to one determiner more than chance.
+
+Means per group (child rows; mothers in the CSV):
+
+| Group | Gap | Test offset | Noun-frequency shape | Determiner use | Top-10 nouns' share of tokens (Zipf predicts) |
+|---|---|---|---|---|---|
+| Providence children (5) | **+.063** | +.025 | **+.101** | −.063 | .18 (.42) |
+| Manchester children (12) | +.008 | +.024 | +.056 | −.073 | .24 (.46) |
+| Yang's 6 children | +.015 | +.027 | +.063 | −.075 | .17 (.43) |
+| Lara | +.004 | +.026 | +.065 | −.087 | .16 (.42) |
+| Providence mothers (5) | −.008 | +.028 | +.048 | −.083 | .13 (.38) |
+| Manchester mothers (12) | −.022 | +.026 | +.041 | −.089 | .18 (.40) |
+
+Per Providence child (gap = offset + shape + determiner use): Alex +.042 = .026 + .081 − .066; Ethan +.057 = .021 + .093 − .059; Lily +.095 = .021 + .133 − .059; Naima +.040 = .030 + .089 − .079; William +.080 = .025 + .107 − .051. Manchester children who over-overlap look the same: Anne +.084 = .024 + .103 − .041; Becky +.068 = .023 + .093 − .050; Nicole +.058 = .019 + .075 − .036.
+
+**Findings**
+
+1. **The test offset is the same everywhere (+.02 to +.03)** and so does not separate Providence from Manchester. It is why even a perfectly productive speaker's empirical overlap lands slightly above the prediction (cf. the Spanish null simulations).
+2. **Determiner use is similar** (Providence −.063 vs Manchester −.073). The Providence children do not spread a/the over nouns more freely than the Manchester children in any meaningful way.
+3. **The difference is the noun-frequency shape** (+.101 vs +.056, i.e. +.045 of the +.055 difference in gap). Every child's noun distribution is flatter at the top than Zipf (the 10 most frequent nouns take 16–36% of tokens, while Zipf with the same N gives 40–52%). A flatter head means more nouns are used often enough to show up with both determiners than Yang's Zipf formula assumes. The flatter the top, the bigger the shape term (r = −.65 with the top-10 share across 24 children) and the bigger the gap (r = −.59). The Providence children have some of the flattest distributions (Lily's top 10 = 11% of tokens), and Manchester children with steep heads (Carl's "car", Ruth, Dominic, Warren) have small or negative shape terms that pull the Manchester mean back to zero.
+4. **It is not sampling design.** Re-sampling each Providence child like Manchester (34 sessions from 2;0–3;0, 20 draws) leaves the gap at +.055 (shape +.089, top-10 share .21) and the five fail the paired t-test in 20 of 20 draws (median p .022). Number of sessions, S and N do not predict the shape term (|r| ≤ .32). It is not extraction either (section 4: the `%mor` pairs give the same gap).
+5. **The mothers do not show it.** Providence mothers' shape term (+.048) matches Manchester mothers' (+.041).
+
+**Plain-language cause.** Yang's prediction assumes noun frequencies follow Zipf's law with exponent 1, which concentrates tokens in a handful of very frequent nouns. Real child speech spreads tokens over more mid-frequency nouns, so it shows more overlap than predicted. In Manchester this is offset on average by children whose talk is dominated by a few nouns (Carl). The Providence children talk about a wider spread of things at middle frequencies, so the Zipf prediction undershoots them all, by about 4–10 points, and with no child pulling the other way the paired t-test fails. The overlap test, as formulated, is sensitive to how well each child's noun distribution matches Zipf, not only to productivity.
+
+CSVs: `providence_audit/gap_decomposition.csv`, `gap_manchester_like_samples.csv`.
